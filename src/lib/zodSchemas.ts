@@ -1,8 +1,29 @@
 import { z } from "zod";
 import { EInvoiceFormData } from "./types";
 
+
+const despatchDocumentReferenceSchema = z.object({
+  IssueDate: z.string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Geçerli bir tarih formatı girin (YYYY-MM-DD)")
+    .refine(date => new Date(date).toString() !== "Invalid Date", {
+      message: "Geçerli bir tarih girin"
+    }),
+  Value: z.string().min(1, "Değer boş olamaz"),
+});
+
+const OrderReferenceSchema = z.object({
+  IssueDate: z.string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Geçerli bir tarih formatı girin (YYYY-MM-DD)")
+    .refine(date => new Date(date).toString() !== "Invalid Date", {
+      message: "Geçerli bir tarih girin"
+    }),
+  Value: z.string().min(1, "Değer boş olamaz"),
+});
+
 // InvoiceInfo için Zod Şeması
 const InvoiceInfoSchema = z.object({
+  UUID: z.string(),
+
   InvoiceSerieOrNumber: z.string()
     .min(1, "Fatura Seri/Numara boş bırakılamaz")
     .max(50, "Fatura Seri/Numara çok uzun"),
@@ -23,7 +44,10 @@ const InvoiceInfoSchema = z.object({
   
   InvoiceProfile: z.string()
     .min(1, "Fatura Profili boş bırakılamaz")
-    .max(50, "Fatura Profili çok uzun")
+    .max(50, "Fatura Profili çok uzun"),
+
+  DespatchDocumentReference: z.array(despatchDocumentReferenceSchema),
+  OrderReference: z.array(OrderReferenceSchema),
 });
 
 // CompanyInfo için Zod Şeması

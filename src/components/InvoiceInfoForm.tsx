@@ -23,8 +23,19 @@ export function InvoiceInfoForm() {
 
   return (
     <section className="space-y-4">
-      <h2 className="text-xl font-semibold mt-5">Fatura Bilgileri</h2>
-      <div className="grid grid-cols-5 gap-4">
+        <div className="flex items-center justify-normal mt-5">
+        <h2 className="text-xl font-semibold">Fatura Bilgileri</h2>
+        <FormField
+          control={control}
+          name="InvoiceInfo.UUID"
+          render={({ field }) => (
+              <div className="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded whitespace-nowrap ml-5">
+              UUID: {field.value}
+              </div>
+          )}
+        />
+        </div>
+        <div className="grid grid-cols-5 gap-4">
         <FormField
           control={control}
           name="InvoiceInfo.InvoiceSerieOrNumber"
@@ -112,6 +123,59 @@ export function InvoiceInfoForm() {
             </FormItem>
           )}
         />
+        <FormField
+        control={control}
+        name="InvoiceInfo.DespatchDocumentReference.0.IssueDate"
+        render={({ field }) => (
+            <FormItem className="space-y-2 col-span-2">
+            <FormLabel>İrsaliye Tarihi</FormLabel>
+            <FormControl>
+                <Input type="date" {...field} />
+            </FormControl>
+            <FormMessage className="text-xs" />
+            </FormItem>
+        )}
+        />
+        <FormField
+        control={control}
+        name="InvoiceInfo.DespatchDocumentReference.0.Value"
+        render={({ field }) => (
+            <FormItem className="space-y-2 col-span-2">
+            <FormLabel>İrsaliye Numarası</FormLabel>
+            <FormControl>
+                <Input placeholder="İrsaliye numarası girin" {...field} />
+            </FormControl>
+            <FormMessage className="text-xs" />
+            </FormItem>
+        )}
+        />
+        <FormField
+        control={control}
+        name="InvoiceInfo.OrderReference.0.IssueDate"
+        render={({ field }) => (
+            <FormItem className="space-y-2 col-span-2">
+            <FormLabel>Sipariş Tarihi</FormLabel>
+            <FormControl>
+                <Input type="date" {...field} />
+            </FormControl>
+            <FormMessage className="text-xs" />
+            </FormItem>
+        )}
+        />
+
+        <FormField
+        control={control}
+        name="InvoiceInfo.OrderReference.0.Value"
+        render={({ field }) => (
+            <FormItem className="space-y-2 col-span-2">
+            <FormLabel>Sipariş Numarası</FormLabel>
+            <FormControl>
+                <Input placeholder="Sipariş numarası girin" {...field} />
+            </FormControl>
+            <FormMessage className="text-xs" />
+            </FormItem>
+        )}
+        />                
       </div>
     </section>
   );
