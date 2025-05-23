@@ -1,5 +1,6 @@
 "use client";
 
+
 import React from "react";
 import { EInvoiceFormData } from "../lib/types";
 import { EInvoiceFormDataSchema } from "../lib/zodSchemas";
@@ -25,9 +26,10 @@ export default function EInvoiceForm() {
     }
   });
 
+
+
   const onSubmit = (data: EInvoiceFormData) => {
     console.log("Form submitted:", data);
-    // API çağrısı veya form işleme logic'i buraya gelecek
   };
 
   const currencyOptions = [
@@ -36,6 +38,11 @@ export default function EInvoiceForm() {
   { value: "EUR", label: "Euro (EUR)" },
   { value: "GBP", label: "İngiliz Sterlini (GBP)" },
 ];
+
+  const invoiceTypeOptions = [
+    { value: "SATİS", label: "SATİS"},
+    { value: "İADE", label: "İADE"},
+  ]
 
   return (
     <Card className="bg-amber-50 max-w-6xl mx-auto">
@@ -80,9 +87,20 @@ export default function EInvoiceForm() {
                   render={({ field }) => (
                     <FormItem className="space-y-2">
                       <FormLabel>Fatura Tipi</FormLabel>
-                      <FormControl>
-                        <Input placeholder="SATIS" {...field} />
-                      </FormControl>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Fatura tipi seçin"/>
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {invoiceTypeOptions.map((type) => (
+                            <SelectItem key={type.value} value={type.value}>
+                              {type.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                       <FormMessage className="text-xs" />
                     </FormItem>
                   )}
