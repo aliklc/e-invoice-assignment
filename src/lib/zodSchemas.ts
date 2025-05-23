@@ -26,7 +26,42 @@ const InvoiceInfoSchema = z.object({
     .max(50, "Fatura Profili çok uzun")
 });
 
+// CompanyInfo için Zod Şeması
+const CompanyInfoSchema = z.object({
+  TaxNumber: z.string()
+    .min(1, "Vergi numarası en az 1 karakter olmalıdır")
+    .max(11, "Vergi numarası en fazla 11 karakter olmalıdır")
+    .regex(/^[0-9]+$/, "Vergi numarası sadece rakamlardan oluşmalıdır"),
+  
+  Name: z.string()
+    .min(1, "Şirket adı boş bırakılamaz")
+    .max(30, "Şirket adı çok uzun"),
+  
+  TaxOffice: z.string()
+    .min(1, "Vergi dairesi boş bırakılamaz")
+    .max(30, "Vergi dairesi adı çok uzun"),
+  
+  Address: z.string()
+    .min(1, "Adres boş bırakılamaz")
+    .max(200, "Adres çok uzun"),
+  
+  City: z.string()
+    .min(1, "Şehir boş bırakılamaz")
+    .max(20, "Şehir adı çok uzun"),
+  
+  Phone: z.string()
+    .min(10, "Telefon numarası en az 10 karakter olmalıdır")
+    .max(15, "Telefon numarası çok uzun")
+    .regex(/^[0-9+]+$/, "Geçerli bir telefon numarası girin"),
+  
+  Mail: z.string()
+    .min(1, "E-posta boş bırakılamaz")
+    .email("Geçerli bir e-posta adresi girin")
+    .max(100, "E-posta çok uzun")
+});
+
 // Ana EInvoiceFormData Şeması
 export const EInvoiceFormDataSchema: z.ZodType<EInvoiceFormData> = z.object({
-  InvoiceInfo: InvoiceInfoSchema
+  InvoiceInfo: InvoiceInfoSchema,
+  CompanyInfo: CompanyInfoSchema
 });

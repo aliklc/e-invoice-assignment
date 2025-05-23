@@ -6,7 +6,7 @@ import { EInvoiceFormData } from "../lib/types";
 import { EInvoiceFormDataSchema } from "../lib/zodSchemas";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -20,12 +20,20 @@ export default function EInvoiceForm() {
         InvoiceSerieOrNumber: "",
         IssueDate: "",
         InvoiceType: "",
-        CurrencyCode: "TRY", // Varsayılan değer ekledim
-        InvoiceProfile: "EARSIVFATURA" // Varsayılan değer ekledim
+        CurrencyCode: "",
+        InvoiceProfile: "",
+      },
+      CompanyInfo: {
+        TaxNumber:"",
+        Name:"",
+        TaxOffice:"",
+        Address:"",
+        City:"",
+        Phone:"",
+        Mail:""
       }
     }
   });
-
 
 
   const onSubmit = (data: EInvoiceFormData) => {
@@ -46,14 +54,12 @@ export default function EInvoiceForm() {
 
   return (
     <Card className="bg-amber-50 max-w-6xl mx-auto">
-      <CardHeader>
-        <h2 className="text-xl font-semibold">Fatura Bilgileri</h2>
-      </CardHeader>
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             {/* Invoice Info */}
             <section className="space-y-4">
+              <h2 className="text-xl font-semibold mt-5">Fatura Bilgileri</h2>
               <div className="grid grid-cols-5 gap-4">
                 <FormField
                   control={form.control}
@@ -137,6 +143,102 @@ export default function EInvoiceForm() {
                       <FormLabel>Fatura Profili</FormLabel>
                       <FormControl>
                         <Input placeholder="EARSIVFATURA" {...field} />
+                      </FormControl>
+                      <FormMessage className="text-xs" />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </section>
+            <section className="space-y-4">
+              <h2 className="text-xl font-semibold mt-5">Şirket Bilgileri</h2>
+              <div className="grid grid-cols-5 gap-4">
+                  <FormField
+                  control={form.control}
+                  name="CompanyInfo.TaxNumber"
+                  render={({ field }) => (
+                    <FormItem className="space-y-2">
+                      <FormLabel>Vergi Numarası</FormLabel>
+                      <FormControl>
+                        <Input placeholder="99999999" {...field} />
+                      </FormControl>
+                      <FormMessage className="text-xs" />
+                    </FormItem>
+                  )}
+                />
+                  <FormField
+                  control={form.control}
+                  name="CompanyInfo.Name"
+                  render={({ field }) => (
+                    <FormItem className="space-y-2">
+                      <FormLabel>Şirket İsmi</FormLabel>
+                      <FormControl>
+                        <Input placeholder="XXXX" {...field} />
+                      </FormControl>
+                      <FormMessage className="text-xs" />
+                    </FormItem>
+                  )}
+                />
+                  <FormField
+                  control={form.control}
+                  name="CompanyInfo.TaxOffice"
+                  render={({ field }) => (
+                    <FormItem className="space-y-2">
+                      <FormLabel>Vergi Dairesi</FormLabel>
+                      <FormControl>
+                        <Input placeholder="XXXX" {...field} />
+                      </FormControl>
+                      <FormMessage className="text-xs" />
+                    </FormItem>
+                  )}
+                />
+                  <FormField
+                  control={form.control}
+                  name="CompanyInfo.City"
+                  render={({ field }) => (
+                    <FormItem className="space-y-2">
+                      <FormLabel>Şehir</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage className="text-xs" />
+                    </FormItem>
+                  )}
+                />
+                  <FormField
+                  control={form.control}
+                  name="CompanyInfo.Phone"
+                  render={({ field }) => (
+                    <FormItem className="space-y-2">
+                      <FormLabel>Tel No</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage className="text-xs" />
+                    </FormItem>
+                  )}
+                />
+                  <FormField
+                  control={form.control}
+                  name="CompanyInfo.Address"
+                  render={({ field }) => (
+                    <FormItem className="space-y-2 col-span-3">
+                      <FormLabel>Adres</FormLabel>
+                      <FormControl>
+                        <Input  {...field} />
+                      </FormControl>
+                      <FormMessage className="text-xs" />
+                    </FormItem>
+                  )}
+                />
+                  <FormField
+                  control={form.control}
+                  name="CompanyInfo.Mail"
+                  render={({ field }) => (
+                    <FormItem className="space-y-2 col-span-2">
+                      <FormLabel>Mail</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
                       </FormControl>
                       <FormMessage className="text-xs" />
                     </FormItem>
