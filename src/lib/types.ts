@@ -30,5 +30,4 @@ export interface EInvoiceFormData {
   InvoiceInfo: InvoiceInfo;
   CompanyInfo: CompanyInfo;
   CustomerInfo: CustomerInfo;
-
 }
