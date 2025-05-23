@@ -16,8 +16,19 @@ export interface CompanyInfo {
   Mail: string;
 }
 
+export interface CustomerInfo {
+  TaxNumber: string;
+  Name: string;
+  TaxOffice: string;
+  Address: string;
+  City: string;
+  Phone: string;
+  Mail: string;
+}
+
 export interface EInvoiceFormData {
   InvoiceInfo: InvoiceInfo;
   CompanyInfo: CompanyInfo;
+  CustomerInfo: CustomerInfo;
 
 }
