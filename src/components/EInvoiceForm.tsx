@@ -9,6 +9,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {Select, SelectContent, SelectItem, SelectTrigger,SelectValue,} from "@/components/ui/select"
 
 export default function EInvoiceForm() {
   const form = useForm<EInvoiceFormData>({
@@ -28,6 +29,13 @@ export default function EInvoiceForm() {
     console.log("Form submitted:", data);
     // API çağrısı veya form işleme logic'i buraya gelecek
   };
+
+  const currencyOptions = [
+  { value: "TRY", label: "Türk Lirası (TRY)" },
+  { value: "USD", label: "ABD Doları (USD)" },
+  { value: "EUR", label: "Euro (EUR)" },
+  { value: "GBP", label: "İngiliz Sterlini (GBP)" },
+];
 
   return (
     <Card className="bg-amber-50 max-w-6xl mx-auto">
@@ -85,9 +93,20 @@ export default function EInvoiceForm() {
                   render={({ field }) => (
                     <FormItem className="space-y-2">
                       <FormLabel>Para Birimi</FormLabel>
-                      <FormControl>
-                        <Input placeholder="TRY" {...field} />
-                      </FormControl>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Para birimi seçin" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {currencyOptions.map((currency) => (
+                            <SelectItem key={currency.value} value={currency.value}>
+                              {currency.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                       <FormMessage className="text-xs" />
                     </FormItem>
                   )}
