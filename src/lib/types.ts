@@ -31,6 +31,12 @@ export interface AdditionalDocumentReferences {
   Attachment: Attachment[];
 }
 
+export interface TaxExemptionReasonInfo {
+  KDVExemptionReasonCode?: string;
+  OTVExemptionReasonCode?: string;
+  AccommodationTaxExemptionReasonCode?: string;
+}
+
 export interface InvoiceInfo {
   UUID: string;
   InvoiceSerieOrNumber: string;
@@ -42,6 +48,7 @@ export interface InvoiceInfo {
   OrderReference: OrderReference[];
   OrderReferenceDocument?: OrderReferenceDocument[];
   AdditionalDocumentReferences: AdditionalDocumentReferences[];
+  TaxExemptionReasonInfo?: TaxExemptionReasonInfo;
 }
 
 export interface CompanyInfo {

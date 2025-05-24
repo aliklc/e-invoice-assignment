@@ -77,7 +77,12 @@ export default function EInvoiceForm() {
             },
           ],
         },
-      ],             
+      ],
+      TaxExemptionReasonInfo: {
+        KDVExemptionReasonCode: "",
+        OTVExemptionReasonCode: "",
+        AccommodationTaxExemptionReasonCode: ""
+      }             
       },
       CompanyInfo: {
         TaxNumber: "",

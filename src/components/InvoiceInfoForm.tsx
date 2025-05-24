@@ -362,6 +362,7 @@ export function InvoiceInfoForm() {
           )}
         />
         {/* Attachment Alanları */}
+        <div className="col-span-5 grid grid-cols-4 gap-4">
         <FormField
           control={control}
           name="InvoiceInfo.OrderReferenceDocument.0.Attachment.0.FileName"
@@ -400,7 +401,52 @@ export function InvoiceInfoForm() {
               <FormMessage className="text-xs" />
             </FormItem>
           )}
-        />                  
+        />
+        </div>
+        <div className="flex items-center justify-normal mt-5">
+          <h2 className="text-xl font-semibold">Vergi Muafiyet Bilgileri</h2>
+        </div>
+        <div className="col-span-5 grid grid-cols-3 gap-4">
+          <FormField
+            control={control}
+            name="InvoiceInfo.TaxExemptionReasonInfo.KDVExemptionReasonCode"
+            render={({ field }) => (
+              <FormItem className="space-y-2">
+                <FormLabel>KDV Muafiyet Kodu</FormLabel>
+                <FormControl>
+                  <Input placeholder="301" {...field} />
+                </FormControl>
+                <FormMessage className="text-xs" />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={control}
+            name="InvoiceInfo.TaxExemptionReasonInfo.OTVExemptionReasonCode"
+            render={({ field }) => (
+              <FormItem className="space-y-2">
+                <FormLabel>ÖTV Muafiyet Kodu</FormLabel>
+                <FormControl>
+                  <Input placeholder="501" {...field} />
+                </FormControl>
+                <FormMessage className="text-xs" />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={control}
+            name="InvoiceInfo.TaxExemptionReasonInfo.AccommodationTaxExemptionReasonCode"
+            render={({ field }) => (
+              <FormItem className="space-y-2">
+                <FormLabel>Konaklama Vergisi Muafiyet Kodu</FormLabel>
+                <FormControl>
+                  <Input placeholder="701" {...field} />
+                </FormControl>
+                <FormMessage className="text-xs" />
+              </FormItem>
+            )}
+          />
+        </div>                  
       </div>
     </section>
   );

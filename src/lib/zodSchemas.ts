@@ -52,6 +52,13 @@ const AdditionalDocumentReferencesSchema = z.object({
   Attachment: z.array(AttachmentSchema)
 });
 
+
+const TaxExemptionReasonInfoSchema = z.object({
+  KDVExemptionReasonCode: z.string().min(1, "KDV muafiyet kodu boş olamaz"),
+  OTVExemptionReasonCode: z.string().min(1, "ÖTV muafiyet kodu boş olamaz"),
+  AccommodationTaxExemptionReasonCode: z.string().min(1, "Konaklama vergisi muafiyet kodu boş olamaz")
+});
+
 // InvoiceInfo için Zod Şeması
 const InvoiceInfoSchema = z.object({
   UUID: z.string(),
@@ -82,6 +89,7 @@ const InvoiceInfoSchema = z.object({
   OrderReference: z.array(OrderReferenceSchema),
   OrderReferenceDocument: z.array(OrderReferenceDocumentSchema),
   AdditionalDocumentReferences: z.array(AdditionalDocumentReferencesSchema),
+  TaxExemptionReasonInfo: TaxExemptionReasonInfoSchema.optional()
 });
 
 // CompanyInfo için Zod Şeması
