@@ -1,10 +1,10 @@
 export interface DespatchDocumentReference {
-  IssueDate: string;
+  IssueDate?: string;
   Value: string;
 }
 
 export interface OrderReference {
-  IssueDate: string;
+  IssueDate?: string;
   Value: string;
 }
 
@@ -16,7 +16,7 @@ export interface Attachment {
 
 export interface OrderReferenceDocument {
   ID: string;
-  IssueDate: string;
+  IssueDate?: string;
   DocumentType: string;
   DocumentTypeCode: string;
   DocumentDescription?: string;
@@ -24,7 +24,7 @@ export interface OrderReferenceDocument {
 }
 export interface AdditionalDocumentReferences {
   ID: string;
-  IssueDate: string;
+  IssueDate?: string;
   DocumentType: string;
   DocumentTypeCode: string;
   DocumentDescription?: string;
@@ -63,7 +63,7 @@ export interface OKCInfo {
 export interface InvoiceInfo {
   UUID: string;
   InvoiceSerieOrNumber: string;
-  IssueDate: string;
+  IssueDate?: string;
   InvoiceType: string;
   CurrencyCode: string;
   InvoiceProfile: string;

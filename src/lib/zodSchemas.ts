@@ -4,19 +4,19 @@ import { EInvoiceFormData } from "./types";
 
 const despatchDocumentReferenceSchema = z.object({
   IssueDate: z.string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "Geçerli bir tarih formatı girin (YYYY-MM-DD)")
-    .refine(date => new Date(date).toString() !== "Invalid Date", {
-      message: "Geçerli bir tarih girin"
-    }),
+    .refine(val => !isNaN(Date.parse(val)), {
+      message: "Geçerli bir tarih/saat formatı girin"
+    })
+    .optional(),
   Value: z.string().min(1, "Değer boş olamaz"),
 });
 
 const OrderReferenceSchema = z.object({
   IssueDate: z.string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "Geçerli bir tarih formatı girin (YYYY-MM-DD)")
-    .refine(date => new Date(date).toString() !== "Invalid Date", {
-      message: "Geçerli bir tarih girin"
-    }),
+    .refine(val => !isNaN(Date.parse(val)), {
+      message: "Geçerli bir tarih/saat formatı girin"
+    })
+    .optional(),
   Value: z.string().min(1, "Değer boş olamaz"),
 });
 
@@ -29,10 +29,10 @@ const AttachmentSchema = z.object({
 const OrderReferenceDocumentSchema = z.object({
   ID: z.string().min(1, "Doküman ID boş olamaz"),
   IssueDate: z.string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "Geçerli bir tarih formatı girin (YYYY-MM-DD)")
-    .refine(date => new Date(date).toString() !== "Invalid Date", {
-      message: "Geçerli bir tarih girin"
-    }), 
+    .refine(val => !isNaN(Date.parse(val)), {
+      message: "Geçerli bir tarih/saat formatı girin"
+    })
+    .optional(), 
   DocumentType: z.string().min(1, "Doküman tipi boş olamaz"),
   DocumentTypeCode: z.string().min(1, "Doküman tip kodu boş olamaz"),
   DocumentDescription: z.string().optional(),
@@ -42,10 +42,10 @@ const OrderReferenceDocumentSchema = z.object({
 const AdditionalDocumentReferencesSchema = z.object({
   ID: z.string().min(1, "Doküman ID boş olamaz"),
   IssueDate: z.string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "Geçerli bir tarih formatı girin (YYYY-MM-DD)")
-    .refine(date => new Date(date).toString() !== "Invalid Date", {
-      message: "Geçerli bir tarih girin"
-    }), 
+    .refine(val => !isNaN(Date.parse(val)), {
+      message: "Geçerli bir tarih/saat formatı girin"
+    })
+    .optional(), 
   DocumentType: z.string().min(1, "Doküman tipi boş olamaz"),
   DocumentTypeCode: z.string().min(1, "Doküman tip kodu boş olamaz"),
   DocumentDescription: z.string().optional(),
@@ -69,10 +69,10 @@ const PaymentMeansInfoSchema = z.object({
   Code: z.string().optional(),
   ChannelCode: z.string().optional(),
   DueDate: z.string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "Geçerli bir tarih formatı girin (YYYY-MM-DD)")
-    .refine(date => new Date(date).toString() !== "Invalid Date", {
-      message: "Geçerli bir tarih girin"
-    }), 
+    .refine(val => !isNaN(Date.parse(val)), {
+      message: "Geçerli bir tarih/saat formatı girin"
+    })
+    .optional(), 
   PayeeFinancialAccountID: z.string().optional(),
   Note: z.string().optional()
 });
@@ -80,10 +80,10 @@ const PaymentMeansInfoSchema = z.object({
 const OKCInfoSchema = z.object({
   ID: z.string().optional(),
   IssueDate: z.string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "Geçerli bir tarih formatı girin (YYYY-MM-DD)")
-    .refine(date => new Date(date).toString() !== "Invalid Date", {
-      message: "Geçerli bir tarih girin"
-    }),
+    .refine(val => !isNaN(Date.parse(val)), {
+      message: "Geçerli bir tarih/saat formatı girin"
+    })
+    .optional(),
   Time: z.string().optional(),
   ZNo: z.string().optional(),
   EndPointID: z.string().optional(),
@@ -99,10 +99,10 @@ const InvoiceInfoSchema = z.object({
     .max(50, "Fatura Seri/Numara çok uzun"),
   
   IssueDate: z.string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "Geçerli bir tarih formatı girin (YYYY-MM-DD)")
-    .refine(date => new Date(date).toString() !== "Invalid Date", {
-      message: "Geçerli bir tarih girin"
-    }),
+    .refine(val => !isNaN(Date.parse(val)), {
+      message: "Geçerli bir tarih/saat formatı girin"
+    })
+    .optional(),
   
   InvoiceType: z.string()
     .min(1, "Fatura Tipi boş bırakılamaz")
