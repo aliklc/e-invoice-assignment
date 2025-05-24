@@ -19,7 +19,15 @@ export interface OrderReferenceDocument {
   IssueDate: string;
   DocumentType: string;
   DocumentTypeCode: string;
-  DocumentDescription: string;
+  DocumentDescription?: string;
+  Attachment: Attachment[];
+}
+export interface AdditionalDocumentReferences {
+  ID: string;
+  IssueDate: string;
+  DocumentType: string;
+  DocumentTypeCode: string;
+  DocumentDescription?: string;
   Attachment: Attachment[];
 }
 
@@ -33,6 +41,7 @@ export interface InvoiceInfo {
   DespatchDocumentReference: DespatchDocumentReference[];
   OrderReference: OrderReference[];
   OrderReferenceDocument?: OrderReferenceDocument[];
+  AdditionalDocumentReferences: AdditionalDocumentReferences[];
 }
 
 export interface CompanyInfo {

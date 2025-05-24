@@ -61,7 +61,23 @@ export default function EInvoiceForm() {
               },
             ],
           },
-        ],              
+        ],
+      AdditionalDocumentReferences: [ // Bu alanı ekliyoruz
+        {
+          ID: "",
+          IssueDate: "",
+          DocumentType: "",
+          DocumentTypeCode: "",
+          DocumentDescription: "", // Eğer opsiyonel değilse burada boş string olmalı
+          Attachment: [
+            {
+              Base64Data: "",
+              MimeCode: "",
+              FileName: "",
+            },
+          ],
+        },
+      ],             
       },
       CompanyInfo: {
         TaxNumber: "",
