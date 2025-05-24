@@ -18,13 +18,26 @@ const invoiceTypeOptions = [
   { value: "İADE", label: "İADE" },
 ];
 
+const paymentMethodOptions = [
+  { value: "KREDIKARTI", label: "Kredi Kartı" },
+  { value: "HAVALE", label: "Havale" },
+  { value: "NAKIT", label: "Nakit" },
+  { value: "CEK", label: "Çek" },
+];
+
+const paymentChannelOptions = [
+  { value: "BANK", label: "Banka" },
+  { value: "MOBILE", label: "Mobil Ödeme" },
+  { value: "WEB", label: "Web Ödeme" },
+];
+
 export function InvoiceInfoForm() {
   const { control } = useFormContext<EInvoiceFormData>();
 
   return (
     <section className="space-y-4">
         <div className="flex items-center justify-normal mt-5">
-        <h2 className="text-xl font-semibold">Fatura Bilgileri</h2>
+        <h2 className="text-red-600 text-xl font-semibold">Fatura Bilgileri</h2>
         <FormField
           control={control}
           name="InvoiceInfo.UUID"
@@ -180,7 +193,7 @@ export function InvoiceInfoForm() {
         />
         </div>
         <div className="flex items-center justify-normal mt-5">
-        <h2 className="text-xl font-semibold">Döküman Bilgileri</h2>
+        <h2 className="text-red-600 text-xl font-semibold">Döküman Bilgileri</h2>
         </div>
         <div className="col-span-5 grid grid-cols-4 gap-4">
         <FormField
@@ -292,7 +305,7 @@ export function InvoiceInfoForm() {
         />
         </div>
         <div className="flex items-center justify-normal mt-5">
-        <h2 className="text-xl font-semibold">Ek Döküman Bilgileri</h2>
+        <h2 className="text-red-600 text-xl font-semibold">Ek Döküman Bilgileri</h2>
         </div>
         <div className="col-span-5 grid grid-cols-4 gap-4">
         <FormField
@@ -404,7 +417,7 @@ export function InvoiceInfoForm() {
         />
         </div>
         <div className="flex items-center justify-normal mt-5">
-          <h2 className="text-xl font-semibold">Vergi Muafiyet Bilgileri</h2>
+          <h2 className="text-red-600 text-xl font-semibold">Vergi Muafiyet Bilgileri</h2>
         </div>
         <div className="col-span-5 grid grid-cols-3 gap-4">
           <FormField
@@ -446,7 +459,153 @@ export function InvoiceInfoForm() {
               </FormItem>
             )}
           />
-        </div>                  
+        </div>
+        <div className="col-span-5 grid grid-cols-3 gap-4 mt-4">
+          <FormField
+            control={control}
+            name="InvoiceInfo.PaymentTermsInfo.Percent"
+            render={({ field }) => (
+              <FormItem className="space-y-2">
+                <FormLabel>Ödeme Yüzdesi</FormLabel>
+                <FormControl>
+                  <Input 
+                    type="number" 
+                    placeholder="%" 
+                    {...field} 
+                    onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                  />
+                </FormControl>
+                <FormMessage className="text-xs" />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={control}
+            name="InvoiceInfo.PaymentTermsInfo.Amount"
+            render={({ field }) => (
+              <FormItem className="space-y-2">
+                <FormLabel>Ödeme Tutarı</FormLabel>
+                <FormControl>
+                  <Input 
+                    type="number" 
+                    placeholder="Tutar" 
+                    {...field} 
+                    onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                  />
+                </FormControl>
+                <FormMessage className="text-xs" />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={control}
+            name="InvoiceInfo.PaymentTermsInfo.Note"
+            render={({ field }) => (
+              <FormItem className="space-y-2">
+                <FormLabel>Ödeme Notu</FormLabel>
+                <FormControl>
+                  <Input placeholder="Açıklama" {...field} />
+                </FormControl>
+                <FormMessage className="text-xs" />
+              </FormItem>
+            )}
+          />
+        </div>
+        <div className="flex items-center justify-normal mt-5">
+          <h2 className="text-xl font-semibold">Ödeme Bilgileri</h2>
+        </div>
+        <div className="col-span-5 grid grid-cols-3 gap-4">
+        <FormField
+          control={control}
+          name="InvoiceInfo.PaymentMeansInfo.Code"
+          render={({ field }) => (
+            <FormItem className="space-y-2">
+              <FormLabel>Fatura Tipi</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Fatura tipi seçin" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {paymentMethodOptions.map((type) => (
+                    <SelectItem key={type.value} value={type.value}>
+                      {type.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage className="text-xs" />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={control}
+          name="InvoiceInfo.PaymentMeansInfo.ChannelCode"
+          render={({ field }) => (
+            <FormItem className="space-y-2">
+              <FormLabel>Fatura Tipi</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Fatura tipi seçin" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {paymentChannelOptions.map((type) => (
+                    <SelectItem key={type.value} value={type.value}>
+                      {type.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage className="text-xs" />
+            </FormItem>
+          )}
+        />
+        </div>
+          <FormField
+            control={control}
+            name="InvoiceInfo.PaymentMeansInfo.DueDate"
+            render={({ field }) => (
+              <FormItem className="space-y-2">
+                <FormLabel>Son Ödeme Tarihi</FormLabel>
+                <FormControl>
+                  <Input 
+                    type="date" 
+                    {...field} 
+                  />
+                </FormControl>
+                <FormMessage className="text-xs" />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={control}
+            name="InvoiceInfo.PaymentMeansInfo.PayeeFinancialAccountID"
+            render={({ field }) => (
+              <FormItem className="space-y-2">
+                <FormLabel>Hesap No/IBAN</FormLabel>
+                <FormControl>
+                  <Input placeholder="TRXX XXXX XXXX XXXX XXXX XXXX XX" {...field} />
+                </FormControl>
+                <FormMessage className="text-xs" />
+              </FormItem>
+            )}
+          />
+        <FormField
+          control={control}
+          name="InvoiceInfo.PaymentMeansInfo.Note"
+          render={({ field }) => (
+            <FormItem className="space-y-2">
+              <FormLabel>Ödeme Açıklaması</FormLabel>
+              <FormControl>
+                <Input placeholder="Ödeme ile ilgili açıklama" {...field} />
+              </FormControl>
+              <FormMessage className="text-xs" />
+            </FormItem>
+          )}
+        />                  
       </div>
     </section>
   );

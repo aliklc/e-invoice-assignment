@@ -37,6 +37,20 @@ export interface TaxExemptionReasonInfo {
   AccommodationTaxExemptionReasonCode?: string;
 }
 
+export interface PaymentTermsInfo {
+  Percent?: number;
+  Amount?: number;
+  Note?: string;
+}
+
+export interface PaymentMeansInfo {
+  Code?: string;
+  ChannelCode?: string;
+  DueDate?: string;
+  PayeeFinancialAccountID?: string;
+  Note?: string;
+}
+
 export interface InvoiceInfo {
   UUID: string;
   InvoiceSerieOrNumber: string;
@@ -49,6 +63,8 @@ export interface InvoiceInfo {
   OrderReferenceDocument?: OrderReferenceDocument[];
   AdditionalDocumentReferences: AdditionalDocumentReferences[];
   TaxExemptionReasonInfo?: TaxExemptionReasonInfo;
+  PaymentTermsInfo?: PaymentTermsInfo;
+  PaymentMeansInfo?: PaymentMeansInfo;
 }
 
 export interface CompanyInfo {

@@ -82,6 +82,18 @@ export default function EInvoiceForm() {
         KDVExemptionReasonCode: "",
         OTVExemptionReasonCode: "",
         AccommodationTaxExemptionReasonCode: ""
+      },
+      PaymentTermsInfo: {
+        Percent: undefined,
+        Amount: undefined,
+        Note: ""
+      },
+      PaymentMeansInfo: {
+        Code: "",
+        ChannelCode: "",
+        DueDate: "",
+        PayeeFinancialAccountID: "",
+        Note: ""
       }             
       },
       CompanyInfo: {
