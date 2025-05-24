@@ -310,7 +310,7 @@ export function InvoiceInfoForm() {
         <div className="col-span-5 grid grid-cols-4 gap-4">
         <FormField
           control={control}
-          name="InvoiceInfo.OrderReferenceDocument.0.ID"
+          name="InvoiceInfo.AdditionalDocumentReferences.0.ID"
           render={({ field }) => (
             <FormItem className="space-y-2 col-span-1">
               <FormLabel>Ek Doküman No</FormLabel>
@@ -323,7 +323,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
           control={control}
-          name="InvoiceInfo.OrderReferenceDocument.0.IssueDate"
+          name="InvoiceInfo.AdditionalDocumentReferences.0.IssueDate"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Ek Doküman Tarihi</FormLabel>
@@ -336,7 +336,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
           control={control}
-          name="InvoiceInfo.OrderReferenceDocument.0.DocumentType"
+          name="InvoiceInfo.AdditionalDocumentReferences.0.DocumentType"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Ek Doküman Tipi</FormLabel>
@@ -349,7 +349,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
           control={control}
-          name="InvoiceInfo.OrderReferenceDocument.0.DocumentTypeCode"
+          name="InvoiceInfo.AdditionalDocumentReferences.0.DocumentTypeCode"
           render={({ field }) => (
             <FormItem className="space-y-2 col-span-1">
               <FormLabel>Ek Doküman Tipi Kodu</FormLabel>
@@ -363,7 +363,7 @@ export function InvoiceInfoForm() {
         </div>
         <FormField
           control={control}
-          name="InvoiceInfo.OrderReferenceDocument.0.DocumentDescription"
+          name="InvoiceInfo.AdditionalDocumentReferences.0.DocumentDescription"
           render={({ field }) => (
             <FormItem className="space-y-2 col-span-4">
               <FormLabel>Ek Doküman Açıklaması</FormLabel>
@@ -378,7 +378,7 @@ export function InvoiceInfoForm() {
         <div className="col-span-5 grid grid-cols-4 gap-4">
         <FormField
           control={control}
-          name="InvoiceInfo.OrderReferenceDocument.0.Attachment.0.FileName"
+          name="InvoiceInfo.AdditionalDocumentReferences.0.Attachment.0.FileName"
           render={({ field }) => (
             <FormItem className="space-y-2 col-span-2">
               <FormLabel>Dosya Adı</FormLabel>
@@ -391,7 +391,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
           control={control}
-          name="InvoiceInfo.OrderReferenceDocument.0.Attachment.0.MimeCode"
+          name="InvoiceInfo.AdditionalDocumentReferences.0.Attachment.0.MimeCode"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>MIME Tipi</FormLabel>
@@ -404,7 +404,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
           control={control}
-          name="InvoiceInfo.OrderReferenceDocument.0.Attachment.0.Base64Data"
+          name="InvoiceInfo.AdditionalDocumentReferences.0.Attachment.0.Base64Data"
           render={({ field }) => (
             <FormItem className="space-y-2 col-span-1">
               <FormLabel>Base64 Veri</FormLabel>
@@ -512,7 +512,7 @@ export function InvoiceInfoForm() {
           />
         </div>
         <div className="flex items-center justify-normal mt-5">
-          <h2 className="text-xl font-semibold">Ödeme Bilgileri</h2>
+          <h2 className="text-red-600 text-xl font-semibold">Ödeme Bilgileri</h2>
         </div>
         <div className="col-span-5 grid grid-cols-3 gap-4">
         <FormField
@@ -563,7 +563,6 @@ export function InvoiceInfoForm() {
             </FormItem>
           )}
         />
-        </div>
           <FormField
             control={control}
             name="InvoiceInfo.PaymentMeansInfo.DueDate"
@@ -605,7 +604,93 @@ export function InvoiceInfoForm() {
               <FormMessage className="text-xs" />
             </FormItem>
           )}
-        />                  
+        />
+        </div>
+        <div className="flex items-center justify-normal mt-5">
+          <h2 className="text-xl font-semibold">OKC Bilgileri</h2>
+        </div>
+        <div className="col-span-5 grid grid-cols-3 gap-4">
+          <FormField
+            control={control}
+            name="InvoiceInfo.OKCInfo.ID"
+            render={({ field }) => (
+              <FormItem className="space-y-2">
+                <FormLabel>OKC ID</FormLabel>
+                <FormControl>
+                  <Input placeholder="OKC numarası" {...field} />
+                </FormControl>
+                <FormMessage className="text-xs" />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={control}
+            name="InvoiceInfo.OKCInfo.IssueDate"
+            render={({ field }) => (
+              <FormItem className="space-y-2">
+                <FormLabel>Düzenlenme Tarihi</FormLabel>
+                <FormControl>
+                  <Input type="date" {...field} />
+                </FormControl>
+                <FormMessage className="text-xs" />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={control}
+            name="InvoiceInfo.OKCInfo.Time"
+            render={({ field }) => (
+              <FormItem className="space-y-2">
+                <FormLabel>Saat</FormLabel>
+                <FormControl>
+                  <Input type="time" {...field} />
+                </FormControl>
+                <FormMessage className="text-xs" />
+              </FormItem>
+            )}
+          />
+        </div>
+        <div className="col-span-5 grid grid-cols-3 gap-4 mt-4">
+          <FormField
+            control={control}
+            name="InvoiceInfo.OKCInfo.ZNo"
+            render={({ field }) => (
+              <FormItem className="space-y-2">
+                <FormLabel>Z No</FormLabel>
+                <FormControl>
+                  <Input placeholder="Z numarası" {...field} />
+                </FormControl>
+                <FormMessage className="text-xs" />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={control}
+            name="InvoiceInfo.OKCInfo.EndPointID"
+            render={({ field }) => (
+              <FormItem className="space-y-2">
+                <FormLabel>Endpoint ID</FormLabel>
+                <FormControl>
+                  <Input placeholder="Endpoint ID" {...field} />
+                </FormControl>
+                <FormMessage className="text-xs" />
+              </FormItem>
+            )}
+          />
+        </div>
+        <FormField
+          control={control}
+          name="InvoiceInfo.OKCInfo.DocumentDescription"
+          render={({ field }) => (
+            <FormItem className="space-y-2 col-span-4">
+              <FormLabel>Açıklama</FormLabel>
+              <FormControl>
+                <Input placeholder="OKC açıklaması" {...field} />
+              </FormControl>
+              <FormMessage className="text-xs" />
+            </FormItem>
+          )}
+        />        
       </div>
     </section>
   );

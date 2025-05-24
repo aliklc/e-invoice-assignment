@@ -77,6 +77,19 @@ const PaymentMeansInfoSchema = z.object({
   Note: z.string().optional()
 });
 
+const OKCInfoSchema = z.object({
+  ID: z.string().optional(),
+  IssueDate: z.string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Geçerli bir tarih formatı girin (YYYY-MM-DD)")
+    .refine(date => new Date(date).toString() !== "Invalid Date", {
+      message: "Geçerli bir tarih girin"
+    }),
+  Time: z.string().optional(),
+  ZNo: z.string().optional(),
+  EndPointID: z.string().optional(),
+  DocumentDescription: z.string().optional()
+});
+
 // InvoiceInfo için Zod Şeması
 const InvoiceInfoSchema = z.object({
   UUID: z.string(),
@@ -109,7 +122,8 @@ const InvoiceInfoSchema = z.object({
   AdditionalDocumentReferences: z.array(AdditionalDocumentReferencesSchema),
   TaxExemptionReasonInfo: TaxExemptionReasonInfoSchema.optional(),
   PaymentTermsInfo: PaymentTermsInfoSchema.optional(),
-  PaymentMeansInfo: PaymentMeansInfoSchema.optional()
+  PaymentMeansInfo: PaymentMeansInfoSchema.optional(),
+  OKCInfo: OKCInfoSchema.optional(),
 });
 
 // CompanyInfo için Zod Şeması

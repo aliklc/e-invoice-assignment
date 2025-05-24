@@ -51,6 +51,15 @@ export interface PaymentMeansInfo {
   Note?: string;
 }
 
+export interface OKCInfo {
+  ID?: string;
+  IssueDate?: string;
+  Time?: string;
+  ZNo?: string;
+  EndPointID?: string;
+  DocumentDescription?: string;
+}
+
 export interface InvoiceInfo {
   UUID: string;
   InvoiceSerieOrNumber: string;
@@ -65,6 +74,7 @@ export interface InvoiceInfo {
   TaxExemptionReasonInfo?: TaxExemptionReasonInfo;
   PaymentTermsInfo?: PaymentTermsInfo;
   PaymentMeansInfo?: PaymentMeansInfo;
+  OKCInfo?: OKCInfo;
 }
 
 export interface CompanyInfo {

@@ -94,6 +94,14 @@ export default function EInvoiceForm() {
         DueDate: "",
         PayeeFinancialAccountID: "",
         Note: ""
+      },
+        OKCInfo: {
+        ID: "",
+        IssueDate: "",
+        Time: "",
+        ZNo: "",
+        EndPointID: "",
+        DocumentDescription: ""
       }             
       },
       CompanyInfo: {
