@@ -11,10 +11,10 @@ export function CompanyInfoForm() {
   return (
     <section className="space-y-4">
       <h2 className="text-xl font-semibold mt-5">Şirket Bilgileri</h2>
-      <div className="grid grid-cols-5 gap-4">
+      <div className="grid grid-cols- gap-4">
         <FormField
           control={control}
-          name="CompanyInfo.TaxNumber"
+          name="EInvoice.CompanyInfo.TaxNumber"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Vergi Numarası</FormLabel>
@@ -27,7 +27,7 @@ export function CompanyInfoForm() {
         />
         <FormField
           control={control}
-          name="CompanyInfo.Name"
+          name="EInvoice.CompanyInfo.Name"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Şirket İsmi</FormLabel>
@@ -40,7 +40,7 @@ export function CompanyInfoForm() {
         />
         <FormField
           control={control}
-          name="CompanyInfo.TaxOffice"
+          name="EInvoice.CompanyInfo.TaxOffice"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Vergi Dairesi</FormLabel>
@@ -53,7 +53,7 @@ export function CompanyInfoForm() {
         />
         <FormField
           control={control}
-          name="CompanyInfo.City"
+          name="EInvoice.CompanyInfo.City"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Şehir</FormLabel>
@@ -66,7 +66,7 @@ export function CompanyInfoForm() {
         />
         <FormField
           control={control}
-          name="CompanyInfo.Phone"
+          name="EInvoice.CompanyInfo.Phone"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Tel No</FormLabel>
@@ -79,7 +79,7 @@ export function CompanyInfoForm() {
         />
         <FormField
           control={control}
-          name="CompanyInfo.Address"
+          name="EInvoice.CompanyInfo.Address"
           render={({ field }) => (
             <FormItem className="space-y-2 col-span-3">
               <FormLabel>Adres</FormLabel>
@@ -92,7 +92,7 @@ export function CompanyInfoForm() {
         />
         <FormField
           control={control}
-          name="CompanyInfo.Mail"
+          name="EInvoice.CompanyInfo.Mail"
           render={({ field }) => (
             <FormItem className="space-y-2 col-span-2">
               <FormLabel>Mail</FormLabel>

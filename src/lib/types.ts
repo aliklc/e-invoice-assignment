@@ -22,6 +22,7 @@ export interface OrderReferenceDocument {
   DocumentDescription?: string;
   Attachment: Attachment[];
 }
+
 export interface AdditionalDocumentReferences {
   ID: string;
   IssueDate?: string;
@@ -81,6 +82,8 @@ export interface InvoicePeriod {
 
 export interface InvoiceInfo {
   UUID: string;
+
+  
   InvoiceSerieOrNumber: string;
   IssueDate?: string;
   InvoiceType: string;
@@ -120,8 +123,14 @@ export interface CustomerInfo {
   Mail: string;
 }
 
-export interface EInvoiceFormData {
+// EInvoice wrapper interface
+export interface EInvoice {
   InvoiceInfo: InvoiceInfo;
   CompanyInfo: CompanyInfo;
   CustomerInfo: CustomerInfo;
+}
+
+// Ana form data interface - EInvoice wrapper ile
+export interface EInvoiceFormData {
+  EInvoice: EInvoice;
 }

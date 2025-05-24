@@ -40,7 +40,7 @@ export function InvoiceInfoForm() {
         <h2 className="text-red-600 text-xl font-semibold">Fatura Bilgileri</h2>
         <FormField
           control={control}
-          name="InvoiceInfo.UUID"
+          name="EInvoice.InvoiceInfo.UUID"
           render={({ field }) => (
               <div className="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded whitespace-nowrap ml-5">
               UUID: {field.value}
@@ -52,7 +52,7 @@ export function InvoiceInfoForm() {
         <div className="col-span-5 grid grid-cols-5 gap-4">
         <FormField
           control={control}
-          name="InvoiceInfo.InvoiceSerieOrNumber"
+          name="EInvoice.InvoiceInfo.InvoiceSerieOrNumber"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Fatura Seri/Numara</FormLabel>
@@ -65,7 +65,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
           control={control}
-          name="InvoiceInfo.IssueDate"
+          name="EInvoice.InvoiceInfo.IssueDate"
           render={({ field }) => {
             const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
             return (
@@ -87,7 +87,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
           control={control}
-          name="InvoiceInfo.InvoiceType"
+          name="EInvoice.InvoiceInfo.InvoiceType"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Fatura Tipi</FormLabel>
@@ -111,7 +111,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
           control={control}
-          name="InvoiceInfo.CurrencyCode"
+          name="EInvoice.InvoiceInfo.CurrencyCode"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Para Birimi</FormLabel>
@@ -135,7 +135,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
           control={control}
-          name="InvoiceInfo.InvoiceProfile"
+          name="EInvoice.InvoiceInfo.InvoiceProfile"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Fatura Profili</FormLabel>
@@ -150,7 +150,7 @@ export function InvoiceInfoForm() {
         <div className="col-span-5 grid grid-cols-4 gap-4">
         <FormField
           control={control}
-          name="InvoiceInfo.DespatchDocumentReference.0.IssueDate"
+          name="EInvoice.InvoiceInfo.DespatchDocumentReference.0.IssueDate"
           render={({ field }) => {
             const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
             return (
@@ -172,7 +172,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
         control={control}
-        name="InvoiceInfo.DespatchDocumentReference.0.Value"
+        name="EInvoice.InvoiceInfo.DespatchDocumentReference.0.Value"
         render={({ field }) => (
             <FormItem className="space-y-2">
             <FormLabel>İrsaliye Numarası</FormLabel>
@@ -185,7 +185,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
           control={control}
-          name="InvoiceInfo.OrderReference.0.IssueDate"
+          name="EInvoice.InvoiceInfo.OrderReference.0.IssueDate"
           render={({ field }) => {
             const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
             return (
@@ -207,7 +207,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
         control={control}
-        name="InvoiceInfo.OrderReference.0.Value"
+        name="EInvoice.InvoiceInfo.OrderReference.0.Value"
         render={({ field }) => (
             <FormItem className="space-y-2 col-span-1">
             <FormLabel>Sipariş Numarası</FormLabel>
@@ -225,7 +225,7 @@ export function InvoiceInfoForm() {
         <div className="col-span-5 grid grid-cols-4 gap-4">
         <FormField
           control={control}
-          name="InvoiceInfo.OrderReferenceDocument.0.ID"
+          name="EInvoice.InvoiceInfo.OrderReferenceDocument.0.ID"
           render={({ field }) => (
             <FormItem className="space-y-2 col-span-1">
               <FormLabel>Sipariş Doküman No</FormLabel>
@@ -238,7 +238,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
           control={control}
-          name="InvoiceInfo.OrderReferenceDocument.0.IssueDate"
+          name="EInvoice.InvoiceInfo.OrderReferenceDocument.0.IssueDate"
           render={({ field }) => {
             const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
             return (
@@ -260,7 +260,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
           control={control}
-          name="InvoiceInfo.OrderReferenceDocument.0.DocumentType"
+          name="EInvoice.InvoiceInfo.OrderReferenceDocument.0.DocumentType"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Doküman Tipi</FormLabel>
@@ -273,7 +273,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
           control={control}
-          name="InvoiceInfo.OrderReferenceDocument.0.DocumentTypeCode"
+          name="EInvoice.InvoiceInfo.OrderReferenceDocument.0.DocumentTypeCode"
           render={({ field }) => (
             <FormItem className="space-y-2 col-span-1">
               <FormLabel>Doküman Tipi Kodu</FormLabel>
@@ -287,7 +287,7 @@ export function InvoiceInfoForm() {
         </div>
         <FormField
           control={control}
-          name="InvoiceInfo.OrderReferenceDocument.0.DocumentDescription"
+          name="EInvoice.InvoiceInfo.OrderReferenceDocument.0.DocumentDescription"
           render={({ field }) => (
             <FormItem className="space-y-2 col-span-4">
               <FormLabel>Doküman Açıklaması</FormLabel>
@@ -302,7 +302,7 @@ export function InvoiceInfoForm() {
         <div className="col-span-5 grid grid-cols-4 gap-4">
         <FormField
           control={control}
-          name="InvoiceInfo.OrderReferenceDocument.0.Attachment.0.FileName"
+          name="EInvoice.InvoiceInfo.OrderReferenceDocument.0.Attachment.0.FileName"
           render={({ field }) => (
             <FormItem className="space-y-2 col-span-2">
               <FormLabel>Dosya Adı</FormLabel>
@@ -315,7 +315,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
           control={control}
-          name="InvoiceInfo.OrderReferenceDocument.0.Attachment.0.MimeCode"
+          name="EInvoice.InvoiceInfo.OrderReferenceDocument.0.Attachment.0.MimeCode"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>MIME Tipi</FormLabel>
@@ -328,7 +328,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
           control={control}
-          name="InvoiceInfo.OrderReferenceDocument.0.Attachment.0.Base64Data"
+          name="EInvoice.InvoiceInfo.OrderReferenceDocument.0.Attachment.0.Base64Data"
           render={({ field }) => (
             <FormItem className="space-y-2 col-span-1">
               <FormLabel>Base64 Veri</FormLabel>
@@ -346,7 +346,7 @@ export function InvoiceInfoForm() {
         <div className="col-span-5 grid grid-cols-4 gap-4">
         <FormField
           control={control}
-          name="InvoiceInfo.AdditionalDocumentReferences.0.ID"
+          name="EInvoice.InvoiceInfo.AdditionalDocumentReferences.0.ID"
           render={({ field }) => (
             <FormItem className="space-y-2 col-span-1">
               <FormLabel>Ek Doküman No</FormLabel>
@@ -359,7 +359,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
           control={control}
-          name="InvoiceInfo.AdditionalDocumentReferences.0.IssueDate"
+          name="EInvoice.InvoiceInfo.AdditionalDocumentReferences.0.IssueDate"
           render={({ field }) => {
             const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
             return (
@@ -381,7 +381,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
           control={control}
-          name="InvoiceInfo.AdditionalDocumentReferences.0.DocumentType"
+          name="EInvoice.InvoiceInfo.AdditionalDocumentReferences.0.DocumentType"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Ek Doküman Tipi</FormLabel>
@@ -394,7 +394,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
           control={control}
-          name="InvoiceInfo.AdditionalDocumentReferences.0.DocumentTypeCode"
+          name="EInvoice.InvoiceInfo.AdditionalDocumentReferences.0.DocumentTypeCode"
           render={({ field }) => (
             <FormItem className="space-y-2 col-span-1">
               <FormLabel>Ek Doküman Tipi Kodu</FormLabel>
@@ -408,7 +408,7 @@ export function InvoiceInfoForm() {
         </div>
         <FormField
           control={control}
-          name="InvoiceInfo.AdditionalDocumentReferences.0.DocumentDescription"
+          name="EInvoice.InvoiceInfo.AdditionalDocumentReferences.0.DocumentDescription"
           render={({ field }) => (
             <FormItem className="space-y-2 col-span-4">
               <FormLabel>Ek Doküman Açıklaması</FormLabel>
@@ -423,7 +423,7 @@ export function InvoiceInfoForm() {
         <div className="col-span-5 grid grid-cols-4 gap-4">
         <FormField
           control={control}
-          name="InvoiceInfo.AdditionalDocumentReferences.0.Attachment.0.FileName"
+          name="EInvoice.InvoiceInfo.AdditionalDocumentReferences.0.Attachment.0.FileName"
           render={({ field }) => (
             <FormItem className="space-y-2 col-span-2">
               <FormLabel>Dosya Adı</FormLabel>
@@ -436,7 +436,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
           control={control}
-          name="InvoiceInfo.AdditionalDocumentReferences.0.Attachment.0.MimeCode"
+          name="EInvoice.InvoiceInfo.AdditionalDocumentReferences.0.Attachment.0.MimeCode"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>MIME Tipi</FormLabel>
@@ -449,7 +449,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
           control={control}
-          name="InvoiceInfo.AdditionalDocumentReferences.0.Attachment.0.Base64Data"
+          name="EInvoice.InvoiceInfo.AdditionalDocumentReferences.0.Attachment.0.Base64Data"
           render={({ field }) => (
             <FormItem className="space-y-2 col-span-1">
               <FormLabel>Base64 Veri</FormLabel>
@@ -467,7 +467,7 @@ export function InvoiceInfoForm() {
         <div className="col-span-5 grid grid-cols-3 gap-4">
           <FormField
             control={control}
-            name="InvoiceInfo.TaxExemptionReasonInfo.KDVExemptionReasonCode"
+            name="EInvoice.InvoiceInfo.TaxExemptionReasonInfo.KDVExemptionReasonCode"
             render={({ field }) => (
               <FormItem className="space-y-2">
                 <FormLabel>KDV Muafiyet Kodu</FormLabel>
@@ -480,7 +480,7 @@ export function InvoiceInfoForm() {
           />
           <FormField
             control={control}
-            name="InvoiceInfo.TaxExemptionReasonInfo.OTVExemptionReasonCode"
+            name="EInvoice.InvoiceInfo.TaxExemptionReasonInfo.OTVExemptionReasonCode"
             render={({ field }) => (
               <FormItem className="space-y-2">
                 <FormLabel>ÖTV Muafiyet Kodu</FormLabel>
@@ -493,7 +493,7 @@ export function InvoiceInfoForm() {
           />
           <FormField
             control={control}
-            name="InvoiceInfo.TaxExemptionReasonInfo.AccommodationTaxExemptionReasonCode"
+            name="EInvoice.InvoiceInfo.TaxExemptionReasonInfo.AccommodationTaxExemptionReasonCode"
             render={({ field }) => (
               <FormItem className="space-y-2">
                 <FormLabel>Konaklama Vergisi Muafiyet Kodu</FormLabel>
@@ -508,7 +508,7 @@ export function InvoiceInfoForm() {
         <div className="col-span-5 grid grid-cols-3 gap-4 mt-4">
           <FormField
             control={control}
-            name="InvoiceInfo.PaymentTermsInfo.Percent"
+            name="EInvoice.InvoiceInfo.PaymentTermsInfo.Percent"
             render={({ field }) => (
               <FormItem className="space-y-2">
                 <FormLabel>Ödeme Yüzdesi</FormLabel>
@@ -526,7 +526,7 @@ export function InvoiceInfoForm() {
           />
           <FormField
             control={control}
-            name="InvoiceInfo.PaymentTermsInfo.Amount"
+            name="EInvoice.InvoiceInfo.PaymentTermsInfo.Amount"
             render={({ field }) => (
               <FormItem className="space-y-2">
                 <FormLabel>Ödeme Tutarı</FormLabel>
@@ -544,7 +544,7 @@ export function InvoiceInfoForm() {
           />
           <FormField
             control={control}
-            name="InvoiceInfo.PaymentTermsInfo.Note"
+            name="EInvoice.InvoiceInfo.PaymentTermsInfo.Note"
             render={({ field }) => (
               <FormItem className="space-y-2">
                 <FormLabel>Ödeme Notu</FormLabel>
@@ -562,7 +562,7 @@ export function InvoiceInfoForm() {
         <div className="col-span-5 grid grid-cols-3 gap-4">
         <FormField
           control={control}
-          name="InvoiceInfo.PaymentMeansInfo.Code"
+          name="EInvoice.InvoiceInfo.PaymentMeansInfo.Code"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Fatura Tipi</FormLabel>
@@ -586,7 +586,7 @@ export function InvoiceInfoForm() {
         />
         <FormField
           control={control}
-          name="InvoiceInfo.PaymentMeansInfo.ChannelCode"
+          name="EInvoice.InvoiceInfo.PaymentMeansInfo.ChannelCode"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Fatura Tipi</FormLabel>
@@ -610,7 +610,7 @@ export function InvoiceInfoForm() {
         />
           <FormField
             control={control}
-            name="InvoiceInfo.PaymentMeansInfo.DueDate"
+            name="EInvoice.InvoiceInfo.PaymentMeansInfo.DueDate"
             render={({ field }) => {
               const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
               return (
@@ -632,7 +632,7 @@ export function InvoiceInfoForm() {
           />
           <FormField
             control={control}
-            name="InvoiceInfo.PaymentMeansInfo.PayeeFinancialAccountID"
+            name="EInvoice.InvoiceInfo.PaymentMeansInfo.PayeeFinancialAccountID"
             render={({ field }) => (
               <FormItem className="space-y-2">
                 <FormLabel>Hesap No/IBAN</FormLabel>
@@ -645,7 +645,7 @@ export function InvoiceInfoForm() {
           />
         <FormField
           control={control}
-          name="InvoiceInfo.PaymentMeansInfo.Note"
+          name="EInvoice.InvoiceInfo.PaymentMeansInfo.Note"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Ödeme Açıklaması</FormLabel>
@@ -663,7 +663,7 @@ export function InvoiceInfoForm() {
         <div className="col-span-5 grid grid-cols-3 gap-4">
           <FormField
             control={control}
-            name="InvoiceInfo.OKCInfo.ID"
+            name="EInvoice.InvoiceInfo.OKCInfo.ID"
             render={({ field }) => (
               <FormItem className="space-y-2">
                 <FormLabel>OKC ID</FormLabel>
@@ -676,7 +676,7 @@ export function InvoiceInfoForm() {
           />
           <FormField
             control={control}
-            name="InvoiceInfo.OKCInfo.IssueDate"
+            name="EInvoice.InvoiceInfo.OKCInfo.IssueDate"
             render={({ field }) => {
               const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
               return (
@@ -698,7 +698,7 @@ export function InvoiceInfoForm() {
           />
           <FormField
             control={control}
-            name="InvoiceInfo.OKCInfo.Time"
+            name="EInvoice.InvoiceInfo.OKCInfo.Time"
             render={({ field }) => (
               <FormItem className="space-y-2">
                 <FormLabel>Saat</FormLabel>
@@ -713,7 +713,7 @@ export function InvoiceInfoForm() {
         <div className="col-span-5 grid grid-cols-3 gap-4 mt-4">
           <FormField
             control={control}
-            name="InvoiceInfo.OKCInfo.ZNo"
+            name="EInvoice.InvoiceInfo.OKCInfo.ZNo"
             render={({ field }) => (
               <FormItem className="space-y-2">
                 <FormLabel>Z No</FormLabel>
@@ -726,7 +726,7 @@ export function InvoiceInfoForm() {
           />
           <FormField
             control={control}
-            name="InvoiceInfo.OKCInfo.EndPointID"
+            name="EInvoice.InvoiceInfo.OKCInfo.EndPointID"
             render={({ field }) => (
               <FormItem className="space-y-2">
                 <FormLabel>Endpoint ID</FormLabel>
@@ -739,7 +739,7 @@ export function InvoiceInfoForm() {
           />
         <FormField
           control={control}
-          name="InvoiceInfo.OKCInfo.DocumentDescription"
+          name="EInvoice.InvoiceInfo.OKCInfo.DocumentDescription"
           render={({ field }) => (
             <FormItem className="space-y-2 col-span-4">
               <FormLabel>Açıklama</FormLabel>
@@ -757,7 +757,7 @@ export function InvoiceInfoForm() {
         <div className="col-span-5 grid grid-cols-2 gap-4">
           <FormField
             control={control}
-            name="InvoiceInfo.ESUReportInfo.ID"
+            name="EInvoice.InvoiceInfo.ESUReportInfo.ID"
             render={({ field }) => (
               <FormItem className="space-y-2">
                 <FormLabel>Rapor ID</FormLabel>
@@ -770,7 +770,7 @@ export function InvoiceInfoForm() {
           />
           <FormField
             control={control}
-            name="InvoiceInfo.ESUReportInfo.IssueDate"
+            name="EInvoice.InvoiceInfo.ESUReportInfo.IssueDate"
             render={({ field }) => {
               const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
               return (
@@ -797,7 +797,7 @@ export function InvoiceInfoForm() {
         <div className="col-span-5 grid grid-cols-2 gap-4">
           <FormField
             control={control}
-            name="InvoiceInfo.ReturnInvoiceInfo.0.InvoiceNumber"
+            name="EInvoice.InvoiceInfo.ReturnInvoiceInfo.0.InvoiceNumber"
             render={({ field }) => (
               <FormItem className="space-y-2">
                 <FormLabel>Fatura Numarası</FormLabel>
@@ -810,7 +810,7 @@ export function InvoiceInfoForm() {
           />
           <FormField
             control={control}
-            name="InvoiceInfo.ReturnInvoiceInfo.0.IssueDate"
+            name="EInvoice.InvoiceInfo.ReturnInvoiceInfo.0.IssueDate"
             render={({ field }) => {
               const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
               return (
@@ -831,13 +831,13 @@ export function InvoiceInfoForm() {
             }}
           />
           </div>
-          <div className="flex items-center justify-normal mt-5">
-            <h2 className="text-xl font-semibold">Muhasebe ve Fatura Dönem Bilgileri</h2>
+          <div className="col-span-5 grid grid-cols-2 gap-4 mt-4">
+            <h2 className="text-red-600 text-xl font-semibold">Muhasebe ve Fatura Dönem Bilgileri</h2>
           </div>
 
           <FormField
             control={control}
-            name="InvoiceInfo.AccountingCost"
+            name="EInvoice.InvoiceInfo.AccountingCost"
             render={({ field }) => (
               <FormItem className="space-y-2">
                 <FormLabel>Muhasebe Kodu</FormLabel>
@@ -853,7 +853,7 @@ export function InvoiceInfoForm() {
               <h3 className="font-medium">Başlangıç Bilgileri</h3>
               <FormField
                 control={control}
-                name="InvoiceInfo.InvoicePeriod.StartDate"
+                name="EInvoice.InvoiceInfo.InvoicePeriod.StartDate"
                 render={({ field }) => {
                   const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
                   return (
@@ -875,7 +875,7 @@ export function InvoiceInfoForm() {
               />
               <FormField
                 control={control}
-                name="InvoiceInfo.InvoicePeriod.StartTime"
+                name="EInvoice.InvoiceInfo.InvoicePeriod.StartTime"
                 render={({ field }) => (
                   <FormItem className="space-y-2">
                     <FormLabel>Başlangıç Saati</FormLabel>
@@ -891,7 +891,7 @@ export function InvoiceInfoForm() {
               <h3 className="font-medium">Bitiş Bilgileri</h3>
               <FormField
                 control={control}
-                name="InvoiceInfo.InvoicePeriod.EndDate"
+                name="EInvoice.InvoiceInfo.InvoicePeriod.EndDate"
                 render={({ field }) => {
                   const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
                   return (
@@ -913,7 +913,7 @@ export function InvoiceInfoForm() {
               />
           <FormField
             control={control}
-            name="InvoiceInfo.InvoicePeriod.EndTime"
+            name="EInvoice.InvoiceInfo.InvoicePeriod.EndTime"
             render={({ field }) => (
               <FormItem className="space-y-2">
                 <FormLabel>Bitiş Saat</FormLabel>
@@ -929,7 +929,7 @@ export function InvoiceInfoForm() {
         <div className="col-span-5 grid grid-cols-2 gap-4 mt-4">
           <FormField
             control={control}
-            name="InvoiceInfo.InvoicePeriod.DurationMeasureValue"
+            name="EInvoice.InvoiceInfo.InvoicePeriod.DurationMeasureValue"
             render={({ field }) => (
               <FormItem className="space-y-2">
                 <FormLabel>Süre(Gün)</FormLabel>
@@ -946,7 +946,7 @@ export function InvoiceInfoForm() {
           />
           <FormField
             control={control}
-            name="InvoiceInfo.InvoicePeriod.Description"
+            name="EInvoice.InvoiceInfo.InvoicePeriod.Description"
             render={({ field }) => (
               <FormItem className="space-y-2">
                 <FormLabel>Açıklama</FormLabel>

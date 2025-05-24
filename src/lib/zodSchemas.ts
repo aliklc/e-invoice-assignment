@@ -122,6 +122,7 @@ const InvoicePeriodSchema = z.object({
       message: "Geçerli bir bitiş tarihi girin"
     })
     .optional(),
+  EndTime: z.string().optional(),
   DurationMeasureValue: z.number().optional(),
   Description: z.string().optional()
 });
@@ -129,6 +130,7 @@ const InvoicePeriodSchema = z.object({
 // InvoiceInfo için Zod Şeması
 const InvoiceInfoSchema = z.object({
   UUID: z.string(),
+  
 
   InvoiceSerieOrNumber: z.string()
     .min(1, "Fatura Seri/Numara boş bırakılamaz")
@@ -234,9 +236,14 @@ const CustomerInfoSchema = z.object({
     .max(100, "E-posta çok uzun")
 });
 
-// Ana EInvoiceFormData Şeması
-export const EInvoiceFormDataSchema: z.ZodType<EInvoiceFormData> = z.object({
+// EInvoice Wrapper Schema
+const EInvoiceSchema = z.object({
   InvoiceInfo: InvoiceInfoSchema,
   CompanyInfo: CompanyInfoSchema,
   CustomerInfo: CustomerInfoSchema
+});
+
+// Ana EInvoiceFormData Şeması - EInvoice wrapper ile
+export const EInvoiceFormDataSchema: z.ZodType<EInvoiceFormData> = z.object({
+  EInvoice: EInvoiceSchema
 });

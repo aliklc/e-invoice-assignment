@@ -14,7 +14,7 @@ export function CustomerInfoForm() {
       <div className="grid grid-cols-5 gap-4">
         <FormField
           control={control}
-          name="CustomerInfo.TaxNumber"
+          name="EInvoice.CustomerInfo.TaxNumber"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Vergi Numarası</FormLabel>
@@ -27,7 +27,7 @@ export function CustomerInfoForm() {
         />
         <FormField
           control={control}
-          name="CustomerInfo.Name"
+          name="EInvoice.CustomerInfo.Name"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>İsim</FormLabel>
@@ -40,7 +40,7 @@ export function CustomerInfoForm() {
         />
         <FormField
           control={control}
-          name="CustomerInfo.TaxOffice"
+          name="EInvoice.CustomerInfo.TaxOffice"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Vergi Dairesi</FormLabel>
@@ -53,7 +53,7 @@ export function CustomerInfoForm() {
         />
         <FormField
           control={control}
-          name="CustomerInfo.City"
+          name="EInvoice.CustomerInfo.City"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Şehir</FormLabel>
@@ -66,7 +66,7 @@ export function CustomerInfoForm() {
         />
         <FormField
           control={control}
-          name="CustomerInfo.Phone"
+          name="EInvoice.CustomerInfo.Phone"
           render={({ field }) => (
             <FormItem className="space-y-2">
               <FormLabel>Tel No</FormLabel>
@@ -79,7 +79,7 @@ export function CustomerInfoForm() {
         />
         <FormField
           control={control}
-          name="CustomerInfo.Address"
+          name="EInvoice.CustomerInfo.Address"
           render={({ field }) => (
             <FormItem className="space-y-2 col-span-3">
               <FormLabel>Adres</FormLabel>
@@ -92,7 +92,7 @@ export function CustomerInfoForm() {
         />
         <FormField
           control={control}
-          name="CustomerInfo.Mail"
+          name="EInvoice.CustomerInfo.Mail"
           render={({ field }) => (
             <FormItem className="space-y-2 col-span-2">
               <FormLabel>Mail</FormLabel>

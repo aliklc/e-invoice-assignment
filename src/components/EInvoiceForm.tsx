@@ -27,6 +27,7 @@ export default function EInvoiceForm() {
     resolver: zodResolver(EInvoiceFormDataSchema),
     shouldUnregister: false,
     defaultValues: {
+      EInvoice: {
       InvoiceInfo: {
         UUID: uuidv4(),
         InvoiceSerieOrNumber: "",
@@ -142,6 +143,7 @@ export default function EInvoiceForm() {
         Mail: "",
       },
     },
+  },
   });
 
   const onSubmit = (data: EInvoiceFormData) => {
