@@ -20,6 +20,25 @@ const OrderReferenceSchema = z.object({
   Value: z.string().min(1, "Değer boş olamaz"),
 });
 
+const AttachmentSchema = z.object({
+  Base64Data: z.string().min(1, "Base64 verisi boş olamaz"),
+  MimeCode: z.string().min(1, "MIME tipi boş olamaz"),
+  FileName: z.string().min(1, "Dosya adı boş olamaz")
+});
+
+const OrderReferenceDocumentSchema = z.object({
+  ID: z.string().min(1, "Doküman ID boş olamaz"),
+  IssueDate: z.string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Geçerli bir tarih formatı girin (YYYY-MM-DD)")
+    .refine(date => new Date(date).toString() !== "Invalid Date", {
+      message: "Geçerli bir tarih girin"
+    }), 
+  DocumentType: z.string().min(1, "Doküman tipi boş olamaz"),
+  DocumentTypeCode: z.string().min(1, "Doküman tip kodu boş olamaz"),
+  DocumentDescription: z.string().optional(),
+  Attachment: z.array(AttachmentSchema) // Array olarak güncellendi
+});
+
 // InvoiceInfo için Zod Şeması
 const InvoiceInfoSchema = z.object({
   UUID: z.string(),
@@ -48,6 +67,7 @@ const InvoiceInfoSchema = z.object({
 
   DespatchDocumentReference: z.array(despatchDocumentReferenceSchema),
   OrderReference: z.array(OrderReferenceSchema),
+  OrderReferenceDocument: z.array(OrderReferenceDocumentSchema),
 });
 
 // CompanyInfo için Zod Şeması

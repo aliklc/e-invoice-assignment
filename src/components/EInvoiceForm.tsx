@@ -45,7 +45,23 @@ export default function EInvoiceForm() {
             IssueDate: "",
             Value: "",
           },
-        ],        
+        ],
+        OrderReferenceDocument: [
+          {
+            ID: "",
+            IssueDate: "",
+            DocumentType: "",
+            DocumentTypeCode: "",
+            DocumentDescription: "",
+            Attachment: [
+              {
+                Base64Data: "",
+                MimeCode: "",
+                FileName: "",
+              },
+            ],
+          },
+        ],              
       },
       CompanyInfo: {
         TaxNumber: "",

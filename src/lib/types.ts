@@ -8,6 +8,21 @@ export interface OrderReference {
   Value: string;
 }
 
+export interface Attachment {
+  Base64Data: string;
+  MimeCode: string;
+  FileName: string;
+}
+
+export interface OrderReferenceDocument {
+  ID: string;
+  IssueDate: string;
+  DocumentType: string;
+  DocumentTypeCode: string;
+  DocumentDescription: string;
+  Attachment: Attachment[];
+}
+
 export interface InvoiceInfo {
   UUID: string;
   InvoiceSerieOrNumber: string;
@@ -17,6 +32,7 @@ export interface InvoiceInfo {
   InvoiceProfile: string;
   DespatchDocumentReference: DespatchDocumentReference[];
   OrderReference: OrderReference[];
+  OrderReferenceDocument?: OrderReferenceDocument[];
 }
 
 export interface CompanyInfo {

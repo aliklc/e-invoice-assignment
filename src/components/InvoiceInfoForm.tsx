@@ -35,7 +35,8 @@ export function InvoiceInfoForm() {
           )}
         />
         </div>
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-4 gap-4">
+        <div className="col-span-5 grid grid-cols-5 gap-4">
         <FormField
           control={control}
           name="InvoiceInfo.InvoiceSerieOrNumber"
@@ -123,11 +124,13 @@ export function InvoiceInfoForm() {
             </FormItem>
           )}
         />
+        </div>
+        <div className="col-span-5 grid grid-cols-4 gap-4">
         <FormField
         control={control}
         name="InvoiceInfo.DespatchDocumentReference.0.IssueDate"
         render={({ field }) => (
-            <FormItem className="space-y-2 col-span-2">
+            <FormItem className="space-y-2 col-span-1">
             <FormLabel>İrsaliye Tarihi</FormLabel>
             <FormControl>
                 <Input type="date" {...field} />
@@ -140,7 +143,7 @@ export function InvoiceInfoForm() {
         control={control}
         name="InvoiceInfo.DespatchDocumentReference.0.Value"
         render={({ field }) => (
-            <FormItem className="space-y-2 col-span-2">
+            <FormItem className="space-y-2">
             <FormLabel>İrsaliye Numarası</FormLabel>
             <FormControl>
                 <Input placeholder="İrsaliye numarası girin" {...field} />
@@ -153,7 +156,7 @@ export function InvoiceInfoForm() {
         control={control}
         name="InvoiceInfo.OrderReference.0.IssueDate"
         render={({ field }) => (
-            <FormItem className="space-y-2 col-span-2">
+            <FormItem className="space-y-2">
             <FormLabel>Sipariş Tarihi</FormLabel>
             <FormControl>
                 <Input type="date" {...field} />
@@ -162,12 +165,11 @@ export function InvoiceInfoForm() {
             </FormItem>
         )}
         />
-
         <FormField
         control={control}
         name="InvoiceInfo.OrderReference.0.Value"
         render={({ field }) => (
-            <FormItem className="space-y-2 col-span-2">
+            <FormItem className="space-y-2 col-span-1">
             <FormLabel>Sipariş Numarası</FormLabel>
             <FormControl>
                 <Input placeholder="Sipariş numarası girin" {...field} />
@@ -175,6 +177,114 @@ export function InvoiceInfoForm() {
             <FormMessage className="text-xs" />
             </FormItem>
         )}
+        />
+        </div>
+        <div className="col-span-5 grid grid-cols-4 gap-4">
+        <FormField
+          control={control}
+          name="InvoiceInfo.OrderReferenceDocument.0.ID"
+          render={({ field }) => (
+            <FormItem className="space-y-2 col-span-1">
+              <FormLabel>Sipariş Doküman No</FormLabel>
+              <FormControl>
+                <Input placeholder="Doküman numarası" {...field} />
+              </FormControl>
+              <FormMessage className="text-xs" />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={control}
+          name="InvoiceInfo.OrderReferenceDocument.0.IssueDate"
+          render={({ field }) => (
+            <FormItem className="space-y-2">
+              <FormLabel>Doküman Tarihi</FormLabel>
+              <FormControl>
+                <Input type="date" {...field} />
+              </FormControl>
+              <FormMessage className="text-xs" />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={control}
+          name="InvoiceInfo.OrderReferenceDocument.0.DocumentType"
+          render={({ field }) => (
+            <FormItem className="space-y-2">
+              <FormLabel>Doküman Tipi</FormLabel>
+              <FormControl>
+                <Input placeholder="Tip" {...field} />
+              </FormControl>
+              <FormMessage className="text-xs" />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={control}
+          name="InvoiceInfo.OrderReferenceDocument.0.DocumentTypeCode"
+          render={({ field }) => (
+            <FormItem className="space-y-2 col-span-1">
+              <FormLabel>Doküman Tipi Kodu</FormLabel>
+              <FormControl>
+                <Input placeholder="Tip kodu" {...field} />
+              </FormControl>
+              <FormMessage className="text-xs" />
+            </FormItem>
+          )}
+        />
+        </div>
+        <FormField
+          control={control}
+          name="InvoiceInfo.OrderReferenceDocument.0.DocumentDescription"
+          render={({ field }) => (
+            <FormItem className="space-y-2 col-span-4">
+              <FormLabel>Doküman Açıklaması</FormLabel>
+              <FormControl>
+                <Input placeholder="Açıklama" {...field} />
+              </FormControl>
+              <FormMessage className="text-xs" />
+            </FormItem>
+          )}
+        />
+        {/* Attachment Alanları */}
+        <FormField
+          control={control}
+          name="InvoiceInfo.OrderReferenceDocument.0.Attachment.0.FileName"
+          render={({ field }) => (
+            <FormItem className="space-y-2 col-span-2">
+              <FormLabel>Dosya Adı</FormLabel>
+              <FormControl>
+                <Input placeholder="Dosya adı" {...field} />
+              </FormControl>
+              <FormMessage className="text-xs" />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={control}
+          name="InvoiceInfo.OrderReferenceDocument.0.Attachment.0.MimeCode"
+          render={({ field }) => (
+            <FormItem className="space-y-2">
+              <FormLabel>MIME Tipi</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage className="text-xs" />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={control}
+          name="InvoiceInfo.OrderReferenceDocument.0.Attachment.0.Base64Data"
+          render={({ field }) => (
+            <FormItem className="space-y-2 col-span-1">
+              <FormLabel>Base64 Veri</FormLabel>
+              <FormControl>
+                <Input placeholder="Base64 veri" {...field} />
+              </FormControl>
+              <FormMessage className="text-xs" />
+            </FormItem>
+          )}
         />                
       </div>
     </section>
