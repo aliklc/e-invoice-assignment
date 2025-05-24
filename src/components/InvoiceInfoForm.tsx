@@ -67,9 +67,7 @@ export function InvoiceInfoForm() {
           control={control}
           name="InvoiceInfo.IssueDate"
           render={({ field }) => {
-            // ISO formatını datetime-local formatına çevir
             const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
-            
             return (
               <FormItem className="space-y-2">
                 <FormLabel>Düzenlenme Tarihi</FormLabel>
@@ -78,7 +76,6 @@ export function InvoiceInfoForm() {
                     type="datetime-local"
                     value={value}
                     onChange={(e) => {
-                      // datetime-local'dan gelen değeri ISO formatına çevir
                       field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
                     }}
                   />
@@ -155,18 +152,15 @@ export function InvoiceInfoForm() {
           control={control}
           name="InvoiceInfo.DespatchDocumentReference.0.IssueDate"
           render={({ field }) => {
-            // ISO formatını datetime-local formatına çevir
             const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
-            
             return (
               <FormItem className="space-y-2">
-                <FormLabel>Düzenlenme Tarihi</FormLabel>
+                <FormLabel>İrsaliye Tarihi</FormLabel>
                 <FormControl>
                   <Input 
                     type="datetime-local"
                     value={value}
                     onChange={(e) => {
-                      // datetime-local'dan gelen değeri ISO formatına çevir
                       field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
                     }}
                   />
@@ -193,18 +187,15 @@ export function InvoiceInfoForm() {
           control={control}
           name="InvoiceInfo.OrderReference.0.IssueDate"
           render={({ field }) => {
-            // ISO formatını datetime-local formatına çevir
             const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
-            
             return (
               <FormItem className="space-y-2">
-                <FormLabel>Düzenlenme Tarihi</FormLabel>
+                <FormLabel>Sipariş Tarihi</FormLabel>
                 <FormControl>
                   <Input 
                     type="datetime-local"
                     value={value}
                     onChange={(e) => {
-                      // datetime-local'dan gelen değeri ISO formatına çevir
                       field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
                     }}
                   />
@@ -249,18 +240,15 @@ export function InvoiceInfoForm() {
           control={control}
           name="InvoiceInfo.OrderReferenceDocument.0.IssueDate"
           render={({ field }) => {
-            // ISO formatını datetime-local formatına çevir
             const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
-            
             return (
               <FormItem className="space-y-2">
-                <FormLabel>Düzenlenme Tarihi</FormLabel>
+                <FormLabel>Döküman Tarihi</FormLabel>
                 <FormControl>
                   <Input 
                     type="datetime-local"
                     value={value}
                     onChange={(e) => {
-                      // datetime-local'dan gelen değeri ISO formatına çevir
                       field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
                     }}
                   />
@@ -373,18 +361,15 @@ export function InvoiceInfoForm() {
           control={control}
           name="InvoiceInfo.AdditionalDocumentReferences.0.IssueDate"
           render={({ field }) => {
-            // ISO formatını datetime-local formatına çevir
             const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
-            
             return (
               <FormItem className="space-y-2">
-                <FormLabel>Düzenlenme Tarihi</FormLabel>
+                <FormLabel>Ek Döküman Tarihi</FormLabel>
                 <FormControl>
                   <Input 
                     type="datetime-local"
                     value={value}
                     onChange={(e) => {
-                      // datetime-local'dan gelen değeri ISO formatına çevir
                       field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
                     }}
                   />
@@ -627,18 +612,15 @@ export function InvoiceInfoForm() {
             control={control}
             name="InvoiceInfo.PaymentMeansInfo.DueDate"
             render={({ field }) => {
-              // ISO formatını datetime-local formatına çevir
               const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
-              
               return (
                 <FormItem className="space-y-2">
-                  <FormLabel>Düzenlenme Tarihi</FormLabel>
+                  <FormLabel>Son Ödeme Tarihi</FormLabel>
                   <FormControl>
                     <Input 
                       type="datetime-local"
                       value={value}
                       onChange={(e) => {
-                        // datetime-local'dan gelen değeri ISO formatına çevir
                         field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
                       }}
                     />
@@ -676,7 +658,7 @@ export function InvoiceInfoForm() {
         />
         </div>
         <div className="flex items-center justify-normal mt-5">
-          <h2 className="text-xl font-semibold">OKC Bilgileri</h2>
+          <h2 className="text-red-600 text-xl font-semibold">OKC Bilgileri</h2>
         </div>
         <div className="col-span-5 grid grid-cols-3 gap-4">
           <FormField
@@ -696,9 +678,7 @@ export function InvoiceInfoForm() {
             control={control}
             name="InvoiceInfo.OKCInfo.IssueDate"
             render={({ field }) => {
-              // ISO formatını datetime-local formatına çevir
               const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
-              
               return (
                 <FormItem className="space-y-2">
                   <FormLabel>Düzenlenme Tarihi</FormLabel>
@@ -707,7 +687,6 @@ export function InvoiceInfoForm() {
                       type="datetime-local"
                       value={value}
                       onChange={(e) => {
-                        // datetime-local'dan gelen değeri ISO formatına çevir
                         field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
                       }}
                     />
@@ -758,7 +737,6 @@ export function InvoiceInfoForm() {
               </FormItem>
             )}
           />
-        </div>
         <FormField
           control={control}
           name="InvoiceInfo.OKCInfo.DocumentDescription"
@@ -771,7 +749,88 @@ export function InvoiceInfoForm() {
               <FormMessage className="text-xs" />
             </FormItem>
           )}
-        />        
+        />
+        </div>
+        <div className="flex items-center justify-normal mt-5">
+          <h2 className="text-red-600 text-xl font-semibold">ESU Rapor Bilgileri</h2>
+        </div>
+        <div className="col-span-5 grid grid-cols-2 gap-4">
+          <FormField
+            control={control}
+            name="InvoiceInfo.ESUReportInfo.ID"
+            render={({ field }) => (
+              <FormItem className="space-y-2">
+                <FormLabel>Rapor ID</FormLabel>
+                <FormControl>
+                  <Input placeholder="Rapor numarası" {...field} />
+                </FormControl>
+                <FormMessage className="text-xs" />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={control}
+            name="InvoiceInfo.ESUReportInfo.IssueDate"
+            render={({ field }) => {
+              const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
+              return (
+                <FormItem className="space-y-2">
+                  <FormLabel>Rapor Tarihi</FormLabel>
+                  <FormControl>
+                    <Input 
+                      type="datetime-local"
+                      value={value}
+                      onChange={(e) => {
+                        field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
+                      }}
+                    />
+                  </FormControl>
+                  <FormMessage className="text-xs" />
+                </FormItem>
+              )
+            }}
+          />
+          </div>
+        <div className="flex items-center justify-normal mt-5">
+          <h2 className="text-red-600 text-xl font-semibold">İade Fatura Bilgileri</h2>
+        </div>
+        <div className="col-span-5 grid grid-cols-2 gap-4">
+          <FormField
+            control={control}
+            name="InvoiceInfo.ReturnInvoiceInfo.0.InvoiceNumber"
+            render={({ field }) => (
+              <FormItem className="space-y-2">
+                <FormLabel>Fatura Numarası</FormLabel>
+                <FormControl>
+                  <Input placeholder="Rapor numarası" {...field} />
+                </FormControl>
+                <FormMessage className="text-xs" />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={control}
+            name="InvoiceInfo.ReturnInvoiceInfo.0.IssueDate"
+            render={({ field }) => {
+              const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
+              return (
+                <FormItem className="space-y-2">
+                  <FormLabel>Fatura Tarihi</FormLabel>
+                  <FormControl>
+                    <Input 
+                      type="datetime-local"
+                      value={value}
+                      onChange={(e) => {
+                        field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
+                      }}
+                    />
+                  </FormControl>
+                  <FormMessage className="text-xs" />
+                </FormItem>
+              )
+            }}
+          />
+          </div>   
       </div>
     </section>
   );

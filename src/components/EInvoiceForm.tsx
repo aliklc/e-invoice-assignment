@@ -95,14 +95,24 @@ export default function EInvoiceForm() {
         PayeeFinancialAccountID: "",
         Note: ""
       },
-        OKCInfo: {
+      OKCInfo: {
         ID: "",
         IssueDate: "",
         Time: "",
         ZNo: "",
         EndPointID: "",
         DocumentDescription: ""
-      }             
+      },
+      ESUReportInfo: {
+        ID: "",
+        IssueDate: ""
+      },
+      ReturnInvoiceInfo: [
+        {
+          InvoiceNumber: "",
+          IssueDate: ""
+        }
+      ]             
       },
       CompanyInfo: {
         TaxNumber: "",

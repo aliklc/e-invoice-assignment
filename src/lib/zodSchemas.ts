@@ -90,6 +90,24 @@ const OKCInfoSchema = z.object({
   DocumentDescription: z.string().optional()
 });
 
+const ESUReportInfoSchema = z.object({
+  ID: z.string().optional(),
+  IssueDate: z.string()
+    .refine(val => !isNaN(Date.parse(val)), {
+      message: "Geçerli bir tarih/saat formatı girin"
+    })
+    .optional(),
+});
+
+const ReturnInvoiceItemSchema = z.object({
+  InvoiceNumber: z.string().min(1, "Fatura numarası boş olamaz"),
+  IssueDate: z.string()
+    .refine(val => !isNaN(Date.parse(val)), {
+      message: "Geçerli bir tarih/saat formatı girin"
+    })
+    .optional(),
+});
+
 // InvoiceInfo için Zod Şeması
 const InvoiceInfoSchema = z.object({
   UUID: z.string(),
@@ -124,6 +142,8 @@ const InvoiceInfoSchema = z.object({
   PaymentTermsInfo: PaymentTermsInfoSchema.optional(),
   PaymentMeansInfo: PaymentMeansInfoSchema.optional(),
   OKCInfo: OKCInfoSchema.optional(),
+  ESUReportInfo: ESUReportInfoSchema.optional(),
+  ReturnInvoiceInfo: z.array(ReturnInvoiceItemSchema).optional()
 });
 
 // CompanyInfo için Zod Şeması

@@ -60,6 +60,17 @@ export interface OKCInfo {
   DocumentDescription?: string;
 }
 
+export interface ESUReportInfo {
+  ID?: string;
+  IssueDate?: string;
+}
+
+export interface ReturnInvoiceItem {
+  InvoiceNumber?: string;
+  IssueDate?: string;
+}
+
+
 export interface InvoiceInfo {
   UUID: string;
   InvoiceSerieOrNumber: string;
@@ -75,6 +86,8 @@ export interface InvoiceInfo {
   PaymentTermsInfo?: PaymentTermsInfo;
   PaymentMeansInfo?: PaymentMeansInfo;
   OKCInfo?: OKCInfo;
+  ESUReportInfo?: ESUReportInfo;
+  ReturnInvoiceInfo?: ReturnInvoiceItem[];
 }
 
 export interface CompanyInfo {
