@@ -62,13 +62,13 @@ export default function EInvoiceForm() {
             ],
           },
         ],
-      AdditionalDocumentReferences: [ // Bu alanı ekliyoruz
+      AdditionalDocumentReferences: [
         {
           ID: "",
           IssueDate: "",
           DocumentType: "",
           DocumentTypeCode: "",
-          DocumentDescription: "", // Eğer opsiyonel değilse burada boş string olmalı
+          DocumentDescription: "",
           Attachment: [
             {
               Base64Data: "",
@@ -112,7 +112,16 @@ export default function EInvoiceForm() {
           InvoiceNumber: "",
           IssueDate: ""
         }
-      ]             
+      ],
+      AccountingCost: "", 
+      InvoicePeriod: {
+        StartDate: "",
+        StartTime: "",
+        EndDate: "",
+        EndTime: "",
+        DurationMeasureValue: undefined,
+        Description: ""
+      },           
       },
       CompanyInfo: {
         TaxNumber: "",

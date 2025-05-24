@@ -830,7 +830,134 @@ export function InvoiceInfoForm() {
               )
             }}
           />
-          </div>   
+          </div>
+          <div className="flex items-center justify-normal mt-5">
+            <h2 className="text-xl font-semibold">Muhasebe ve Fatura Dönem Bilgileri</h2>
+          </div>
+
+          <FormField
+            control={control}
+            name="InvoiceInfo.AccountingCost"
+            render={({ field }) => (
+              <FormItem className="space-y-2">
+                <FormLabel>Muhasebe Kodu</FormLabel>
+                <FormControl>
+                  <Input placeholder="Muhasebe kodu" {...field} />
+                </FormControl>
+                <FormMessage className="text-xs" />
+              </FormItem>
+            )}
+          />
+          <div className="col-span-5 grid grid-cols-2 gap-4 mt-4">
+            <div className="space-y-4">
+              <h3 className="font-medium">Başlangıç Bilgileri</h3>
+              <FormField
+                control={control}
+                name="InvoiceInfo.InvoicePeriod.StartDate"
+                render={({ field }) => {
+                  const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
+                  return (
+                    <FormItem className="space-y-2">
+                      <FormLabel>Başlangıç Tarihi</FormLabel>
+                      <FormControl>
+                        <Input 
+                          type="datetime-local"
+                          value={value}
+                          onChange={(e) => {
+                            field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage className="text-xs" />
+                    </FormItem>
+                  )
+                }}
+              />
+              <FormField
+                control={control}
+                name="InvoiceInfo.InvoicePeriod.StartTime"
+                render={({ field }) => (
+                  <FormItem className="space-y-2">
+                    <FormLabel>Başlangıç Saati</FormLabel>
+                    <FormControl>
+                      <Input type="time" {...field} />
+                    </FormControl>
+                    <FormMessage className="text-xs" />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="space-y-4">
+              <h3 className="font-medium">Bitiş Bilgileri</h3>
+              <FormField
+                control={control}
+                name="InvoiceInfo.InvoicePeriod.EndDate"
+                render={({ field }) => {
+                  const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
+                  return (
+                    <FormItem className="space-y-2">
+                      <FormLabel>Bitiş Tarihi</FormLabel>
+                      <FormControl>
+                        <Input 
+                          type="datetime-local"
+                          value={value}
+                          onChange={(e) => {
+                            field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage className="text-xs" />
+                    </FormItem>
+                  )
+                }}
+              />
+          <FormField
+            control={control}
+            name="InvoiceInfo.InvoicePeriod.EndTime"
+            render={({ field }) => (
+              <FormItem className="space-y-2">
+                <FormLabel>Bitiş Saat</FormLabel>
+                <FormControl>
+                  <Input type="time" {...field} />
+                </FormControl>
+                <FormMessage className="text-xs" />
+              </FormItem>
+            )}
+          />
+            </div>
+          </div>
+        <div className="col-span-5 grid grid-cols-2 gap-4 mt-4">
+          <FormField
+            control={control}
+            name="InvoiceInfo.InvoicePeriod.DurationMeasureValue"
+            render={({ field }) => (
+              <FormItem className="space-y-2">
+                <FormLabel>Süre(Gün)</FormLabel>
+                <FormControl>
+                  <Input 
+                    type="number"  
+                    {...field} 
+                    onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                  />
+                </FormControl>
+                <FormMessage className="text-xs" />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={control}
+            name="InvoiceInfo.InvoicePeriod.Description"
+            render={({ field }) => (
+              <FormItem className="space-y-2">
+                <FormLabel>Açıklama</FormLabel>
+                <FormControl>
+                  <Input placeholder="Dönem açıklaması" {...field} />
+                </FormControl>
+                <FormMessage className="text-xs" />
+              </FormItem>
+            )}
+          />
+        </div>
       </div>
     </section>
   );

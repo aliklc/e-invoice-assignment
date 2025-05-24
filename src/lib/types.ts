@@ -70,6 +70,14 @@ export interface ReturnInvoiceItem {
   IssueDate?: string;
 }
 
+export interface InvoicePeriod {
+  StartDate?: string;
+  StartTime?: string;
+  EndDate?: string;
+  EndTime?: string;
+  DurationMeasureValue?: number;
+  Description?: string;
+}
 
 export interface InvoiceInfo {
   UUID: string;
@@ -78,6 +86,8 @@ export interface InvoiceInfo {
   InvoiceType: string;
   CurrencyCode: string;
   InvoiceProfile: string;
+  AccountingCost?: string;
+  InvoicePeriod?: InvoicePeriod;
   DespatchDocumentReference: DespatchDocumentReference[];
   OrderReference: OrderReference[];
   OrderReferenceDocument?: OrderReferenceDocument[];

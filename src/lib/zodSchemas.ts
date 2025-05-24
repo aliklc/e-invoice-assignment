@@ -108,6 +108,24 @@ const ReturnInvoiceItemSchema = z.object({
     .optional(),
 });
 
+const InvoicePeriodSchema = z.object({
+  StartDate: z.string()
+    .datetime({ offset: true })
+    .refine(val => !isNaN(Date.parse(val)), {
+      message: "Geçerli bir başlangıç tarihi girin"
+    })
+    .optional(),
+  StartTime: z.string().optional(),
+  EndDate: z.string()
+    .datetime({ offset: true })
+    .refine(val => !isNaN(Date.parse(val)), {
+      message: "Geçerli bir bitiş tarihi girin"
+    })
+    .optional(),
+  DurationMeasureValue: z.number().optional(),
+  Description: z.string().optional()
+});
+
 // InvoiceInfo için Zod Şeması
 const InvoiceInfoSchema = z.object({
   UUID: z.string(),
@@ -134,6 +152,8 @@ const InvoiceInfoSchema = z.object({
     .min(1, "Fatura Profili boş bırakılamaz")
     .max(50, "Fatura Profili çok uzun"),
 
+  AccountingCost: z.string().optional(),
+
   DespatchDocumentReference: z.array(despatchDocumentReferenceSchema),
   OrderReference: z.array(OrderReferenceSchema),
   OrderReferenceDocument: z.array(OrderReferenceDocumentSchema),
@@ -143,7 +163,8 @@ const InvoiceInfoSchema = z.object({
   PaymentMeansInfo: PaymentMeansInfoSchema.optional(),
   OKCInfo: OKCInfoSchema.optional(),
   ESUReportInfo: ESUReportInfoSchema.optional(),
-  ReturnInvoiceInfo: z.array(ReturnInvoiceItemSchema).optional()
+  ReturnInvoiceInfo: z.array(ReturnInvoiceItemSchema).optional(),
+  InvoicePeriod: InvoicePeriodSchema.optional()
 });
 
 // CompanyInfo için Zod Şeması
