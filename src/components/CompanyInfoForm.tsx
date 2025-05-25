@@ -1,16 +1,30 @@
 "use client";
 
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useFieldArray } from "react-hook-form";
 import { EInvoiceFormData } from "../lib/types";
 import { Input } from "@/components/ui/input";
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
+import { Button } from "@/components/ui/button";
+import { Plus, Trash2 } from "lucide-react";
 
 export function CompanyInfoForm() {
   const { control } = useFormContext<EInvoiceFormData>();
+  
+  const { fields: partyIdFields, append: appendPartyId, remove: removePartyId } = useFieldArray({
+    control,
+    name: "EInvoice.CompanyInfo.PartyIdentifications"
+  });
+
+  const { fields: agentPartyIdFields, append: appendAgentPartyId, remove: removeAgentPartyId } = useFieldArray({
+    control,
+    name: "EInvoice.CompanyInfo.AgentPartyIdentifications"
+  });
 
   return (
-    <section className="space-y-4">
-      <h2 className="text-xl font-semibold mt-5">Şirket Bilgileri</h2>
+    <section className="space-y-6">
+      <h2 className="text-xl font-semibold">Şirket Bilgileri</h2>
+      
+      {/* Temel Bilgiler */}
       <div className="grid grid-cols-3 gap-4">
         <FormField
           control={control}
@@ -51,63 +65,23 @@ export function CompanyInfoForm() {
             </FormItem>
           )}
         />
-        
-        {/* PartyIdentifications - Basit olarak ilk elemanı gösteriyorum */}
-        <FormField
-          control={control}
-          name="EInvoice.CompanyInfo.PartyIdentifications.0.SchemeID"
-          render={({ field }) => (
-            <FormItem className="space-y-2">
-              <FormLabel>Taraf Kimlik Şema ID</FormLabel>
-              <FormControl>
-                <Input placeholder="VKN_TCKN" {...field} />
-              </FormControl>
-              <FormMessage className="text-xs" />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={control}
-          name="EInvoice.CompanyInfo.PartyIdentifications.0.Value"
-          render={({ field }) => (
-            <FormItem className="space-y-2">
-              <FormLabel>Taraf Kimlik Değeri</FormLabel>
-              <FormControl>
-                <Input placeholder="Kimlik değeri" {...field} />
-              </FormControl>
-              <FormMessage className="text-xs" />
-            </FormItem>
-          )}
-        />
+      </div>
 
-        {/* AgentPartyIdentifications - Basit olarak ilk elemanı gösteriyorum */}
+      {/* Adres Bilgileri */}
+      <div className="grid grid-cols-4 gap-4">
         <FormField
           control={control}
-          name="EInvoice.CompanyInfo.AgentPartyIdentifications.0.SchemeID"
+          name="EInvoice.CompanyInfo.Address"
           render={({ field }) => (
-            <FormItem className="space-y-2">
-              <FormLabel>Vekil Taraf Şema ID</FormLabel>
+            <FormItem className="space-y-2 col-span-2">
+              <FormLabel>Adres</FormLabel>
               <FormControl>
-                <Input placeholder="VKN_TCKN" {...field} />
+                <Input placeholder="Tam adres bilgisi" {...field} />
               </FormControl>
               <FormMessage className="text-xs" />
             </FormItem>
           )}
         />
-        <FormField
-          control={control}
-          name="EInvoice.CompanyInfo.AgentPartyIdentifications.0.Value"
-          render={({ field }) => (
-            <FormItem className="space-y-2">
-              <FormLabel>Vekil Taraf Değeri</FormLabel>
-              <FormControl>
-                <Input placeholder="Vekil kimlik değeri" {...field} />
-              </FormControl>
-              <FormMessage className="text-xs" />
-            </FormItem>
-          )}
-        />
-
         <FormField
           control={control}
           name="EInvoice.CompanyInfo.District"
@@ -121,7 +95,6 @@ export function CompanyInfoForm() {
             </FormItem>
           )}
         />
-        
         <FormField
           control={control}
           name="EInvoice.CompanyInfo.City"
@@ -135,7 +108,9 @@ export function CompanyInfoForm() {
             </FormItem>
           )}
         />
-        
+      </div>
+
+      <div className="grid grid-cols-2 gap-4">
         <FormField
           control={control}
           name="EInvoice.CompanyInfo.Country"
@@ -149,7 +124,6 @@ export function CompanyInfoForm() {
             </FormItem>
           )}
         />
-        
         <FormField
           control={control}
           name="EInvoice.CompanyInfo.PostalCode"
@@ -163,13 +137,16 @@ export function CompanyInfoForm() {
             </FormItem>
           )}
         />
-        
+      </div>
+
+      {/* İletişim Bilgileri */}
+      <div className="grid grid-cols-4 gap-4">
         <FormField
           control={control}
           name="EInvoice.CompanyInfo.Phone"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel>Tel No</FormLabel>
+              <FormLabel>Telefon</FormLabel>
               <FormControl>
                 <Input placeholder="+90XXXXXXXXXX" {...field} />
               </FormControl>
@@ -177,13 +154,12 @@ export function CompanyInfoForm() {
             </FormItem>
           )}
         />
-        
         <FormField
           control={control}
           name="EInvoice.CompanyInfo.Fax"
           render={({ field }) => (
             <FormItem className="space-y-2">
-              <FormLabel>Fax</FormLabel>
+              <FormLabel>Faks</FormLabel>
               <FormControl>
                 <Input placeholder="+90XXXXXXXXXX" {...field} />
               </FormControl>
@@ -191,35 +167,19 @@ export function CompanyInfoForm() {
             </FormItem>
           )}
         />
-
-        <FormField
-          control={control}
-          name="EInvoice.CompanyInfo.Address"
-          render={({ field }) => (
-            <FormItem className="space-y-2 col-span-3">
-              <FormLabel>Adres</FormLabel>
-              <FormControl>
-                <Input placeholder="Tam adres bilgisi" {...field} />
-              </FormControl>
-              <FormMessage className="text-xs" />
-            </FormItem>
-          )}
-        />
-        
         <FormField
           control={control}
           name="EInvoice.CompanyInfo.Mail"
           render={({ field }) => (
-            <FormItem className="space-y-2 col-span-2">
-              <FormLabel>Mail</FormLabel>
+            <FormItem className="space-y-2">
+              <FormLabel>E-posta</FormLabel>
               <FormControl>
-                <Input placeholder="email@example.com" {...field} />
+                <Input type="email" placeholder="email@example.com" {...field} />
               </FormControl>
               <FormMessage className="text-xs" />
             </FormItem>
           )}
         />
-        
         <FormField
           control={control}
           name="EInvoice.CompanyInfo.WebSite"
@@ -233,6 +193,118 @@ export function CompanyInfoForm() {
             </FormItem>
           )}
         />
+      </div>
+
+      {/* Taraf Tanımlamaları */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-medium">Taraf Tanımlamaları</h3>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={() => appendPartyId({ SchemeID: "", Value: "" })}
+          >
+            <Plus className="w-4 h-4 mr-2" />
+            Ekle
+          </Button>
+        </div>
+        
+        {partyIdFields.map((field, index) => (
+          <div key={field.id} className="grid grid-cols-3 gap-4 items-end">
+            <FormField
+              control={control}
+              name={`EInvoice.CompanyInfo.PartyIdentifications.${index}.SchemeID`}
+              render={({ field }) => (
+                <FormItem className="space-y-2">
+                  <FormLabel>Şema ID</FormLabel>
+                  <FormControl>
+                    <Input placeholder="VKN_TCKN" {...field} />
+                  </FormControl>
+                  <FormMessage className="text-xs" />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={control}
+              name={`EInvoice.CompanyInfo.PartyIdentifications.${index}.Value`}
+              render={({ field }) => (
+                <FormItem className="space-y-2">
+                  <FormLabel>Değer</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Kimlik değeri" {...field} />
+                  </FormControl>
+                  <FormMessage className="text-xs" />
+                </FormItem>
+              )}
+            />
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => removePartyId(index)}
+              className="mb-1"
+            >
+              <Trash2 className="w-4 h-4" />
+            </Button>
+          </div>
+        ))}
+      </div>
+
+      {/* Temsilci Taraf Tanımlamaları */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-medium">Temsilci Taraf Tanımlamaları</h3>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={() => appendAgentPartyId({ SchemeID: "", Value: "" })}
+          >
+            <Plus className="w-4 h-4 mr-2" />
+            Ekle
+          </Button>
+        </div>
+        
+        {agentPartyIdFields.map((field, index) => (
+          <div key={field.id} className="grid grid-cols-3 gap-4 items-end">
+            <FormField
+              control={control}
+              name={`EInvoice.CompanyInfo.AgentPartyIdentifications.${index}.SchemeID`}
+              render={({ field }) => (
+                <FormItem className="space-y-2">
+                  <FormLabel>Şema ID</FormLabel>
+                  <FormControl>
+                    <Input placeholder="VKN_TCKN" {...field} />
+                  </FormControl>
+                  <FormMessage className="text-xs" />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={control}
+              name={`EInvoice.CompanyInfo.AgentPartyIdentifications.${index}.Value`}
+              render={({ field }) => (
+                <FormItem className="space-y-2">
+                  <FormLabel>Değer</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Vekil kimlik değeri" {...field} />
+                  </FormControl>
+                  <FormMessage className="text-xs" />
+                </FormItem>
+              )}
+            />
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => removeAgentPartyId(index)}
+              className="mb-1"
+            >
+              <Trash2 className="w-4 h-4" />
+            </Button>
+          </div>
+        ))}
       </div>
     </section>
   );

@@ -249,6 +249,7 @@ const CompanyInfoSchema = z.object({
   WebSite: z.string().url("Geçerli bir web sitesi adresi girin").optional().or(z.literal(""))
 });
 
+// CustomerInfo için genişletilmiş Zod Şeması
 const CustomerInfoSchema = z.object({
   TaxNumber: z.string()
     .min(1, "Vergi numarası en az 1 karakter olmalıdır")
@@ -263,29 +264,114 @@ const CustomerInfoSchema = z.object({
     .min(1, "Vergi dairesi boş bırakılamaz")
     .max(30, "Vergi dairesi adı çok uzun"),
 
+  PartyIdentifications: z.array(PartyIdentificationSchema).optional(),
+  AgentPartyIdentifications: z.array(AgentPartyIdentificationSchema).optional(),
+
   Address: z.string()
     .min(1, "Adres boş bırakılamaz")
     .max(200, "Adres çok uzun"),
 
+  District: z.string()
+    .max(30, "İlçe adı çok uzun")
+    .optional(),
+
   City: z.string()
     .min(1, "Şehir boş bırakılamaz")
     .max(20, "Şehir adı çok uzun"),
+
+  Country: z.string()
+    .max(30, "Ülke adı çok uzun")
+    .optional(),
+
+  PostalCode: z.string()
+    .max(10, "Posta kodu çok uzun")
+    .optional(),
 
   Phone: z.string()
     .min(10, "Telefon numarası en az 10 karakter olmalıdır")
     .max(15, "Telefon numarası çok uzun")
     .regex(/^[0-9+]+$/, "Geçerli bir telefon numarası girin"),
 
+  Fax: z.string()
+    .max(15, "Faks numarası çok uzun")
+    .regex(/^[0-9+]*$/, "Geçerli bir faks numarası girin")
+    .optional(),
+
   Mail: z.string()
     .min(1, "E-posta boş bırakılamaz")
     .email("Geçerli bir e-posta adresi girin")
-    .max(100, "E-posta çok uzun")
+    .max(100, "E-posta çok uzun"),
+
+  WebSite: z.string()
+    .url("Geçerli bir web sitesi adresi girin")
+    .optional()
+    .or(z.literal(""))
+});
+
+// BuyerCustomerInfo için Zod Şeması (CustomerInfo ile aynı yapı)
+const BuyerCustomerInfoSchema = z.object({
+  TaxNumber: z.string()
+    .min(1, "Alıcı vergi numarası en az 1 karakter olmalıdır")
+    .max(11, "Alıcı vergi numarası en fazla 11 karakter olmalıdır")
+    .regex(/^[0-9]+$/, "Alıcı vergi numarası sadece rakamlardan oluşmalıdır"),
+
+  Name: z.string()
+    .min(1, "Alıcı adı boş bırakılamaz")
+    .max(30, "Alıcı adı çok uzun"),
+
+  TaxOffice: z.string()
+    .min(1, "Alıcı vergi dairesi boş bırakılamaz")
+    .max(30, "Alıcı vergi dairesi adı çok uzun"),
+
+  PartyIdentifications: z.array(PartyIdentificationSchema).optional(),
+  AgentPartyIdentifications: z.array(AgentPartyIdentificationSchema).optional(),
+
+  Address: z.string()
+    .min(1, "Alıcı adresi boş bırakılamaz")
+    .max(200, "Alıcı adresi çok uzun"),
+
+  District: z.string()
+    .max(30, "Alıcı ilçe adı çok uzun")
+    .optional(),
+
+  City: z.string()
+    .min(1, "Alıcı şehri boş bırakılamaz")
+    .max(20, "Alıcı şehir adı çok uzun"),
+
+  Country: z.string()
+    .max(30, "Alıcı ülke adı çok uzun")
+    .optional(),
+
+  PostalCode: z.string()
+    .max(10, "Alıcı posta kodu çok uzun")
+    .optional(),
+
+  Phone: z.string()
+    .min(10, "Alıcı telefon numarası en az 10 karakter olmalıdır")
+    .max(15, "Alıcı telefon numarası çok uzun")
+    .regex(/^[0-9+]+$/, "Geçerli bir alıcı telefon numarası girin"),
+
+  Fax: z.string()
+    .max(15, "Alıcı faks numarası çok uzun")
+    .regex(/^[0-9+]*$/, "Geçerli bir alıcı faks numarası girin")
+    .optional(),
+
+  Mail: z.string()
+    .min(1, "Alıcı e-postası boş bırakılamaz")
+    .email("Geçerli bir alıcı e-posta adresi girin")
+    .max(100, "Alıcı e-postası çok uzun"),
+
+  WebSite: z.string()
+    .url("Geçerli bir alıcı web sitesi adresi girin")
+    .optional()
+    .or(z.literal(""))
 });
 
 const EInvoiceSchema = z.object({
   InvoiceInfo: InvoiceInfoSchema,
   CompanyInfo: CompanyInfoSchema,
-  CustomerInfo: CustomerInfoSchema
+  CustomerInfo: CustomerInfoSchema,
+  BuyerCustomerInfo: BuyerCustomerInfoSchema.optional()
 });
 
 export const EInvoiceFormDataSchema: z.ZodType<EInvoiceFormData> = z.object({

@@ -20,6 +20,7 @@ const steps = [
   { id: "payment-info", name: "Ödeme Bilgileri"},
   { id: "company-info", name: "Şirket Bilgileri" },
   { id: "customer-info", name: "Müşteri Bilgileri" },
+  { id: "buyer-customer-info", name: "Alıcı Müşteri Bilgileri" },
 ];
 
 export default function EInvoiceForm() {
@@ -177,10 +178,53 @@ export default function EInvoiceForm() {
         TaxNumber: "",
         Name: "",
         TaxOffice: "",
+        PartyIdentifications: [
+          {
+            SchemeID: "",
+            Value: ""
+          }
+        ],
+        AgentPartyIdentifications: [
+          {
+            SchemeID: "",
+            Value: ""
+          }
+        ],
         Address: "",
+        District: "",
         City: "",
+        Country: "",
+        PostalCode: "",
         Phone: "",
+        Fax: "",
         Mail: "",
+        WebSite: "",
+      },
+      BuyerCustomerInfo: {
+        TaxNumber: "",
+        Name: "",
+        TaxOffice: "",
+        PartyIdentifications: [
+          {
+            SchemeID: "",
+            Value: ""
+          }
+        ],
+        AgentPartyIdentifications: [
+          {
+            SchemeID: "",
+            Value: ""
+          }
+        ],
+        Address: "",
+        District: "",
+        City: "",
+        Country: "",
+        PostalCode: "",
+        Phone: "",
+        Fax: "",
+        Mail: "",
+        WebSite: "",
       },
     },
   },
@@ -217,7 +261,8 @@ export default function EInvoiceForm() {
               {currentStep === 0 && <InvoiceInfoForm/>}
               {currentStep === 1 && <PaymentMeansInfoForm/>}
               {currentStep === 2 && <CompanyInfoForm />}
-              {currentStep === 3 && <CustomerInfoForm />}
+              {currentStep === 3 && <CustomerInfoForm type="CustomerInfo" title="Müşteri Bilgileri" />}
+              {currentStep === 4 && <CustomerInfoForm type="BuyerCustomerInfo" title="Alıcı Müşteri Bilgileri" />}
             </div>
 
             <div className="flex justify-between mt-8">

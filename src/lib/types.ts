@@ -155,10 +155,34 @@ export interface CustomerInfo {
   TaxNumber: string;
   Name: string;
   TaxOffice: string;
+  PartyIdentifications?: PartyIdentification[];
+  AgentPartyIdentifications?: AgentPartyIdentification[];
   Address: string;
+  District?: string;
   City: string;
+  Country?: string;
+  PostalCode?: string;
   Phone: string;
+  Fax?: string;
   Mail: string;
+  WebSite?: string;
+}
+
+export interface BuyerCustomerInfo {
+  TaxNumber: string;
+  Name: string;
+  TaxOffice: string;
+  PartyIdentifications?: PartyIdentification[];
+  AgentPartyIdentifications?: AgentPartyIdentification[];
+  Address: string;
+  District?: string;
+  City: string;
+  Country?: string;
+  PostalCode?: string;
+  Phone: string;
+  Fax?: string;
+  Mail: string;
+  WebSite?: string;
 }
 
 
@@ -166,6 +190,7 @@ export interface EInvoice {
   InvoiceInfo: InvoiceInfo;
   CompanyInfo: CompanyInfo;
   CustomerInfo: CustomerInfo;
+  BuyerCustomerInfo?: BuyerCustomerInfo;
 }
 
 
