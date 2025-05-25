@@ -80,10 +80,20 @@ export interface InvoicePeriod {
   Description?: string;
 }
 
+export interface SGKInfo {
+  RegisterName?: string;
+  DocumentNumber?: string;
+  RegisterCode?: string;
+}
+
+export interface ExpenseItem {
+  ExpenseType: string;
+  Percent?: number;
+  Amount?: number;
+}
+
 export interface InvoiceInfo {
   UUID: string;
-
-  
   InvoiceSerieOrNumber: string;
   IssueDate?: string;
   InvoiceType: string;
@@ -101,6 +111,8 @@ export interface InvoiceInfo {
   OKCInfo?: OKCInfo;
   ESUReportInfo?: ESUReportInfo;
   ReturnInvoiceInfo?: ReturnInvoiceItem[];
+  SGKInfo?: SGKInfo;
+  Expenses?: ExpenseItem[];
 }
 
 export interface CompanyInfo {
@@ -123,14 +135,14 @@ export interface CustomerInfo {
   Mail: string;
 }
 
-// EInvoice wrapper interface
+
 export interface EInvoice {
   InvoiceInfo: InvoiceInfo;
   CompanyInfo: CompanyInfo;
   CustomerInfo: CustomerInfo;
 }
 
-// Ana form data interface - EInvoice wrapper ile
+
 export interface EInvoiceFormData {
   EInvoice: EInvoice;
 }

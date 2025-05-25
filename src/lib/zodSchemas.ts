@@ -127,6 +127,18 @@ const InvoicePeriodSchema = z.object({
   Description: z.string().optional()
 });
 
+const SGKInfoSchema = z.object({
+  RegisterName: z.string().optional(),
+  DocumentNumber: z.string().optional(),
+  RegisterCode: z.string().optional()
+});
+
+const ExpenseItemSchema = z.object({
+  ExpenseType: z.string().min(1, "Gider tipi boş olamaz"),
+  Percent: z.number().optional(),
+  Amount: z.number().optional()
+});
+
 // InvoiceInfo için Zod Şeması
 const InvoiceInfoSchema = z.object({
   UUID: z.string(),
@@ -166,7 +178,9 @@ const InvoiceInfoSchema = z.object({
   OKCInfo: OKCInfoSchema.optional(),
   ESUReportInfo: ESUReportInfoSchema.optional(),
   ReturnInvoiceInfo: z.array(ReturnInvoiceItemSchema).optional(),
-  InvoicePeriod: InvoicePeriodSchema.optional()
+  InvoicePeriod: InvoicePeriodSchema.optional(),
+  SGKInfo: SGKInfoSchema.optional(),
+  Expenses: z.array(ExpenseItemSchema).optional(),
 });
 
 // CompanyInfo için Zod Şeması
@@ -236,14 +250,12 @@ const CustomerInfoSchema = z.object({
     .max(100, "E-posta çok uzun")
 });
 
-// EInvoice Wrapper Schema
 const EInvoiceSchema = z.object({
   InvoiceInfo: InvoiceInfoSchema,
   CompanyInfo: CompanyInfoSchema,
   CustomerInfo: CustomerInfoSchema
 });
 
-// Ana EInvoiceFormData Şeması - EInvoice wrapper ile
 export const EInvoiceFormDataSchema: z.ZodType<EInvoiceFormData> = z.object({
   EInvoice: EInvoiceSchema
 });

@@ -13,9 +13,11 @@ import { Stepper } from "@/components/Stepper";
 import { InvoiceInfoForm } from "./InvoiceInfoForm";
 import { CompanyInfoForm } from "./CompanyInfoForm";
 import { CustomerInfoForm } from "./CustomerInfoForm";
+import { PaymentMeansInfoForm } from "./PaymentMeansInfoForm";
 
 const steps = [
   { id: "invoice-info", name: "Fatura Bilgileri" },
+  { id: "payment-info", name: "Ödeme Bilgileri"},
   { id: "company-info", name: "Şirket Bilgileri" },
   { id: "customer-info", name: "Müşteri Bilgileri" },
 ];
@@ -122,7 +124,19 @@ export default function EInvoiceForm() {
         EndTime: "",
         DurationMeasureValue: undefined,
         Description: ""
-      },           
+      },
+      SGKInfo: {
+        RegisterName: "",
+        DocumentNumber: "",
+        RegisterCode: ""
+      },
+      Expenses: [
+        {
+          ExpenseType: "",
+          Percent: undefined,
+          Amount: undefined
+        }
+      ],           
       },
       CompanyInfo: {
         TaxNumber: "",
@@ -175,8 +189,9 @@ export default function EInvoiceForm() {
 
             <div className="mt-8">
               {currentStep === 0 && <InvoiceInfoForm/>}
-              {currentStep === 1 && <CompanyInfoForm />}
-              {currentStep === 2 && <CustomerInfoForm />}
+              {currentStep === 1 && <PaymentMeansInfoForm/>}
+              {currentStep === 2 && <CompanyInfoForm />}
+              {currentStep === 3 && <CustomerInfoForm />}
             </div>
 
             <div className="flex justify-between mt-8">
