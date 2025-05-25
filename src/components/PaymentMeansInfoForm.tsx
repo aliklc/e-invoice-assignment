@@ -245,6 +245,173 @@ export function PaymentMeansInfoForm() {
             </FormItem>
           )}
         />
+            <div className="flex items-center justify-normal mt-5">
+                <h2 className="text-red-600 text-xl font-semibold">Fatura Özet Bilgileri</h2>
+            </div>
+            <div className="col-span-5 grid grid-cols-3 gap-4">
+            <FormField
+                control={control}
+                name="EInvoice.InvoiceInfo.LineExtensionAmount"
+                render={({ field }) => (
+                <FormItem className="space-y-2">
+                    <FormLabel>Satır Genişletme Tutarı</FormLabel>
+                    <FormControl>
+                    <Input 
+                        type="number"
+                        placeholder="0.00"
+                        {...field}
+                        onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                    />
+                    </FormControl>
+                    <FormMessage className="text-xs" />
+                </FormItem>
+                )}
+            />
+            <FormField
+                control={control}
+                name="EInvoice.InvoiceInfo.GeneralKDV1Total"
+                render={({ field }) => (
+                <FormItem className="space-y-2">
+                    <FormLabel>KDV %1 Toplam</FormLabel>
+                    <FormControl>
+                    <Input 
+                        type="number"
+                        placeholder="0.00"
+                        {...field}
+                        onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                    />
+                    </FormControl>
+                    <FormMessage className="text-xs" />
+                </FormItem>
+                )}
+            />
+            <FormField
+                control={control}
+                name="EInvoice.InvoiceInfo.GeneralKDV8Total"
+                render={({ field }) => (
+                <FormItem className="space-y-2">
+                    <FormLabel>KDV %8 Toplam</FormLabel>
+                    <FormControl>
+                    <Input 
+                        type="number"
+                        placeholder="0.00"
+                        {...field}
+                        onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                    />
+                    </FormControl>
+                    <FormMessage className="text-xs" />
+                </FormItem>
+                )}
+            />
+            <FormField
+                control={control}
+                name="EInvoice.InvoiceInfo.GeneralKDV18Total"
+                render={({ field }) => (
+                <FormItem className="space-y-2">
+                    <FormLabel>KDV %18 Toplam</FormLabel>
+                    <FormControl>
+                    <Input 
+                        type="number"
+                        placeholder="0.00"
+                        {...field}
+                        onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                    />
+                    </FormControl>
+                    <FormMessage className="text-xs" />
+                </FormItem>
+                )}
+            />
+            <FormField
+                control={control}
+                name="EInvoice.InvoiceInfo.GeneralKDV10Total"
+                render={({ field }) => (
+                <FormItem className="space-y-2">
+                    <FormLabel>KDV %10 Toplam</FormLabel>
+                    <FormControl>
+                    <Input 
+                        type="number"
+                        placeholder="0.00"
+                        {...field}
+                        onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                    />
+                    </FormControl>
+                    <FormMessage className="text-xs" />
+                </FormItem>
+                )}
+            />
+            <FormField
+                control={control}
+                name="EInvoice.InvoiceInfo.GeneralKDV20Total"
+                render={({ field }) => (
+                <FormItem className="space-y-2">
+                    <FormLabel>KDV %20 Toplam</FormLabel>
+                    <FormControl>
+                    <Input 
+                        type="number"
+                        placeholder="0.00"
+                        {...field}
+                        onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                    />
+                    </FormControl>
+                    <FormMessage className="text-xs" />
+                </FormItem>
+                )}
+            />
+            <FormField
+                control={control}
+                name="EInvoice.InvoiceInfo.GeneralAllowanceTotal"
+                render={({ field }) => (
+                <FormItem className="space-y-2">
+                    <FormLabel>Genel İndirim Toplamı</FormLabel>
+                    <FormControl>
+                    <Input 
+                        type="number"
+                        placeholder="0.00"
+                        {...field}
+                        onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                    />
+                    </FormControl>
+                    <FormMessage className="text-xs" />
+                </FormItem>
+                )}
+            />
+            <FormField
+                control={control}
+                name="EInvoice.InvoiceInfo.PayableAmount"
+                render={({ field }) => (
+                <FormItem className="space-y-2">
+                    <FormLabel>Ödenecek Tutar</FormLabel>
+                    <FormControl>
+                    <Input 
+                        type="number"
+                        placeholder="0.00"
+                        {...field}
+                        onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                    />
+                    </FormControl>
+                    <FormMessage className="text-xs" />
+                </FormItem>
+                )}
+            />
+            <FormField
+                control={control}
+                name="EInvoice.InvoiceInfo.KdvTotal"
+                render={({ field }) => (
+                <FormItem className="space-y-2">
+                    <FormLabel>Toplam KDV</FormLabel>
+                    <FormControl>
+                    <Input 
+                        type="number"
+                        placeholder="0.00"
+                        {...field}
+                        onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                    />
+                    </FormControl>
+                    <FormMessage className="text-xs" />
+                </FormItem>
+                )}
+            />
+            </div>
         </div>
         <div className="flex items-center justify-normal mt-5">
           <h2 className="text-red-600 text-xl font-semibold">OKC Bilgileri</h2>

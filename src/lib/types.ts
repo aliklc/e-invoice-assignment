@@ -113,16 +113,42 @@ export interface InvoiceInfo {
   ReturnInvoiceInfo?: ReturnInvoiceItem[];
   SGKInfo?: SGKInfo;
   Expenses?: ExpenseItem[];
+  LineExtensionAmount?: number;
+  GeneralKDV1Total?: number;
+  GeneralKDV8Total?: number;
+  GeneralKDV18Total?: number;
+  GeneralKDV10Total?: number;
+  GeneralKDV20Total?: number;
+  GeneralAllowanceTotal?: number;
+  PayableAmount?: number;
+  KdvTotal?: number;
+}
+
+export interface PartyIdentification {
+  SchemeID: string;
+  Value: string;
+}
+
+export interface AgentPartyIdentification {
+  SchemeID: string;
+  Value: string;
 }
 
 export interface CompanyInfo {
   TaxNumber: string;
   Name: string;
   TaxOffice: string;
+  PartyIdentifications?: PartyIdentification[];
+  AgentPartyIdentifications?: AgentPartyIdentification[];
   Address: string;
+  District?: string;
   City: string;
+  Country?: string;
+  PostalCode?: string;
   Phone: string;
+  Fax?: string;
   Mail: string;
+  WebSite?: string;
 }
 
 export interface CustomerInfo {

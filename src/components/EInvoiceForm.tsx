@@ -136,17 +136,43 @@ export default function EInvoiceForm() {
           Percent: undefined,
           Amount: undefined
         }
-      ],           
+      ],
+        LineExtensionAmount: undefined,
+        GeneralKDV1Total: undefined,
+        GeneralKDV8Total: undefined,
+        GeneralKDV18Total: undefined,
+        GeneralKDV10Total: undefined,
+        GeneralKDV20Total: undefined,
+        GeneralAllowanceTotal: undefined,
+        PayableAmount: undefined,
+        KdvTotal: undefined,           
       },
-      CompanyInfo: {
-        TaxNumber: "",
-        Name: "",
-        TaxOffice: "",
-        Address: "",
-        City: "",
-        Phone: "",
-        Mail: "",
-      },
+        CompanyInfo: {
+          TaxNumber: "",
+          Name: "",
+          TaxOffice: "",
+          PartyIdentifications: [
+            {
+              SchemeID: "",
+              Value: ""
+            }
+          ],
+          AgentPartyIdentifications: [
+            {
+              SchemeID: "",
+              Value: ""
+            }
+          ],
+          Address: "",
+          District: "",
+          City: "",
+          Country: "",
+          PostalCode: "",
+          Phone: "",
+          Fax: "",
+          Mail: "",
+          WebSite: "",
+        },
       CustomerInfo: {
         TaxNumber: "",
         Name: "",

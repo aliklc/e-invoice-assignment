@@ -181,6 +181,26 @@ const InvoiceInfoSchema = z.object({
   InvoicePeriod: InvoicePeriodSchema.optional(),
   SGKInfo: SGKInfoSchema.optional(),
   Expenses: z.array(ExpenseItemSchema).optional(),
+
+  LineExtensionAmount: z.number().optional(),
+  GeneralKDV1Total: z.number().optional(),
+  GeneralKDV8Total: z.number().optional(),
+  GeneralKDV18Total: z.number().optional(),
+  GeneralKDV10Total: z.number().optional(),
+  GeneralKDV20Total: z.number().optional(),
+  GeneralAllowanceTotal: z.number().optional(),
+  PayableAmount: z.number().optional(),
+  KdvTotal: z.number().optional(),
+});
+
+const PartyIdentificationSchema = z.object({
+  SchemeID: z.string().min(1, "Şema ID boş olamaz"),
+  Value: z.string().min(1, "Değer boş olamaz")
+});
+
+const AgentPartyIdentificationSchema = z.object({
+  SchemeID: z.string().min(1, "Şema ID boş olamaz"),
+  Value: z.string().min(1, "Değer boş olamaz")
 });
 
 // CompanyInfo için Zod Şeması
@@ -198,23 +218,35 @@ const CompanyInfoSchema = z.object({
     .min(1, "Vergi dairesi boş bırakılamaz")
     .max(30, "Vergi dairesi adı çok uzun"),
   
+  PartyIdentifications: z.array(PartyIdentificationSchema).optional(),
+  AgentPartyIdentifications: z.array(AgentPartyIdentificationSchema).optional(),
+  
   Address: z.string()
     .min(1, "Adres boş bırakılamaz")
     .max(200, "Adres çok uzun"),
   
+  District: z.string().optional(),
+  
   City: z.string()
     .min(1, "Şehir boş bırakılamaz")
     .max(20, "Şehir adı çok uzun"),
+  
+  Country: z.string().optional(),
+  PostalCode: z.string().optional(),
   
   Phone: z.string()
     .min(10, "Telefon numarası en az 10 karakter olmalıdır")
     .max(15, "Telefon numarası çok uzun")
     .regex(/^[0-9+]+$/, "Geçerli bir telefon numarası girin"),
   
+  Fax: z.string().optional(),
+  
   Mail: z.string()
     .min(1, "E-posta boş bırakılamaz")
     .email("Geçerli bir e-posta adresi girin")
-    .max(100, "E-posta çok uzun")
+    .max(100, "E-posta çok uzun"),
+  
+  WebSite: z.string().url("Geçerli bir web sitesi adresi girin").optional().or(z.literal(""))
 });
 
 const CustomerInfoSchema = z.object({
