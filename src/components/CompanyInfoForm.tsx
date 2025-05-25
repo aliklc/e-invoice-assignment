@@ -24,7 +24,6 @@ export function CompanyInfoForm() {
     <section className="space-y-6">
       <h2 className="text-xl font-semibold">Şirket Bilgileri</h2>
       
-      {/* Temel Bilgiler */}
       <div className="grid grid-cols-3 gap-4">
         <FormField
           control={control}
@@ -67,7 +66,6 @@ export function CompanyInfoForm() {
         />
       </div>
 
-      {/* Adres Bilgileri */}
       <div className="grid grid-cols-4 gap-4">
         <FormField
           control={control}
@@ -139,7 +137,6 @@ export function CompanyInfoForm() {
         />
       </div>
 
-      {/* İletişim Bilgileri */}
       <div className="grid grid-cols-4 gap-4">
         <FormField
           control={control}
@@ -195,7 +192,6 @@ export function CompanyInfoForm() {
         />
       </div>
 
-      {/* Taraf Tanımlamaları */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-medium">Taraf Tanımlamaları</h3>
@@ -251,7 +247,6 @@ export function CompanyInfoForm() {
         ))}
       </div>
 
-      {/* Temsilci Taraf Tanımlamaları */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-medium">Temsilci Taraf Tanımlamaları</h3>
