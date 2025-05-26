@@ -14,6 +14,7 @@ import { InvoiceInfoForm } from "./InvoiceInfoForm";
 import { CompanyInfoForm } from "./CompanyInfoForm";
 import { CustomerInfoForm } from "./CustomerInfoForm";
 import { PaymentMeansInfoForm } from "./PaymentMeansInfoForm";
+import { ExportCustomerInfoForm } from "./ExportCustomerInfoForm";
 
 const steps = [
   { id: "invoice-info", name: "Fatura Bilgileri" },
@@ -21,6 +22,7 @@ const steps = [
   { id: "company-info", name: "Şirket Bilgileri" },
   { id: "customer-info", name: "Müşteri Bilgileri" },
   { id: "buyer-customer-info", name: "Alıcı Müşteri Bilgileri" },
+  { id: "export-customer-info", name: "İhracat Müşteri Bilgileri" },
 ];
 
 export default function EInvoiceForm() {
@@ -226,6 +228,21 @@ export default function EInvoiceForm() {
         Mail: "",
         WebSite: "",
       },
+      ExportCustomerInfo: {
+        TaxNumber: "",
+        LegalRegistrationName: "",
+        PersonName: "",
+        PersonSurName: "",
+        Address: "",
+        District: "",
+        City: "",
+        Country: "",
+        PostalCode: "",
+        Phone: "",
+        Fax: "",
+        Mail: "",
+        WebSite: ""
+      }
     },
   },
   });
@@ -263,6 +280,7 @@ export default function EInvoiceForm() {
               {currentStep === 2 && <CompanyInfoForm />}
               {currentStep === 3 && <CustomerInfoForm type="CustomerInfo" title="Müşteri Bilgileri" />}
               {currentStep === 4 && <CustomerInfoForm type="BuyerCustomerInfo" title="Alıcı Müşteri Bilgileri" />}
+              {currentStep === 5 && <ExportCustomerInfoForm />}
             </div>
 
             <div className="flex justify-between mt-8">

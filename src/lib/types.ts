@@ -185,12 +185,28 @@ export interface BuyerCustomerInfo {
   WebSite?: string;
 }
 
+export interface ExportCustomerInfo {
+  TaxNumber: string;
+  LegalRegistrationName: string;
+  PersonName: string;
+  PersonSurName: string;
+  Address?: string;
+  District?: string;
+  City?: string;
+  Country?: string;
+  PostalCode?: string;
+  Phone?: string;
+  Fax?: string;
+  Mail?: string;
+  WebSite?: string;
+}
 
 export interface EInvoice {
   InvoiceInfo: InvoiceInfo;
   CompanyInfo: CompanyInfo;
   CustomerInfo: CustomerInfo;
   BuyerCustomerInfo?: BuyerCustomerInfo;
+  ExportCustomerInfo?: ExportCustomerInfo;
 }
 
 

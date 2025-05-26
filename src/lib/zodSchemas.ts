@@ -367,11 +367,71 @@ const BuyerCustomerInfoSchema = z.object({
     .or(z.literal(""))
 });
 
+const ExportCustomerInfoSchema = z.object({
+  TaxNumber: z.string()
+    .min(1, "Vergi numarası boş olamaz")
+    .max(30, "Vergi numarası çok uzun"),
+  
+  LegalRegistrationName: z.string()
+    .min(1, "Yasal kayıt adı boş olamaz")
+    .max(100, "Yasal kayıt adı çok uzun"),
+  
+  PersonName: z.string()
+    .min(1, "Kişi adı boş olamaz")
+    .max(50, "Kişi adı çok uzun"),
+  
+  PersonSurName: z.string()
+    .min(1, "Kişi soyadı boş olamaz")
+    .max(50, "Kişi soyadı çok uzun"),
+  
+  Address: z.string()
+    .min(1, "Adres boş olamaz")
+    .max(200, "Adres çok uzun"),
+  
+  District: z.string()
+    .max(50, "İlçe adı çok uzun")
+    .optional(),
+  
+  City: z.string()
+    .min(1, "Şehir boş olamaz")
+    .max(50, "Şehir adı çok uzun"),
+  
+  Country: z.string()
+    .min(1, "Ülke boş olamaz")
+    .max(50, "Ülke adı çok uzun"),
+  
+  PostalCode: z.string()
+    .max(20, "Posta kodu çok uzun")
+    .optional(),
+  
+  Phone: z.string()
+    .min(5, "Telefon numarası çok kısa")
+    .max(20, "Telefon numarası çok uzun")
+    .regex(/^[0-9+]+$/, "Geçerli bir telefon numarası girin"),
+  
+  Fax: z.string()
+    .max(20, "Faks numarası çok uzun")
+    .regex(/^[0-9+]*$/, "Geçerli bir faks numarası girin")
+    .optional(),
+  
+  Mail: z.string()
+    .min(1, "E-posta boş olamaz")
+    .email("Geçerli bir e-posta adresi girin")
+    .max(100, "E-posta çok uzun"),
+  
+  WebSite: z.string()
+    .url("Geçerli bir URL girin")
+    .optional()
+    .or(z.literal(""))
+});
+
+
 const EInvoiceSchema = z.object({
   InvoiceInfo: InvoiceInfoSchema,
   CompanyInfo: CompanyInfoSchema,
   CustomerInfo: CustomerInfoSchema,
-  BuyerCustomerInfo: BuyerCustomerInfoSchema.optional()
+  BuyerCustomerInfo: BuyerCustomerInfoSchema.optional(),
+  ExportCustomerInfo: ExportCustomerInfoSchema.optional()
 });
 
 export const EInvoiceFormDataSchema: z.ZodType<EInvoiceFormData> = z.object({
