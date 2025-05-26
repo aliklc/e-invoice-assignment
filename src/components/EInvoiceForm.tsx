@@ -385,43 +385,102 @@ export default function EInvoiceForm() {
   };
 
   return (
-    <Card className="bg-white max-w-6xl mx-auto">
-      <CardContent>
+    <Card className="bg-gradient-to-tr from-blue-50 to-white max-w-5xl mx-auto shadow-lg border border-blue-100 rounded-3xl mt-12">
+      <CardContent className="p-8">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 py-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 py-2">
             <Stepper 
               steps={steps} 
               currentStep={currentStep} 
               setCurrentStep={setCurrentStep} 
             />
 
-            <div className="mt-8">
-              {currentStep === 0 && <InvoiceInfoForm/>}
-              {currentStep === 1 && <PaymentMeansInfoForm/>}
-              {currentStep === 2 && <CompanyInfoForm />}
-              {currentStep === 3 && <CustomerInfoForm type="CustomerInfo" title="Müşteri Bilgileri" />}
-              {currentStep === 4 && <CustomerInfoForm type="BuyerCustomerInfo" title="Alıcı Müşteri Bilgileri" />}
-              {currentStep === 5 && <ExportCustomerInfoForm />}
-              {currentStep === 6 && <TaxFreeInfoForm />}
-              {currentStep === 7 && <InvoiceLinesForm />}
-              {currentStep === 8 && <MedicineAndMedicalDeviceForm invoiceLineIndex={0} />}
+            <div className="mt-6">
+              {currentStep === 0 && (
+                <section className="bg-white p-6 rounded-xl shadow border border-blue-100">
+                  <h2 className="font-bold text-xl text-blue-700 mb-4">Fatura Bilgileri</h2>
+                  <InvoiceInfoForm />
+                </section>
+              )}
+              {currentStep === 1 && (
+                <section className="bg-white p-6 rounded-xl shadow border border-blue-100">
+                  <h2 className="font-bold text-xl text-blue-700 mb-4">Ödeme Bilgileri</h2>
+                  <PaymentMeansInfoForm />
+                </section>
+              )}
+              {currentStep === 2 && (
+                <section className="bg-white p-6 rounded-xl shadow border border-blue-100">
+                  <h2 className="font-bold text-xl text-blue-700 mb-4">Şirket Bilgileri</h2>
+                  <CompanyInfoForm />
+                </section>
+              )}
+              {currentStep === 3 && (
+                <section className="bg-white p-6 rounded-xl shadow border border-blue-100">
+                  <h2 className="font-bold text-xl text-blue-700 mb-4">Müşteri Bilgileri</h2>
+                  <CustomerInfoForm type="CustomerInfo" title="Müşteri Bilgileri" />
+                </section>
+              )}
+              {currentStep === 4 && (
+                <section className="bg-white p-6 rounded-xl shadow border border-blue-100">
+                  <h2 className="font-bold text-xl text-blue-700 mb-4">Alıcı Müşteri Bilgileri</h2>
+                  <CustomerInfoForm type="BuyerCustomerInfo" title="Alıcı Müşteri Bilgileri" />
+                </section>
+              )}
+              {currentStep === 5 && (
+                <section className="bg-white p-6 rounded-xl shadow border border-blue-100">
+                  <h2 className="font-bold text-xl text-blue-700 mb-4">İhracat Müşteri Bilgileri</h2>
+                  <ExportCustomerInfoForm />
+                </section>
+              )}
+              {currentStep === 6 && (
+                <section className="bg-white p-6 rounded-xl shadow border border-blue-100">
+                  <h2 className="font-bold text-xl text-blue-700 mb-4">Vergisiz Satış Bilgileri</h2>
+                  <TaxFreeInfoForm />
+                </section>
+              )}
+              {currentStep === 7 && (
+                <section className="bg-white p-6 rounded-xl shadow border border-blue-100">
+                  <h2 className="font-bold text-xl text-blue-700 mb-4">Fatura Satırları</h2>
+                  <InvoiceLinesForm />
+                </section>
+              )}
+              {currentStep === 8 && (
+                <section className="bg-white p-6 rounded-xl shadow border border-blue-100">
+                  <h2 className="font-bold text-xl text-blue-700 mb-4">İlaç & Tıbbi Cihaz Bilgileri</h2>
+                  <MedicineAndMedicalDeviceForm invoiceLineIndex={0} />
+                </section>
+              )}
             </div>
 
-            <div className="flex justify-between mt-8">
+            <div className="flex justify-between items-center mt-10 gap-4">
               {currentStep > 0 ? (
-                <Button type="button" variant="outline" onClick={prevStep}>
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={prevStep}
+                  className="rounded-lg px-8 py-2 border border-blue-400 text-blue-600 hover:bg-blue-50 transition-all"
+                >
                   Önceki
                 </Button>
               ) : (
-                <div></div>
+                <div />
               )}
 
               {currentStep < steps.length - 1 ? (
-                <Button type="button" onClick={nextStep}>
+                <Button
+                  type="button"
+                  onClick={nextStep}
+                  className="rounded-lg px-8 py-2 bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700 transition-all"
+                >
                   Sonraki
                 </Button>
               ) : (
-                <Button type="submit">Fatura Oluştur</Button>
+                <Button
+                  type="submit"
+                  className="rounded-lg px-8 py-2 bg-green-600 text-white font-semibold shadow-md hover:bg-green-700 transition-all"
+                >
+                  Fatura Oluştur
+                </Button>
               )}
             </div>
           </form>

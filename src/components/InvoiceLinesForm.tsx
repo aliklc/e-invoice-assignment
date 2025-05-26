@@ -12,7 +12,7 @@ import { useEffect } from "react";
 
 export function InvoiceLinesForm() {
   const { control, watch, setValue } = useFormContext<EInvoiceFormData>();
-  
+
   const { fields: invoiceLineFields, append: appendInvoiceLine, remove: removeInvoiceLine } = useFieldArray({
     control,
     name: "EInvoice.InvoiceLines"
@@ -46,6 +46,24 @@ export function InvoiceLinesForm() {
           const kdvTotal = (subtotal * kdvPercent) / 100;
 
           setValue(`EInvoice.InvoiceLines.${index}.KDVTotal`, Number(kdvTotal.toFixed(2)));
+        }
+      });
+    }
+  }, [watchedLines, setValue]);
+
+    useEffect(() => {
+    if (watchedLines) {
+      watchedLines.forEach((line, index) => {
+        if (line) {
+          const quantity = line.Quantity || 0;
+          const price = line.Price || 0;
+          const allowanceTotal = line.AllowanceTotal || 0;
+          const taxPercent = line?.Taxes?.[0]?.Percent || 0;
+
+          const subtotal = (price * quantity) - allowanceTotal;
+          const taxTotal = (subtotal * taxPercent) / 100;
+
+          setValue(`EInvoice.InvoiceLines.${index}.Taxes.0.Total`, Number(taxTotal.toFixed(2)));
         }
       });
     }
@@ -114,11 +132,14 @@ export function InvoiceLinesForm() {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const calculateLineTotal = (line: any) => {
-    if (!line) return 0;
-    const subtotal = ((line.Price || 0) * (line.Quantity || 0)) - (line.AllowanceTotal || 0);
-    return subtotal + (line.KDVTotal || 0);
-  };
+const calculateLineTotal = (line: any) => {
+  if (!line) return 0;
+  const subtotal = ((line.Price || 0) * (line.Quantity || 0)) - (line.AllowanceTotal || 0);
+  const kdv = line.KDVTotal || 0;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const otherTaxes = line.Taxes?.reduce((sum: number, t: any) => sum + (t.Total || 0), 0) || 0;
+  return subtotal + kdv + otherTaxes;
+};
 
   const calculateGrandTotal = () => {
     if (!watchedLines) return 0;
@@ -133,16 +154,13 @@ export function InvoiceLinesForm() {
   };
 
   return (
-    <section className="space-y-6">
+    <section className="p-8 bg-white rounded-2xl shadow mb-8 space-y-8">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-semibold flex items-center gap-2">
-          <Package className="w-5 h-5" />
-          Fatura Kalemleri
-        </h2>
         <Button
           type="button"
           variant="outline"
           size="sm"
+          className="bg-green-50 text-green-700 border-green-200 font-medium hover:bg-green-100"
           onClick={addInvoiceLine}
         >
           <Plus className="w-4 h-4 mr-2" />
@@ -177,7 +195,7 @@ export function InvoiceLinesForm() {
                 <FormItem className="space-y-2">
                   <FormLabel>Ürün Adı *</FormLabel>
                   <FormControl>
-                    <Input placeholder="Ürün adını giriniz" {...field} />
+                    <Input placeholder="Ürün adını giriniz" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                   </FormControl>
                   <FormMessage className="text-xs" />
                 </FormItem>
@@ -190,7 +208,7 @@ export function InvoiceLinesForm() {
                 <FormItem className="space-y-2">
                   <FormLabel>Satıcı Kodu</FormLabel>
                   <FormControl>
-                    <Input placeholder="Satıcı kodu" {...field} />
+                    <Input placeholder="Satıcı kodu" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                   </FormControl>
                   <FormMessage className="text-xs" />
                 </FormItem>
@@ -206,10 +224,10 @@ export function InvoiceLinesForm() {
                 <FormItem className="space-y-2">
                   <FormLabel>Açıklama</FormLabel>
                   <FormControl>
-                    <Textarea 
+                    <Textarea
                       placeholder="Ürün açıklaması"
-                      className="min-h-[80px]"
-                      {...field} 
+                      className="min-h-[80px] rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
+                      {...field}
                     />
                   </FormControl>
                   <FormMessage className="text-xs" />
@@ -223,7 +241,7 @@ export function InvoiceLinesForm() {
                 <FormItem className="space-y-2">
                   <FormLabel>Alıcı Kodu</FormLabel>
                   <FormControl>
-                    <Input placeholder="Alıcı kodu" {...field} />
+                    <Input placeholder="Alıcı kodu" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                   </FormControl>
                   <FormMessage className="text-xs" />
                 </FormItem>
@@ -239,7 +257,7 @@ export function InvoiceLinesForm() {
                 <FormItem className="space-y-2">
                   <FormLabel>Üretici Kodu</FormLabel>
                   <FormControl>
-                    <Input placeholder="Üretici kodu" {...field} />
+                    <Input placeholder="Üretici kodu" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                   </FormControl>
                   <FormMessage className="text-xs" />
                 </FormItem>
@@ -252,7 +270,7 @@ export function InvoiceLinesForm() {
                 <FormItem className="space-y-2">
                   <FormLabel>Marka</FormLabel>
                   <FormControl>
-                    <Input placeholder="Marka adı" {...field} />
+                    <Input placeholder="Marka adı" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                   </FormControl>
                   <FormMessage className="text-xs" />
                 </FormItem>
@@ -265,7 +283,7 @@ export function InvoiceLinesForm() {
                 <FormItem className="space-y-2">
                   <FormLabel>Model</FormLabel>
                   <FormControl>
-                    <Input placeholder="Model adı" {...field} />
+                    <Input placeholder="Model adı" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                   </FormControl>
                   <FormMessage className="text-xs" />
                 </FormItem>
@@ -280,7 +298,7 @@ export function InvoiceLinesForm() {
                 <FormItem className="space-y-2">
                   <FormLabel>Seri Numarası</FormLabel>
                   <FormControl>
-                    <Input placeholder="Seri numarası" {...field} />
+                    <Input placeholder="Seri numarası" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                   </FormControl>
                   <FormMessage className="text-xs" />
                 </FormItem>
@@ -293,7 +311,7 @@ export function InvoiceLinesForm() {
                 <FormItem className="space-y-2">
                   <FormLabel>Not</FormLabel>
                   <FormControl>
-                    <Input placeholder="Not" {...field} />
+                    <Input placeholder="Not" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                   </FormControl>
                   <FormMessage className="text-xs" />
                 </FormItem>
@@ -308,7 +326,7 @@ export function InvoiceLinesForm() {
                 <FormItem className="space-y-2">
                   <FormLabel>Özel Matrah Nedeni</FormLabel>
                   <FormControl>
-                    <Input placeholder="Özel matrah nedeni" {...field} />
+                    <Input placeholder="Özel matrah nedeni" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                   </FormControl>
                   <FormMessage className="text-xs" />
                 </FormItem>
@@ -326,8 +344,9 @@ export function InvoiceLinesForm() {
                       min="0"
                       step="0.01"
                       placeholder="0.00"
+                      className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                       {...field}
-                      onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
+                      onChange={e => field.onChange(parseFloat(e.target.value) || 0)}
                     />
                   </FormControl>
                   <FormMessage className="text-xs" />
@@ -346,8 +365,9 @@ export function InvoiceLinesForm() {
                       min="0"
                       step="0.01"
                       placeholder="0.00"
+                      className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                       {...field}
-                      onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
+                      onChange={e => field.onChange(parseFloat(e.target.value) || 0)}
                     />
                   </FormControl>
                   <FormMessage className="text-xs" />
@@ -364,12 +384,13 @@ export function InvoiceLinesForm() {
                 <FormItem className="space-y-2">
                   <FormLabel>Miktar *</FormLabel>
                   <FormControl>
-                    <Input 
+                    <Input
                       type="number"
                       min="0"
                       step="0.01"
+                      className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                       {...field}
-                      onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
+                      onChange={e => field.onChange(parseFloat(e.target.value) || 0)}
                     />
                   </FormControl>
                   <FormMessage className="text-xs" />
@@ -405,12 +426,13 @@ export function InvoiceLinesForm() {
                 <FormItem className="space-y-2">
                   <FormLabel>Birim Fiyat *</FormLabel>
                   <FormControl>
-                    <Input 
+                    <Input
                       type="number"
                       min="0"
                       step="0.01"
+                      className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                       {...field}
-                      onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
+                      onChange={e => field.onChange(parseFloat(e.target.value) || 0)}
                     />
                   </FormControl>
                   <FormMessage className="text-xs" />
@@ -424,12 +446,13 @@ export function InvoiceLinesForm() {
                 <FormItem className="space-y-2">
                   <FormLabel>İndirim Tutarı</FormLabel>
                   <FormControl>
-                    <Input 
+                    <Input
                       type="number"
                       min="0"
                       step="0.01"
+                      className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                       {...field}
-                      onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
+                      onChange={e => field.onChange(parseFloat(e.target.value) || 0)}
                     />
                   </FormControl>
                   <FormMessage className="text-xs" />
@@ -445,7 +468,7 @@ export function InvoiceLinesForm() {
               render={({ field }) => (
                 <FormItem className="space-y-2">
                   <FormLabel>KDV Oranı</FormLabel>
-                  <Select onValueChange={(value) => field.onChange(parseFloat(value))} value={field.value?.toString()}>
+                  <Select onValueChange={value => field.onChange(parseFloat(value))} value={field.value?.toString()}>
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="KDV oranı seçin" />
@@ -470,7 +493,7 @@ export function InvoiceLinesForm() {
                 <FormItem className="space-y-2">
                   <FormLabel>Vergi Kodu</FormLabel>
                   <FormControl>
-                    <Input placeholder="Vergi kodu" {...field} />
+                    <Input placeholder="Vergi kodu" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                   </FormControl>
                   <FormMessage className="text-xs" />
                 </FormItem>
@@ -483,12 +506,13 @@ export function InvoiceLinesForm() {
                 <FormItem className="space-y-2">
                   <FormLabel>Vergi Oranı (%)</FormLabel>
                   <FormControl>
-                    <Input 
+                    <Input
                       type="number"
                       min="0"
                       step="0.01"
+                      className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                       {...field}
-                      onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
+                      onChange={e => field.onChange(parseFloat(e.target.value) || 0)}
                     />
                   </FormControl>
                   <FormMessage className="text-xs" />
@@ -497,8 +521,7 @@ export function InvoiceLinesForm() {
             />
           </div>
 
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-            <div className="font-medium text-yellow-800 mb-2">Teslimat Bilgileri</div>
+            <div className="font-medium mb-2">Teslimat Bilgileri</div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField
                 control={control}
@@ -507,7 +530,7 @@ export function InvoiceLinesForm() {
                   <FormItem className="space-y-2">
                     <FormLabel>GTIP No</FormLabel>
                     <FormControl>
-                      <Input placeholder="GTIP No" {...field} />
+                      <Input placeholder="GTIP No" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -520,7 +543,7 @@ export function InvoiceLinesForm() {
                   <FormItem className="space-y-2">
                     <FormLabel>Teslim Şart Kodu</FormLabel>
                     <FormControl>
-                      <Input placeholder="Teslim şart kodu" {...field} />
+                      <Input placeholder="Teslim şart kodu" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -533,7 +556,7 @@ export function InvoiceLinesForm() {
                   <FormItem className="space-y-2">
                     <FormLabel>Taşıma Şekli Kodu</FormLabel>
                     <FormControl>
-                      <Input placeholder="Taşıma şekli kodu" {...field} />
+                      <Input placeholder="Taşıma şekli kodu" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -546,7 +569,7 @@ export function InvoiceLinesForm() {
                   <FormItem className="space-y-2">
                     <FormLabel>Paket Marka Adı</FormLabel>
                     <FormControl>
-                      <Input placeholder="Paket marka adı" {...field} />
+                      <Input placeholder="Paket marka adı" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -561,7 +584,7 @@ export function InvoiceLinesForm() {
                   <FormItem className="space-y-2">
                     <FormLabel>Ürün Takip No</FormLabel>
                     <FormControl>
-                      <Input placeholder="Ürün takip no" {...field} />
+                      <Input placeholder="Ürün takip no" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -574,7 +597,7 @@ export function InvoiceLinesForm() {
                   <FormItem className="space-y-2">
                     <FormLabel>Paket ID</FormLabel>
                     <FormControl>
-                      <Input placeholder="Paket ID" {...field} />
+                      <Input placeholder="Paket ID" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -591,8 +614,9 @@ export function InvoiceLinesForm() {
                         type="number"
                         min="1"
                         step="1"
+                        className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                         {...field}
-                        onChange={(e) => field.onChange(parseInt(e.target.value, 10) || 1)}
+                        onChange={e => field.onChange(parseInt(e.target.value, 10) || 1)}
                       />
                     </FormControl>
                     <FormMessage className="text-xs" />
@@ -606,14 +630,14 @@ export function InvoiceLinesForm() {
                   <FormItem className="space-y-2">
                     <FormLabel>Paket Tipi Kodu</FormLabel>
                     <FormControl>
-                      <Input placeholder="Paket tipi kodu" {...field} />
+                      <Input placeholder="Paket tipi kodu" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
                 )}
               />
             </div>
-            <div className="font-medium text-yellow-800 mt-4">Teslimat Adresi</div>
+            <div className="font-medium mt-4">Teslimat Adresi</div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <FormField
                 control={control}
@@ -622,7 +646,7 @@ export function InvoiceLinesForm() {
                   <FormItem className="space-y-2">
                     <FormLabel>Adres</FormLabel>
                     <FormControl>
-                      <Input placeholder="Adres" {...field} />
+                      <Input placeholder="Adres" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -635,7 +659,7 @@ export function InvoiceLinesForm() {
                   <FormItem className="space-y-2">
                     <FormLabel>İlçe</FormLabel>
                     <FormControl>
-                      <Input placeholder="İlçe" {...field} />
+                      <Input placeholder="İlçe" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -648,7 +672,7 @@ export function InvoiceLinesForm() {
                   <FormItem className="space-y-2">
                     <FormLabel>Şehir</FormLabel>
                     <FormControl>
-                      <Input placeholder="Şehir" {...field} />
+                      <Input placeholder="Şehir" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -663,7 +687,7 @@ export function InvoiceLinesForm() {
                   <FormItem className="space-y-2">
                     <FormLabel>Ülke</FormLabel>
                     <FormControl>
-                      <Input placeholder="Ülke" {...field} />
+                      <Input placeholder="Ülke" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -676,7 +700,7 @@ export function InvoiceLinesForm() {
                   <FormItem className="space-y-2">
                     <FormLabel>Posta Kodu</FormLabel>
                     <FormControl>
-                      <Input placeholder="Posta kodu" {...field} />
+                      <Input placeholder="Posta kodu" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -689,7 +713,7 @@ export function InvoiceLinesForm() {
                   <FormItem className="space-y-2">
                     <FormLabel>Telefon</FormLabel>
                     <FormControl>
-                      <Input placeholder="Telefon" {...field} />
+                      <Input placeholder="Telefon" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -704,7 +728,7 @@ export function InvoiceLinesForm() {
                   <FormItem className="space-y-2">
                     <FormLabel>Fax</FormLabel>
                     <FormControl>
-                      <Input placeholder="Fax" {...field} />
+                      <Input placeholder="Fax" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -717,7 +741,7 @@ export function InvoiceLinesForm() {
                   <FormItem className="space-y-2">
                     <FormLabel>E-posta</FormLabel>
                     <FormControl>
-                      <Input placeholder="E-posta" {...field} />
+                      <Input placeholder="E-posta" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -730,17 +754,15 @@ export function InvoiceLinesForm() {
                   <FormItem className="space-y-2">
                     <FormLabel>Web Sitesi</FormLabel>
                     <FormControl>
-                      <Input placeholder="Web sitesi" {...field} />
+                      <Input placeholder="Web sitesi" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
                 )}
               />
             </div>
-          </div>
 
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-            <div className="font-medium text-purple-800 mb-2">İhracat ve Ek Ürün Kimlik Bilgileri</div>
+            <div className="font-medium mb-2">İhracat ve Ek Ürün Kimlik Bilgileri</div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField
                 control={control}
@@ -749,7 +771,7 @@ export function InvoiceLinesForm() {
                   <FormItem>
                     <FormLabel>DIIB Satır Kodu</FormLabel>
                     <FormControl>
-                      <Input placeholder="DIIB Satır Kodu" {...field} />
+                      <Input placeholder="DIIB Satır Kodu" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -762,7 +784,7 @@ export function InvoiceLinesForm() {
                   <FormItem>
                     <FormLabel>GTIP No (İhracat)</FormLabel>
                     <FormControl>
-                      <Input placeholder="GTIP No" {...field} />
+                      <Input placeholder="GTIP No" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -777,7 +799,7 @@ export function InvoiceLinesForm() {
                   <FormItem>
                     <FormLabel>Etiket Numarası</FormLabel>
                     <FormControl>
-                      <Input placeholder="Etiket Numarası" {...field} />
+                      <Input placeholder="Etiket Numarası" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -790,7 +812,7 @@ export function InvoiceLinesForm() {
                   <FormItem>
                     <FormLabel>Sahip Adı</FormLabel>
                     <FormControl>
-                      <Input placeholder="Sahip Adı" {...field} />
+                      <Input placeholder="Sahip Adı" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -803,22 +825,21 @@ export function InvoiceLinesForm() {
                   <FormItem>
                     <FormLabel>Sahip VKN/TCKN</FormLabel>
                     <FormControl>
-                      <Input placeholder="VKN/TCKN" {...field} />
+                      <Input placeholder="VKN/TCKN" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
-          </div>
 
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
               <div>
                 <span className="text-gray-600">Ara Toplam:</span>
                 <div className="font-medium">
-                  ₺{watchedLines?.[index] ? 
-                    (((watchedLines[index].Price || 0) * (watchedLines[index].Quantity || 0)) - (watchedLines[index].AllowanceTotal || 0)).toFixed(2) 
+                  ₺{watchedLines?.[index] ?
+                    (((watchedLines[index].Price || 0) * (watchedLines[index].Quantity || 0)) - (watchedLines[index].AllowanceTotal || 0)).toFixed(2)
                     : '0.00'}
                 </div>
               </div>

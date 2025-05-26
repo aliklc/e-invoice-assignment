@@ -42,14 +42,13 @@ export function PaymentMeansInfoForm() {
   });
 
   return (
-    <section className="space-y-6">
+    <section className="border border-gray-200 rounded-lg p-6 bg-gray-50 space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold text-red-600">Ödeme Bilgileri</h2>
         <FormField
           control={control}
           name="EInvoice.InvoiceInfo.UUID"
           render={({ field }) => (
-            <div className="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded whitespace-nowrap">
+            <div className="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded font-mono">
               UUID: {field.value}
             </div>
           )}
@@ -57,8 +56,8 @@ export function PaymentMeansInfoForm() {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-xl font-semibold text-red-600">Vergi Muafiyet Bilgileri</h3>
-        <div className="grid grid-cols-3 gap-4">
+        <h3 className="text-xl font-semibold">Vergi Muafiyet Bilgileri</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <FormField
             control={control}
             name="EInvoice.InvoiceInfo.TaxExemptionReasonInfo.KDVExemptionReasonCode"
@@ -66,7 +65,7 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>KDV Muafiyet Kodu</FormLabel>
                 <FormControl>
-                  <Input placeholder="301" {...field} />
+                  <Input placeholder="301" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                 </FormControl>
                 <FormMessage className="text-xs" />
               </FormItem>
@@ -79,7 +78,7 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>ÖTV Muafiyet Kodu</FormLabel>
                 <FormControl>
-                  <Input placeholder="501" {...field} />
+                  <Input placeholder="501" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                 </FormControl>
                 <FormMessage className="text-xs" />
               </FormItem>
@@ -92,7 +91,7 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>Konaklama Vergisi Muafiyet Kodu</FormLabel>
                 <FormControl>
-                  <Input placeholder="701" {...field} />
+                  <Input placeholder="701" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                 </FormControl>
                 <FormMessage className="text-xs" />
               </FormItem>
@@ -102,8 +101,8 @@ export function PaymentMeansInfoForm() {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-xl font-semibold text-red-600">Ödeme Şartları</h3>
-        <div className="grid grid-cols-3 gap-4">
+        <h3 className="text-xl font-semibold">Ödeme Şartları</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <FormField
             control={control}
             name="EInvoice.InvoiceInfo.PaymentTermsInfo.Percent"
@@ -111,10 +110,11 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>Ödeme Yüzdesi</FormLabel>
                 <FormControl>
-                  <Input 
-                    type="number" 
-                    placeholder="%" 
-                    {...field} 
+                  <Input
+                    type="number"
+                    placeholder="%"
+                    className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
+                    {...field}
                     onChange={(e) => field.onChange(e.target.valueAsNumber)}
                   />
                 </FormControl>
@@ -129,10 +129,11 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>Ödeme Tutarı</FormLabel>
                 <FormControl>
-                  <Input 
-                    type="number" 
-                    placeholder="Tutar" 
-                    {...field} 
+                  <Input
+                    type="number"
+                    placeholder="Tutar"
+                    className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
+                    {...field}
                     onChange={(e) => field.onChange(e.target.valueAsNumber)}
                   />
                 </FormControl>
@@ -147,7 +148,7 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>Ödeme Notu</FormLabel>
                 <FormControl>
-                  <Input placeholder="Açıklama" {...field} />
+                  <Input placeholder="Açıklama" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                 </FormControl>
                 <FormMessage className="text-xs" />
               </FormItem>
@@ -157,8 +158,8 @@ export function PaymentMeansInfoForm() {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-xl font-semibold text-red-600">Ödeme Araçları</h3>
-        <div className="grid grid-cols-2 gap-4">
+        <h3 className="text-xl font-semibold">Ödeme Araçları</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FormField
             control={control}
             name="EInvoice.InvoiceInfo.PaymentMeansInfo.Code"
@@ -167,7 +168,7 @@ export function PaymentMeansInfoForm() {
                 <FormLabel>Ödeme Yöntemi</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
-                    <SelectTrigger>
+                    <SelectTrigger className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base">
                       <SelectValue placeholder="Ödeme yöntemi seçin" />
                     </SelectTrigger>
                   </FormControl>
@@ -191,7 +192,7 @@ export function PaymentMeansInfoForm() {
                 <FormLabel>Ödeme Kanalı</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
-                    <SelectTrigger>
+                    <SelectTrigger className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base">
                       <SelectValue placeholder="Ödeme kanalı seçin" />
                     </SelectTrigger>
                   </FormControl>
@@ -208,8 +209,7 @@ export function PaymentMeansInfoForm() {
             )}
           />
         </div>
-
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <FormField
             control={control}
             name="EInvoice.InvoiceInfo.PaymentMeansInfo.DueDate"
@@ -219,8 +219,9 @@ export function PaymentMeansInfoForm() {
                 <FormItem className="space-y-2">
                   <FormLabel>Son Ödeme Tarihi</FormLabel>
                   <FormControl>
-                    <Input 
+                    <Input
                       type="datetime-local"
+                      className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                       value={value}
                       onChange={(e) => {
                         field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
@@ -239,7 +240,7 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>Hesap No/IBAN</FormLabel>
                 <FormControl>
-                  <Input placeholder="TRXX XXXX XXXX XXXX XXXX XXXX XX" {...field} />
+                  <Input placeholder="TRXX XXXX XXXX XXXX XXXX XXXX XX" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                 </FormControl>
                 <FormMessage className="text-xs" />
               </FormItem>
@@ -252,7 +253,7 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>Ödeme Açıklaması</FormLabel>
                 <FormControl>
-                  <Input placeholder="Ödeme ile ilgili açıklama" {...field} />
+                  <Input placeholder="Ödeme ile ilgili açıklama" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                 </FormControl>
                 <FormMessage className="text-xs" />
               </FormItem>
@@ -262,8 +263,8 @@ export function PaymentMeansInfoForm() {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-xl font-semibold text-red-600">Fatura Özet Bilgileri</h3>
-        <div className="grid grid-cols-3 gap-4">
+        <h3 className="text-xl font-semibold">Fatura Özet Bilgileri</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <FormField
             control={control}
             name="EInvoice.InvoiceInfo.LineExtensionAmount"
@@ -271,9 +272,10 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>Satır Genişletme Tutarı</FormLabel>
                 <FormControl>
-                  <Input 
+                  <Input
                     type="number"
                     placeholder="0.00"
+                    className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                     {...field}
                     onChange={(e) => field.onChange(e.target.valueAsNumber)}
                   />
@@ -289,9 +291,10 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>Genel İndirim Toplamı</FormLabel>
                 <FormControl>
-                  <Input 
+                  <Input
                     type="number"
                     placeholder="0.00"
+                    className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                     {...field}
                     onChange={(e) => field.onChange(e.target.valueAsNumber)}
                   />
@@ -307,9 +310,10 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>Ödenecek Tutar</FormLabel>
                 <FormControl>
-                  <Input 
+                  <Input
                     type="number"
                     placeholder="0.00"
+                    className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                     {...field}
                     onChange={(e) => field.onChange(e.target.valueAsNumber)}
                   />
@@ -319,8 +323,7 @@ export function PaymentMeansInfoForm() {
             )}
           />
         </div>
-
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
           <FormField
             control={control}
             name="EInvoice.InvoiceInfo.GeneralKDV1Total"
@@ -328,9 +331,10 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>KDV %1 Toplam</FormLabel>
                 <FormControl>
-                  <Input 
+                  <Input
                     type="number"
                     placeholder="0.00"
+                    className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                     {...field}
                     onChange={(e) => field.onChange(e.target.valueAsNumber)}
                   />
@@ -346,9 +350,10 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>KDV %8 Toplam</FormLabel>
                 <FormControl>
-                  <Input 
+                  <Input
                     type="number"
                     placeholder="0.00"
+                    className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                     {...field}
                     onChange={(e) => field.onChange(e.target.valueAsNumber)}
                   />
@@ -364,9 +369,10 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>KDV %10 Toplam</FormLabel>
                 <FormControl>
-                  <Input 
+                  <Input
                     type="number"
                     placeholder="0.00"
+                    className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                     {...field}
                     onChange={(e) => field.onChange(e.target.valueAsNumber)}
                   />
@@ -382,9 +388,10 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>KDV %18 Toplam</FormLabel>
                 <FormControl>
-                  <Input 
+                  <Input
                     type="number"
                     placeholder="0.00"
+                    className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                     {...field}
                     onChange={(e) => field.onChange(e.target.valueAsNumber)}
                   />
@@ -400,9 +407,10 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>KDV %20 Toplam</FormLabel>
                 <FormControl>
-                  <Input 
+                  <Input
                     type="number"
                     placeholder="0.00"
+                    className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                     {...field}
                     onChange={(e) => field.onChange(e.target.valueAsNumber)}
                   />
@@ -418,9 +426,10 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>Toplam KDV</FormLabel>
                 <FormControl>
-                  <Input 
+                  <Input
                     type="number"
                     placeholder="0.00"
+                    className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                     {...field}
                     onChange={(e) => field.onChange(e.target.valueAsNumber)}
                   />
@@ -433,8 +442,8 @@ export function PaymentMeansInfoForm() {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-xl font-semibold text-red-600">OKC Bilgileri</h3>
-        <div className="grid grid-cols-3 gap-4">
+        <h3 className="text-xl font-semibold">OKC Bilgileri</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <FormField
             control={control}
             name="EInvoice.InvoiceInfo.OKCInfo.ID"
@@ -442,7 +451,7 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>OKC ID</FormLabel>
                 <FormControl>
-                  <Input placeholder="OKC numarası" {...field} />
+                  <Input placeholder="OKC numarası" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                 </FormControl>
                 <FormMessage className="text-xs" />
               </FormItem>
@@ -457,8 +466,9 @@ export function PaymentMeansInfoForm() {
                 <FormItem className="space-y-2">
                   <FormLabel>Düzenlenme Tarihi</FormLabel>
                   <FormControl>
-                    <Input 
+                    <Input
                       type="datetime-local"
+                      className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                       value={value}
                       onChange={(e) => {
                         field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
@@ -477,15 +487,14 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>Saat</FormLabel>
                 <FormControl>
-                  <Input type="time" {...field} />
+                  <Input type="time" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                 </FormControl>
                 <FormMessage className="text-xs" />
               </FormItem>
             )}
           />
         </div>
-
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <FormField
             control={control}
             name="EInvoice.InvoiceInfo.OKCInfo.ZNo"
@@ -493,7 +502,7 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>Z No</FormLabel>
                 <FormControl>
-                  <Input placeholder="Z numarası" {...field} />
+                  <Input placeholder="Z numarası" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                 </FormControl>
                 <FormMessage className="text-xs" />
               </FormItem>
@@ -506,7 +515,7 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>Endpoint ID</FormLabel>
                 <FormControl>
-                  <Input placeholder="Endpoint ID" {...field} />
+                  <Input placeholder="Endpoint ID" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                 </FormControl>
                 <FormMessage className="text-xs" />
               </FormItem>
@@ -519,7 +528,7 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>Açıklama</FormLabel>
                 <FormControl>
-                  <Input placeholder="OKC açıklaması" {...field} />
+                  <Input placeholder="OKC açıklaması" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                 </FormControl>
                 <FormMessage className="text-xs" />
               </FormItem>
@@ -529,8 +538,8 @@ export function PaymentMeansInfoForm() {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-xl font-semibold text-red-600">ESU Rapor Bilgileri</h3>
-        <div className="grid grid-cols-2 gap-4">
+        <h3 className="text-xl font-semibold">ESU Rapor Bilgileri</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FormField
             control={control}
             name="EInvoice.InvoiceInfo.ESUReportInfo.ID"
@@ -538,7 +547,7 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>Rapor ID</FormLabel>
                 <FormControl>
-                  <Input placeholder="Rapor numarası" {...field} />
+                  <Input placeholder="Rapor numarası" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                 </FormControl>
                 <FormMessage className="text-xs" />
               </FormItem>
@@ -553,8 +562,9 @@ export function PaymentMeansInfoForm() {
                 <FormItem className="space-y-2">
                   <FormLabel>Rapor Tarihi</FormLabel>
                   <FormControl>
-                    <Input 
+                    <Input
                       type="datetime-local"
+                      className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                       value={value}
                       onChange={(e) => {
                         field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
@@ -571,20 +581,20 @@ export function PaymentMeansInfoForm() {
 
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold text-red-600">İade Fatura Bilgileri</h3>
+          <h3 className="text-xl font-semibold">İade Fatura Bilgileri</h3>
           <Button
             type="button"
             variant="outline"
             size="sm"
+            className="bg-green-50 text-green-700 border-green-200 font-medium hover:bg-green-100"
             onClick={() => appendReturnInvoice({ InvoiceNumber: "", IssueDate: "" })}
           >
             <Plus className="w-4 h-4 mr-2" />
             Ekle
           </Button>
         </div>
-        
         {returnInvoiceFields.map((field, index) => (
-          <div key={field.id} className="grid grid-cols-3 gap-4 items-end">
+          <div key={field.id} className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
             <FormField
               control={control}
               name={`EInvoice.InvoiceInfo.ReturnInvoiceInfo.${index}.InvoiceNumber`}
@@ -592,7 +602,7 @@ export function PaymentMeansInfoForm() {
                 <FormItem className="space-y-2">
                   <FormLabel>Fatura Numarası</FormLabel>
                   <FormControl>
-                    <Input placeholder="Fatura numarası" {...field} />
+                    <Input placeholder="Fatura numarası" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                   </FormControl>
                   <FormMessage className="text-xs" />
                 </FormItem>
@@ -607,8 +617,9 @@ export function PaymentMeansInfoForm() {
                   <FormItem className="space-y-2">
                     <FormLabel>Fatura Tarihi</FormLabel>
                     <FormControl>
-                      <Input 
+                      <Input
                         type="datetime-local"
+                        className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                         value={value}
                         onChange={(e) => {
                           field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
@@ -624,8 +635,8 @@ export function PaymentMeansInfoForm() {
               type="button"
               variant="outline"
               size="sm"
-              onClick={() => removeReturnInvoice(index)}
               className="mb-1"
+              onClick={() => removeReturnInvoice(index)}
             >
               <Trash2 className="w-4 h-4" />
             </Button>
@@ -634,7 +645,7 @@ export function PaymentMeansInfoForm() {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-xl font-semibold text-red-600">Muhasebe ve Fatura Dönem Bilgileri</h3>
+        <h3 className="text-xl font-semibold">Muhasebe ve Fatura Dönem Bilgileri</h3>
         <FormField
           control={control}
           name="EInvoice.InvoiceInfo.AccountingCost"
@@ -642,14 +653,13 @@ export function PaymentMeansInfoForm() {
             <FormItem className="space-y-2">
               <FormLabel>Muhasebe Kodu</FormLabel>
               <FormControl>
-                <Input placeholder="Muhasebe kodu" {...field} />
+                <Input placeholder="Muhasebe kodu" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
               </FormControl>
               <FormMessage className="text-xs" />
             </FormItem>
           )}
         />
-        
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
             <h4 className="font-medium">Başlangıç Bilgileri</h4>
             <FormField
@@ -661,8 +671,9 @@ export function PaymentMeansInfoForm() {
                   <FormItem className="space-y-2">
                     <FormLabel>Başlangıç Tarihi</FormLabel>
                     <FormControl>
-                      <Input 
+                      <Input
                         type="datetime-local"
+                        className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                         value={value}
                         onChange={(e) => {
                           field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
@@ -681,14 +692,13 @@ export function PaymentMeansInfoForm() {
                 <FormItem className="space-y-2">
                   <FormLabel>Başlangıç Saati</FormLabel>
                   <FormControl>
-                    <Input type="time" {...field} />
+                    <Input type="time" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                   </FormControl>
                   <FormMessage className="text-xs" />
                 </FormItem>
               )}
             />
           </div>
-          
           <div className="space-y-4">
             <h4 className="font-medium">Bitiş Bilgileri</h4>
             <FormField
@@ -700,8 +710,9 @@ export function PaymentMeansInfoForm() {
                   <FormItem className="space-y-2">
                     <FormLabel>Bitiş Tarihi</FormLabel>
                     <FormControl>
-                      <Input 
+                      <Input
                         type="datetime-local"
+                        className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                         value={value}
                         onChange={(e) => {
                           field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
@@ -720,7 +731,7 @@ export function PaymentMeansInfoForm() {
                 <FormItem className="space-y-2">
                   <FormLabel>Bitiş Saati</FormLabel>
                   <FormControl>
-                    <Input type="time" {...field} />
+                    <Input type="time" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                   </FormControl>
                   <FormMessage className="text-xs" />
                 </FormItem>
@@ -728,8 +739,7 @@ export function PaymentMeansInfoForm() {
             />
           </div>
         </div>
-
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FormField
             control={control}
             name="EInvoice.InvoiceInfo.InvoicePeriod.DurationMeasureValue"
@@ -737,9 +747,10 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>Süre (Gün)</FormLabel>
                 <FormControl>
-                  <Input 
-                    type="number"  
-                    {...field} 
+                  <Input
+                    type="number"
+                    className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
+                    {...field}
                     onChange={(e) => field.onChange(e.target.valueAsNumber)}
                   />
                 </FormControl>
@@ -754,7 +765,7 @@ export function PaymentMeansInfoForm() {
               <FormItem className="space-y-2">
                 <FormLabel>Açıklama</FormLabel>
                 <FormControl>
-                  <Input placeholder="Dönem açıklaması" {...field} />
+                  <Input placeholder="Dönem açıklaması" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                 </FormControl>
                 <FormMessage className="text-xs" />
               </FormItem>
@@ -762,141 +773,145 @@ export function PaymentMeansInfoForm() {
           />
         </div>
       </div>
-        <div className="space-y-4">
+
+      <div className="space-y-4">
         <div className="flex items-center justify-between">
-            <h3 className="text-xl font-semibold text-red-600">SGK Bilgileri</h3>
+          <h3 className="text-xl font-semibold">SGK Bilgileri</h3>
         </div>
-        
-        <div className="grid grid-cols-3 gap-4">
-            <FormField
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <FormField
             control={control}
             name="EInvoice.InvoiceInfo.SGKInfo.RegisterName"
             render={({ field }) => (
-                <FormItem className="space-y-2">
+              <FormItem className="space-y-2">
                 <FormLabel>SGK Kayıt Adı</FormLabel>
                 <FormControl>
-                    <Input placeholder="SGK Kayıt Adı" {...field} />
+                  <Input placeholder="SGK Kayıt Adı" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                 </FormControl>
                 <FormMessage className="text-xs" />
-                </FormItem>
+              </FormItem>
             )}
-            />
-            <FormField
+          />
+          <FormField
             control={control}
             name="EInvoice.InvoiceInfo.SGKInfo.DocumentNumber"
             render={({ field }) => (
-                <FormItem className="space-y-2">
+              <FormItem className="space-y-2">
                 <FormLabel>Belge Numarası</FormLabel>
                 <FormControl>
-                    <Input placeholder="Belge Numarası" {...field} />
+                  <Input placeholder="Belge Numarası" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                 </FormControl>
                 <FormMessage className="text-xs" />
-                </FormItem>
+              </FormItem>
             )}
-            />
-            <FormField
+          />
+          <FormField
             control={control}
             name="EInvoice.InvoiceInfo.SGKInfo.RegisterCode"
             render={({ field }) => (
-                <FormItem className="space-y-2">
+              <FormItem className="space-y-2">
                 <FormLabel>Kayıt Kodu</FormLabel>
                 <FormControl>
-                    <Input placeholder="Kayıt Kodu" {...field} />
+                  <Input placeholder="Kayıt Kodu" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                 </FormControl>
                 <FormMessage className="text-xs" />
-                </FormItem>
+              </FormItem>
             )}
-            />
+          />
         </div>
-            <div className="space-y-4">
-            <div className="flex items-center justify-between">
-                <h3 className="text-xl font-semibold text-red-600">Gider Bilgileri</h3>
-                <Button
-                type="button"
-                variant="outline"
-                size="sm"
-                onClick={() => appendExpense({ ExpenseType: "", Percent: 0, Amount: 0 })}
-                >
-                <Plus className="w-4 h-4 mr-2" />
-                Ekle
-                </Button>
-            </div>
-            
-            {expenseFields.map((field, index) => (
-                <div key={field.id} className="grid grid-cols-4 gap-4 items-end">
-                <FormField
-                    control={control}
-                    name={`EInvoice.InvoiceInfo.Expenses.${index}.ExpenseType`}
-                    render={({ field }) => (
-                    <FormItem className="space-y-2">
-                        <FormLabel>Gider Tipi</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                            <SelectTrigger>
-                            <SelectValue placeholder="Gider tipi seçin" />
-                            </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                            {expensetypeOptions.map((type) => (
-                            <SelectItem key={type.value} value={type.value}>
-                                {type.label}
-                            </SelectItem>
-                            ))}
-                        </SelectContent>
-                        </Select>
-                        <FormMessage className="text-xs" />
-                    </FormItem>
-                    )}
-                />
-                <FormField
-                    control={control}
-                    name={`EInvoice.InvoiceInfo.Expenses.${index}.Percent`}
-                    render={({ field }) => (
-                    <FormItem className="space-y-2">
-                        <FormLabel>Yüzde</FormLabel>
-                        <FormControl>
-                        <Input 
-                            type="number" 
-                            placeholder="%" 
-                            {...field} 
-                            onChange={(e) => field.onChange(e.target.valueAsNumber)}
-                        />
-                        </FormControl>
-                        <FormMessage className="text-xs" />
-                    </FormItem>
-                    )}
-                />
-                <FormField
-                    control={control}
-                    name={`EInvoice.InvoiceInfo.Expenses.${index}.Amount`}
-                    render={({ field }) => (
-                    <FormItem className="space-y-2">
-                        <FormLabel>Tutar</FormLabel>
-                        <FormControl>
-                        <Input 
-                            type="number" 
-                            placeholder="Tutar" 
-                            {...field} 
-                            onChange={(e) => field.onChange(e.target.valueAsNumber)}
-                        />
-                        </FormControl>
-                        <FormMessage className="text-xs" />
-                    </FormItem>
-                    )}
-                />
-                <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    onClick={() => removeExpense(index)}
-                    className="mb-1"
-                >
-                    <Trash2 className="w-4 h-4" />
-                </Button>
-                </div>
-            ))}
-            </div>
-            </div>
-</section>
-);
+      </div>
+
+      {/* Gider Bilgileri */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-xl font-semibold">Gider Bilgileri</h3>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            className="bg-green-50 text-green-700 border-green-200 font-medium hover:bg-green-100"
+            onClick={() => appendExpense({ ExpenseType: "", Percent: 0, Amount: 0 })}
+          >
+            <Plus className="w-4 h-4 mr-2" />
+            Ekle
+          </Button>
+        </div>
+        {expenseFields.map((field, index) => (
+          <div key={field.id} className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+            <FormField
+              control={control}
+              name={`EInvoice.InvoiceInfo.Expenses.${index}.ExpenseType`}
+              render={({ field }) => (
+                <FormItem className="space-y-2">
+                  <FormLabel>Gider Tipi</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base">
+                        <SelectValue placeholder="Gider tipi seçin" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {expensetypeOptions.map((type) => (
+                        <SelectItem key={type.value} value={type.value}>
+                          {type.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage className="text-xs" />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={control}
+              name={`EInvoice.InvoiceInfo.Expenses.${index}.Percent`}
+              render={({ field }) => (
+                <FormItem className="space-y-2">
+                  <FormLabel>Yüzde</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="number"
+                      placeholder="%"
+                      className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
+                      {...field}
+                      onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                    />
+                  </FormControl>
+                  <FormMessage className="text-xs" />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={control}
+              name={`EInvoice.InvoiceInfo.Expenses.${index}.Amount`}
+              render={({ field }) => (
+                <FormItem className="space-y-2">
+                  <FormLabel>Tutar</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="number"
+                      placeholder="Tutar"
+                      className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
+                      {...field}
+                      onChange={(e) => field.onChange(e.target.valueAsNumber)}
+                    />
+                  </FormControl>
+                  <FormMessage className="text-xs" />
+                </FormItem>
+              )}
+            />
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="mb-1"
+              onClick={() => removeExpense(index)}
+            >
+              <Trash2 className="w-4 h-4" />
+            </Button>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 }

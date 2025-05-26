@@ -46,32 +46,28 @@ export function InvoiceInfoForm() {
   });
 
   return (
-
-    
-    <section className="space-y-6">
+    <div className="border border-gray-200 rounded-lg p-6 bg-gray-50 space-y-6">
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold text-red-600">Fatura Bilgileri</h3>
           <FormField
             control={control}
             name="EInvoice.InvoiceInfo.UUID"
             render={({ field }) => (
-              <div className="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded whitespace-nowrap">
+              <div className="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded font-mono">
                 UUID: {field.value}
               </div>
             )}
           />
         </div>
-        
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           <FormField
             control={control}
             name="EInvoice.InvoiceInfo.InvoiceSerieOrNumber"
             render={({ field }) => (
               <FormItem className="space-y-2">
-                <FormLabel>Fatura Seri/Numara</FormLabel>
+                <FormLabel className="font-medium text-gray-800">Fatura Seri/Numara</FormLabel>
                 <FormControl>
-                  <Input placeholder="F001-123" {...field} />
+                  <Input className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" placeholder="F001-123" {...field} />
                 </FormControl>
                 <FormMessage className="text-xs" />
               </FormItem>
@@ -84,9 +80,10 @@ export function InvoiceInfoForm() {
               const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
               return (
                 <FormItem className="space-y-2">
-                  <FormLabel>Düzenlenme Tarihi</FormLabel>
+                  <FormLabel className="font-medium text-gray-800">Düzenlenme Tarihi</FormLabel>
                   <FormControl>
                     <Input 
+                      className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                       type="datetime-local"
                       value={value}
                       onChange={(e) => {
@@ -104,10 +101,10 @@ export function InvoiceInfoForm() {
             name="EInvoice.InvoiceInfo.InvoiceType"
             render={({ field }) => (
               <FormItem className="space-y-2">
-                <FormLabel>Fatura Tipi</FormLabel>
+                <FormLabel className="font-medium text-gray-800">Fatura Tipi</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
-                    <SelectTrigger>
+                    <SelectTrigger className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base">
                       <SelectValue placeholder="Fatura tipi seçin" />
                     </SelectTrigger>
                   </FormControl>
@@ -128,10 +125,10 @@ export function InvoiceInfoForm() {
             name="EInvoice.InvoiceInfo.CurrencyCode"
             render={({ field }) => (
               <FormItem className="space-y-2">
-                <FormLabel>Para Birimi</FormLabel>
+                <FormLabel className="font-medium text-gray-800">Para Birimi</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
-                    <SelectTrigger>
+                    <SelectTrigger className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base">
                       <SelectValue placeholder="Para birimi seçin" />
                     </SelectTrigger>
                   </FormControl>
@@ -152,9 +149,9 @@ export function InvoiceInfoForm() {
             name="EInvoice.InvoiceInfo.InvoiceProfile"
             render={({ field }) => (
               <FormItem className="space-y-2">
-                <FormLabel>Fatura Profili</FormLabel>
+                <FormLabel className="font-medium text-gray-800">Fatura Profili</FormLabel>
                 <FormControl>
-                  <Input placeholder="EARSIVFATURA" {...field} />
+                  <Input className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" placeholder="EARSIVFATURA" {...field} />
                 </FormControl>
                 <FormMessage className="text-xs" />
               </FormItem>
@@ -164,23 +161,23 @@ export function InvoiceInfoForm() {
       </div>
 
       <Separator className="my-4" />
-            
+
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold text-red-600">İrsaliye Bilgileri</h3>
+          <h3 className="text-xl font-semibold">İrsaliye Bilgileri</h3>
           <Button
             type="button"
             variant="outline"
             size="sm"
+            className="bg-green-50 text-green-700 border-green-200 font-medium hover:bg-green-100"
             onClick={() => appendDespatch({ IssueDate: "", Value: "" })}
           >
             <Plus className="w-4 h-4 mr-2" />
             Ekle
           </Button>
         </div>
-        
         {despatchFields.map((field, index) => (
-          <div key={field.id} className="grid grid-cols-3 gap-4 items-end">
+          <div key={field.id} className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
             <FormField
               control={control}
               name={`EInvoice.InvoiceInfo.DespatchDocumentReference.${index}.IssueDate`}
@@ -188,9 +185,10 @@ export function InvoiceInfoForm() {
                 const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
                 return (
                   <FormItem className="space-y-2">
-                    <FormLabel>İrsaliye Tarihi</FormLabel>
+                    <FormLabel className="font-medium text-gray-800">İrsaliye Tarihi</FormLabel>
                     <FormControl>
                       <Input 
+                        className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                         type="datetime-local"
                         value={value}
                         onChange={(e) => {
@@ -208,9 +206,9 @@ export function InvoiceInfoForm() {
               name={`EInvoice.InvoiceInfo.DespatchDocumentReference.${index}.Value`}
               render={({ field }) => (
                 <FormItem className="space-y-2">
-                  <FormLabel>İrsaliye Numarası</FormLabel>
+                  <FormLabel className="font-medium text-gray-800">İrsaliye Numarası</FormLabel>
                   <FormControl>
-                    <Input placeholder="İrsaliye numarası girin" {...field} />
+                    <Input className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" placeholder="İrsaliye numarası girin" {...field} />
                   </FormControl>
                   <FormMessage className="text-xs" />
                 </FormItem>
@@ -221,7 +219,7 @@ export function InvoiceInfoForm() {
               variant="outline"
               size="sm"
               onClick={() => removeDespatch(index)}
-              className="mb-1"
+              className="mt-1"
             >
               <Trash2 className="w-4 h-4" />
             </Button>
@@ -230,23 +228,23 @@ export function InvoiceInfoForm() {
       </div>
 
       <Separator className="my-4" />
-      
+
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold text-red-600">Sipariş Bilgileri</h3>
+          <h3 className="text-xl font-semibold">Sipariş Bilgileri</h3>
           <Button
             type="button"
             variant="outline"
             size="sm"
+            className="bg-green-50 text-green-700 border-green-200 font-medium hover:bg-green-100"
             onClick={() => appendOrder({ IssueDate: "", Value: "" })}
           >
             <Plus className="w-4 h-4 mr-2" />
             Ekle
           </Button>
         </div>
-        
         {orderFields.map((field, index) => (
-          <div key={field.id} className="grid grid-cols-3 gap-4 items-end">
+          <div key={field.id} className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
             <FormField
               control={control}
               name={`EInvoice.InvoiceInfo.OrderReference.${index}.IssueDate`}
@@ -254,9 +252,10 @@ export function InvoiceInfoForm() {
                 const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
                 return (
                   <FormItem className="space-y-2">
-                    <FormLabel>Sipariş Tarihi</FormLabel>
+                    <FormLabel className="font-medium text-gray-800">Sipariş Tarihi</FormLabel>
                     <FormControl>
                       <Input 
+                        className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                         type="datetime-local"
                         value={value}
                         onChange={(e) => {
@@ -274,9 +273,9 @@ export function InvoiceInfoForm() {
               name={`EInvoice.InvoiceInfo.OrderReference.${index}.Value`}
               render={({ field }) => (
                 <FormItem className="space-y-2">
-                  <FormLabel>Sipariş Numarası</FormLabel>
+                  <FormLabel className="font-medium text-gray-800">Sipariş Numarası</FormLabel>
                   <FormControl>
-                    <Input placeholder="Sipariş numarası girin" {...field} />
+                    <Input className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" placeholder="Sipariş numarası girin" {...field} />
                   </FormControl>
                   <FormMessage className="text-xs" />
                 </FormItem>
@@ -287,7 +286,7 @@ export function InvoiceInfoForm() {
               variant="outline"
               size="sm"
               onClick={() => removeOrder(index)}
-              className="mb-1"
+              className="mt-1"
             >
               <Trash2 className="w-4 h-4" />
             </Button>
@@ -299,11 +298,12 @@ export function InvoiceInfoForm() {
 
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold text-red-600">Döküman Bilgileri</h3>
+          <h3 className="text-xl font-semibold">Döküman Bilgileri</h3>
           <Button
             type="button"
             variant="outline"
             size="sm"
+            className="bg-green-50 text-green-700 border-green-200 font-medium hover:bg-green-100"
             onClick={() => appendOrderDoc({ 
               ID: "", 
               IssueDate: "", 
@@ -317,29 +317,28 @@ export function InvoiceInfoForm() {
             Ekle
           </Button>
         </div>
-        
         {orderDocFields.map((field, index) => (
-          <div key={field.id} className="space-y-4 p-4 border rounded-lg">
+          <div key={field.id} className="bg-gray-50 border border-gray-200 rounded-xl p-6 relative mb-2">
             <div className="flex justify-end">
               <Button
                 type="button"
                 variant="outline"
                 size="sm"
                 onClick={() => removeOrderDoc(index)}
+                className="absolute top-4 right-4"
               >
                 <Trash2 className="w-4 h-4" />
               </Button>
             </div>
-            
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <FormField
                 control={control}
                 name={`EInvoice.InvoiceInfo.OrderReferenceDocument.${index}.ID`}
                 render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <FormLabel>Sipariş Doküman No</FormLabel>
+                    <FormLabel className="font-medium text-gray-800">Sipariş Doküman No</FormLabel>
                     <FormControl>
-                      <Input placeholder="Doküman numarası" {...field} />
+                      <Input className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" placeholder="Doküman numarası" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -352,9 +351,10 @@ export function InvoiceInfoForm() {
                   const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
                   return (
                     <FormItem className="space-y-2">
-                      <FormLabel>Döküman Tarihi</FormLabel>
+                      <FormLabel className="font-medium text-gray-800">Döküman Tarihi</FormLabel>
                       <FormControl>
                         <Input 
+                          className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                           type="datetime-local"
                           value={value}
                           onChange={(e) => {
@@ -372,9 +372,9 @@ export function InvoiceInfoForm() {
                 name={`EInvoice.InvoiceInfo.OrderReferenceDocument.${index}.DocumentType`}
                 render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <FormLabel>Doküman Tipi</FormLabel>
+                    <FormLabel className="font-medium text-gray-800">Doküman Tipi</FormLabel>
                     <FormControl>
-                      <Input placeholder="Tip" {...field} />
+                      <Input className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" placeholder="Tip" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -385,39 +385,37 @@ export function InvoiceInfoForm() {
                 name={`EInvoice.InvoiceInfo.OrderReferenceDocument.${index}.DocumentTypeCode`}
                 render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <FormLabel>Doküman Tipi Kodu</FormLabel>
+                    <FormLabel className="font-medium text-gray-800">Doküman Tipi Kodu</FormLabel>
                     <FormControl>
-                      <Input placeholder="Tip kodu" {...field} />
+                      <Input className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" placeholder="Tip kodu" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
                 )}
               />
             </div>
-
             <FormField
               control={control}
               name={`EInvoice.InvoiceInfo.OrderReferenceDocument.${index}.DocumentDescription`}
               render={({ field }) => (
                 <FormItem className="space-y-2">
-                  <FormLabel>Doküman Açıklaması</FormLabel>
+                  <FormLabel className="font-medium text-gray-800">Doküman Açıklaması</FormLabel>
                   <FormControl>
-                    <Input placeholder="Açıklama" {...field} />
+                    <Input className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" placeholder="Açıklama" {...field} />
                   </FormControl>
                   <FormMessage className="text-xs" />
                 </FormItem>
               )}
             />
-
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <FormField
                 control={control}
                 name={`EInvoice.InvoiceInfo.OrderReferenceDocument.${index}.Attachment.0.FileName`}
                 render={({ field }) => (
-                  <FormItem className="space-y-2 col-span-2">
-                    <FormLabel>Dosya Adı</FormLabel>
+                  <FormItem className="space-y-2 md:col-span-2">
+                    <FormLabel className="font-medium text-gray-800">Dosya Adı</FormLabel>
                     <FormControl>
-                      <Input placeholder="Dosya adı" {...field} />
+                      <Input className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" placeholder="Dosya adı" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -428,9 +426,9 @@ export function InvoiceInfoForm() {
                 name={`EInvoice.InvoiceInfo.OrderReferenceDocument.${index}.Attachment.0.MimeCode`}
                 render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <FormLabel>MIME Tipi</FormLabel>
+                    <FormLabel className="font-medium text-gray-800">MIME Tipi</FormLabel>
                     <FormControl>
-                      <Input {...field} />
+                      <Input className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -441,9 +439,9 @@ export function InvoiceInfoForm() {
                 name={`EInvoice.InvoiceInfo.OrderReferenceDocument.${index}.Attachment.0.Base64Data`}
                 render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <FormLabel>Base64 Veri</FormLabel>
+                    <FormLabel className="font-medium text-gray-800">Base64 Veri</FormLabel>
                     <FormControl>
-                      <Input placeholder="Base64 veri" {...field} />
+                      <Input className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" placeholder="Base64 veri" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -458,11 +456,12 @@ export function InvoiceInfoForm() {
 
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold text-red-600">Ek Döküman Bilgileri</h3>
+          <h3 className="text-xl font-semibold">Ek Döküman Bilgileri</h3>
           <Button
             type="button"
             variant="outline"
             size="sm"
+            className="bg-green-50 text-green-700 border-green-200 font-medium hover:bg-green-100"
             onClick={() => appendAdditionalDoc({ 
               ID: "", 
               IssueDate: "", 
@@ -476,29 +475,28 @@ export function InvoiceInfoForm() {
             Ekle
           </Button>
         </div>
-        
         {additionalDocFields.map((field, index) => (
-          <div key={field.id} className="space-y-4 p-4 border rounded-lg">
+          <div key={field.id} className="bg-gray-50 border border-gray-200 rounded-xl p-6 relative mb-2">
             <div className="flex justify-end">
               <Button
                 type="button"
                 variant="outline"
                 size="sm"
                 onClick={() => removeAdditionalDoc(index)}
+                className="absolute top-4 right-4"
               >
                 <Trash2 className="w-4 h-4" />
               </Button>
             </div>
-            
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <FormField
                 control={control}
                 name={`EInvoice.InvoiceInfo.AdditionalDocumentReferences.${index}.ID`}
                 render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <FormLabel>Ek Doküman No</FormLabel>
+                    <FormLabel className="font-medium text-gray-800">Ek Doküman No</FormLabel>
                     <FormControl>
-                      <Input placeholder="Doküman numarası" {...field} />
+                      <Input className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" placeholder="Doküman numarası" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -511,9 +509,10 @@ export function InvoiceInfoForm() {
                   const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
                   return (
                     <FormItem className="space-y-2">
-                      <FormLabel>Ek Döküman Tarihi</FormLabel>
+                      <FormLabel className="font-medium text-gray-800">Ek Döküman Tarihi</FormLabel>
                       <FormControl>
                         <Input 
+                          className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
                           type="datetime-local"
                           value={value}
                           onChange={(e) => {
@@ -531,9 +530,9 @@ export function InvoiceInfoForm() {
                 name={`EInvoice.InvoiceInfo.AdditionalDocumentReferences.${index}.DocumentType`}
                 render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <FormLabel>Ek Doküman Tipi</FormLabel>
+                    <FormLabel className="font-medium text-gray-800">Ek Doküman Tipi</FormLabel>
                     <FormControl>
-                      <Input placeholder="Tip" {...field} />
+                      <Input className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" placeholder="Tip" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -544,39 +543,37 @@ export function InvoiceInfoForm() {
                 name={`EInvoice.InvoiceInfo.AdditionalDocumentReferences.${index}.DocumentTypeCode`}
                 render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <FormLabel>Ek Doküman Tipi Kodu</FormLabel>
+                    <FormLabel className="font-medium text-gray-800">Ek Doküman Tipi Kodu</FormLabel>
                     <FormControl>
-                      <Input placeholder="Tip kodu" {...field} />
+                      <Input className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" placeholder="Tip kodu" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
                 )}
               />
             </div>
-
             <FormField
               control={control}
               name={`EInvoice.InvoiceInfo.AdditionalDocumentReferences.${index}.DocumentDescription`}
               render={({ field }) => (
                 <FormItem className="space-y-2">
-                  <FormLabel>Ek Doküman Açıklaması</FormLabel>
+                  <FormLabel className="font-medium text-gray-800">Ek Doküman Açıklaması</FormLabel>
                   <FormControl>
-                    <Input placeholder="Açıklama" {...field} />
+                    <Input className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" placeholder="Açıklama" {...field} />
                   </FormControl>
                   <FormMessage className="text-xs" />
                 </FormItem>
               )}
             />
-
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <FormField
                 control={control}
                 name={`EInvoice.InvoiceInfo.AdditionalDocumentReferences.${index}.Attachment.0.FileName`}
                 render={({ field }) => (
-                  <FormItem className="space-y-2 col-span-2">
-                    <FormLabel>Dosya Adı</FormLabel>
+                  <FormItem className="space-y-2 md:col-span-2">
+                    <FormLabel className="font-medium text-gray-800">Dosya Adı</FormLabel>
                     <FormControl>
-                      <Input placeholder="Dosya adı" {...field} />
+                      <Input className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" placeholder="Dosya adı" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -587,9 +584,9 @@ export function InvoiceInfoForm() {
                 name={`EInvoice.InvoiceInfo.AdditionalDocumentReferences.${index}.Attachment.0.MimeCode`}
                 render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <FormLabel>MIME Tipi</FormLabel>
+                    <FormLabel className="font-medium text-gray-800">MIME Tipi</FormLabel>
                     <FormControl>
-                      <Input {...field} />
+                      <Input className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -600,9 +597,9 @@ export function InvoiceInfoForm() {
                 name={`EInvoice.InvoiceInfo.AdditionalDocumentReferences.${index}.Attachment.0.Base64Data`}
                 render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <FormLabel>Base64 Veri</FormLabel>
+                    <FormLabel className="font-medium text-gray-800">Base64 Veri</FormLabel>
                     <FormControl>
-                      <Input placeholder="Base64 veri" {...field} />
+                      <Input className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" placeholder="Base64 veri" {...field} />
                     </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItem>
@@ -616,17 +613,17 @@ export function InvoiceInfoForm() {
           name="EInvoice.Notes.0.text"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Fatura Notu</FormLabel>
+              <FormLabel className="font-medium text-gray-800">Fatura Notu</FormLabel>
               <FormControl>
-                <Textarea placeholder="Ek açıklama veya not giriniz" {...field} />
+                <Textarea className="min-h-[5rem] rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" placeholder="Ek açıklama veya not giriniz" {...field} />
               </FormControl>
-              <FormDescription>
+              <FormDescription className="text-gray-500 text-sm mt-1">
                 Bu alanda faturaya özel açıklamalarınızı ekleyebilirsiniz.
               </FormDescription>
             </FormItem>
           )}
         />
       </div>
-    </section>
+    </div>
   );
 }

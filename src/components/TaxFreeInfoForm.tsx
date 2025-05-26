@@ -4,7 +4,6 @@ import React from "react";
 import { useFormContext } from "react-hook-form";
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { EInvoiceFormData } from "../lib/types";
 
@@ -12,94 +11,89 @@ export function TaxFreeInfoForm() {
   const { control } = useFormContext<EInvoiceFormData>();
 
   return (
-    <div className="space-y-6">
-        <Card>
-        <CardContent className="space-y-4">
-          <div >
+    <div className="border border-gray-200 rounded-lg p-6 bg-gray-50 space-y-6">
+
+          <div>
             <h4 className="text-md font-semibold text-gray-800 mb-3 mt-3">
               Turist Bilgileri
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-
-            <FormField
-              control={control}
-              name="EInvoice.TaxFreeInfo.TouristInfo.Name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Ad *</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Turist adı" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={control}
-              name="EInvoice.TaxFreeInfo.TouristInfo.SurName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Soyad *</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Turist soyadı" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={control}
-              name="EInvoice.TaxFreeInfo.TouristInfo.CountryCode"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Ülke Kodu *</FormLabel>
-                  <FormControl>
-                    <Input placeholder="TR, US, DE vb." {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={control}
-              name="EInvoice.TaxFreeInfo.TouristInfo.PassportNo"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Pasaport No *</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Pasaport numarası" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-          <FormField
-            control={control}
-            name="EInvoice.TaxFreeInfo.TouristInfo.PassportDate"
-            render={({ field }) => {
-              const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
-              return (
-                <FormItem className="space-y-2">
-                  <FormLabel>Pasaport Tarihi</FormLabel>
-                  <FormControl>
-                    <Input 
-                      type="datetime-local"
-                      value={value}
-                      onChange={(e) => {
-                        field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
-                      }}
-                    />
-                  </FormControl>
-                  <FormMessage className="text-xs" />
-                </FormItem>
-              )
-            }}
-          />
-          </div>
+              <FormField
+                control={control}
+                name="EInvoice.TaxFreeInfo.TouristInfo.Name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Ad *</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Turist adı" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={control}
+                name="EInvoice.TaxFreeInfo.TouristInfo.SurName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Soyad *</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Turist soyadı" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={control}
+                name="EInvoice.TaxFreeInfo.TouristInfo.CountryCode"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Ülke Kodu *</FormLabel>
+                    <FormControl>
+                      <Input placeholder="TR, US, DE vb." className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={control}
+                name="EInvoice.TaxFreeInfo.TouristInfo.PassportNo"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Pasaport No *</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Pasaport numarası" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={control}
+                name="EInvoice.TaxFreeInfo.TouristInfo.PassportDate"
+                render={({ field }) => {
+                  const value = field.value ? new Date(field.value).toISOString().slice(0, 16) : '';
+                  return (
+                    <FormItem>
+                      <FormLabel>Pasaport Tarihi</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="datetime-local"
+                          className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
+                          value={value}
+                          onChange={(e) => {
+                            field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage className="text-xs" />
+                    </FormItem>
+                  )
+                }}
+              />
+            </div>
           </div>
 
           <Separator className="my-4" />
@@ -114,13 +108,12 @@ export function TaxFreeInfoForm() {
                   <FormItem className="md:col-span-4">
                     <FormLabel>Adres *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Tam adres" {...field} />
+                      <Input placeholder="Tam adres" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={control}
                 name="EInvoice.TaxFreeInfo.TouristInfo.AddressInfo.District"
@@ -128,13 +121,12 @@ export function TaxFreeInfoForm() {
                   <FormItem>
                     <FormLabel>İlçe</FormLabel>
                     <FormControl>
-                      <Input placeholder="İlçe" {...field} />
+                      <Input placeholder="İlçe" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={control}
                 name="EInvoice.TaxFreeInfo.TouristInfo.AddressInfo.City"
@@ -142,13 +134,12 @@ export function TaxFreeInfoForm() {
                   <FormItem>
                     <FormLabel>Şehir *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Şehir" {...field} />
+                      <Input placeholder="Şehir" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={control}
                 name="EInvoice.TaxFreeInfo.TouristInfo.AddressInfo.Country"
@@ -156,13 +147,12 @@ export function TaxFreeInfoForm() {
                   <FormItem>
                     <FormLabel>Ülke</FormLabel>
                     <FormControl>
-                      <Input placeholder="Ülke" {...field} />
+                      <Input placeholder="Ülke" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={control}
                 name="EInvoice.TaxFreeInfo.TouristInfo.AddressInfo.PostalCode"
@@ -170,13 +160,12 @@ export function TaxFreeInfoForm() {
                   <FormItem>
                     <FormLabel>Posta Kodu</FormLabel>
                     <FormControl>
-                      <Input placeholder="Posta kodu" {...field} />
+                      <Input placeholder="Posta kodu" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={control}
                 name="EInvoice.TaxFreeInfo.TouristInfo.AddressInfo.Phone"
@@ -184,13 +173,12 @@ export function TaxFreeInfoForm() {
                   <FormItem>
                     <FormLabel>Telefon *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Telefon numarası" {...field} />
+                      <Input placeholder="Telefon numarası" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={control}
                 name="EInvoice.TaxFreeInfo.TouristInfo.AddressInfo.Fax"
@@ -198,13 +186,12 @@ export function TaxFreeInfoForm() {
                   <FormItem>
                     <FormLabel>Faks</FormLabel>
                     <FormControl>
-                      <Input placeholder="Faks numarası" {...field} />
+                      <Input placeholder="Faks numarası" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={control}
                 name="EInvoice.TaxFreeInfo.TouristInfo.AddressInfo.Mail"
@@ -212,13 +199,12 @@ export function TaxFreeInfoForm() {
                   <FormItem>
                     <FormLabel>E-posta *</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="E-posta adresi" {...field} />
+                      <Input type="email" placeholder="E-posta adresi" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={control}
                 name="EInvoice.TaxFreeInfo.TouristInfo.AddressInfo.WebSite"
@@ -226,7 +212,7 @@ export function TaxFreeInfoForm() {
                   <FormItem>
                     <FormLabel>Web Sitesi</FormLabel>
                     <FormControl>
-                      <Input placeholder="Web sitesi" {...field} />
+                      <Input placeholder="Web sitesi" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -249,13 +235,12 @@ export function TaxFreeInfoForm() {
                   <FormItem>
                     <FormLabel>Banka Adı *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Banka adı" {...field} />
+                      <Input placeholder="Banka adı" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={control}
                 name="EInvoice.TaxFreeInfo.TouristInfo.FinancialAccountInfo.BranchName"
@@ -263,13 +248,12 @@ export function TaxFreeInfoForm() {
                   <FormItem>
                     <FormLabel>Şube Adı</FormLabel>
                     <FormControl>
-                      <Input placeholder="Şube adı" {...field} />
+                      <Input placeholder="Şube adı" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={control}
                 name="EInvoice.TaxFreeInfo.TouristInfo.FinancialAccountInfo.ID"
@@ -277,13 +261,12 @@ export function TaxFreeInfoForm() {
                   <FormItem>
                     <FormLabel>Hesap No *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Hesap numarası" {...field} />
+                      <Input placeholder="Hesap numarası" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={control}
                 name="EInvoice.TaxFreeInfo.TouristInfo.FinancialAccountInfo.CurrencyCode"
@@ -291,13 +274,12 @@ export function TaxFreeInfoForm() {
                   <FormItem>
                     <FormLabel>Para Birimi *</FormLabel>
                     <FormControl>
-                      <Input placeholder="TRY, USD, EUR vb." {...field} />
+                      <Input placeholder="TRY, USD, EUR vb." className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={control}
                 name="EInvoice.TaxFreeInfo.TouristInfo.FinancialAccountInfo.PaymentNote"
@@ -305,7 +287,7 @@ export function TaxFreeInfoForm() {
                   <FormItem className="md:col-span-4">
                     <FormLabel>Ödeme Notu</FormLabel>
                     <FormControl>
-                      <Input placeholder="Ödeme ile ilgili not" {...field} />
+                      <Input placeholder="Ödeme ile ilgili not" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -313,15 +295,11 @@ export function TaxFreeInfoForm() {
               />
             </div>
           </div>
-            </CardContent>
-          </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">Vergi Temsilcisi Bilgileri</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h4 className="text-md font-semibold text-gray-800 mb-3 mt-3">
+              Vergi Temsilcisi Bilgileri
+            </h4>
             <FormField
               control={control}
               name="EInvoice.TaxFreeInfo.TaxRepresentativeInfo.RegisterNumber"
@@ -329,13 +307,12 @@ export function TaxFreeInfoForm() {
                 <FormItem>
                   <FormLabel>Sicil Numarası *</FormLabel>
                   <FormControl>
-                    <Input placeholder="Vergi temsilcisi sicil numarası" {...field} />
+                    <Input placeholder="Vergi temsilcisi sicil numarası" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-
             <FormField
               control={control}
               name="EInvoice.TaxFreeInfo.TaxRepresentativeInfo.Alias"
@@ -343,7 +320,7 @@ export function TaxFreeInfoForm() {
                 <FormItem>
                   <FormLabel>Unvan *</FormLabel>
                   <FormControl>
-                    <Input placeholder="Vergi temsilcisi unvanı" {...field} />
+                    <Input placeholder="Vergi temsilcisi unvanı" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -363,13 +340,12 @@ export function TaxFreeInfoForm() {
                   <FormItem className="md:col-span-4">
                     <FormLabel>Adres *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Tam adres" {...field} />
+                      <Input placeholder="Tam adres" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={control}
                 name="EInvoice.TaxFreeInfo.TaxRepresentativeInfo.Address.District"
@@ -377,13 +353,12 @@ export function TaxFreeInfoForm() {
                   <FormItem>
                     <FormLabel>İlçe</FormLabel>
                     <FormControl>
-                      <Input placeholder="İlçe" {...field} />
+                      <Input placeholder="İlçe" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={control}
                 name="EInvoice.TaxFreeInfo.TaxRepresentativeInfo.Address.City"
@@ -391,13 +366,12 @@ export function TaxFreeInfoForm() {
                   <FormItem>
                     <FormLabel>Şehir *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Şehir" {...field} />
+                      <Input placeholder="Şehir" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={control}
                 name="EInvoice.TaxFreeInfo.TaxRepresentativeInfo.Address.Country"
@@ -405,13 +379,12 @@ export function TaxFreeInfoForm() {
                   <FormItem>
                     <FormLabel>Ülke</FormLabel>
                     <FormControl>
-                      <Input placeholder="Ülke" {...field} />
+                      <Input placeholder="Ülke" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={control}
                 name="EInvoice.TaxFreeInfo.TaxRepresentativeInfo.Address.PostalCode"
@@ -419,13 +392,12 @@ export function TaxFreeInfoForm() {
                   <FormItem>
                     <FormLabel>Posta Kodu</FormLabel>
                     <FormControl>
-                      <Input placeholder="Posta kodu" {...field} />
+                      <Input placeholder="Posta kodu" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={control}
                 name="EInvoice.TaxFreeInfo.TaxRepresentativeInfo.Address.Phone"
@@ -433,13 +405,12 @@ export function TaxFreeInfoForm() {
                   <FormItem>
                     <FormLabel>Telefon *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Telefon numarası" {...field} />
+                      <Input placeholder="Telefon numarası" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={control}
                 name="EInvoice.TaxFreeInfo.TaxRepresentativeInfo.Address.Fax"
@@ -447,13 +418,12 @@ export function TaxFreeInfoForm() {
                   <FormItem>
                     <FormLabel>Faks</FormLabel>
                     <FormControl>
-                      <Input placeholder="Faks numarası" {...field} />
+                      <Input placeholder="Faks numarası" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={control}
                 name="EInvoice.TaxFreeInfo.TaxRepresentativeInfo.Address.Mail"
@@ -461,13 +431,12 @@ export function TaxFreeInfoForm() {
                   <FormItem>
                     <FormLabel>E-posta *</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="E-posta adresi" {...field} />
+                      <Input type="email" placeholder="E-posta adresi" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={control}
                 name="EInvoice.TaxFreeInfo.TaxRepresentativeInfo.Address.WebSite"
@@ -475,7 +444,7 @@ export function TaxFreeInfoForm() {
                   <FormItem>
                     <FormLabel>Web Sitesi</FormLabel>
                     <FormControl>
-                      <Input placeholder="Web sitesi" {...field} />
+                      <Input placeholder="Web sitesi" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -483,8 +452,6 @@ export function TaxFreeInfoForm() {
               />
             </div>
           </div>
-        </CardContent>
-      </Card>
-      </div>
-  )
+    </div>
+  );
 }

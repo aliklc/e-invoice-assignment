@@ -21,16 +21,17 @@ export function MedicineAndMedicalDeviceForm({ invoiceLineIndex }: { invoiceLine
   });
 
   return (
-    <section className="space-y-8">
+    <section className="p-8 bg-white rounded-2xl shadow mb-8 space-y-8">
       <div className="border rounded-lg p-6 bg-blue-50">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-lg font-semibold flex items-center gap-2">
+          <h3 className="text-lg font-semibold flex items-center gap-2 text-blue-800">
             <Stethoscope className="w-5 h-5" /> İlaç Bilgileri
           </h3>
           <Button
             type="button"
             size="sm"
             variant="outline"
+            className="bg-blue-100 text-blue-700 border-blue-200 font-medium hover:bg-blue-200"
             onClick={() => appendMedicine({ GTIN: "", BatchNumber: "", SerialNumber: "", ExpirationDate: "" })}
           >
             <Plus className="w-4 h-4 mr-2" /> İlaç Ekle
@@ -61,7 +62,7 @@ export function MedicineAndMedicalDeviceForm({ invoiceLineIndex }: { invoiceLine
                   <FormItem>
                     <FormLabel>GTIN</FormLabel>
                     <FormControl>
-                      <Input placeholder="GTIN" {...field} />
+                      <Input placeholder="GTIN" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -74,7 +75,7 @@ export function MedicineAndMedicalDeviceForm({ invoiceLineIndex }: { invoiceLine
                   <FormItem>
                     <FormLabel>Parti Numarası</FormLabel>
                     <FormControl>
-                      <Input placeholder="Batch Number" {...field} />
+                      <Input placeholder="Parti Numarası" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -87,7 +88,7 @@ export function MedicineAndMedicalDeviceForm({ invoiceLineIndex }: { invoiceLine
                   <FormItem>
                     <FormLabel>Seri Numarası</FormLabel>
                     <FormControl>
-                      <Input placeholder="Serial Number" {...field} />
+                      <Input placeholder="Seri Numarası" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -97,36 +98,37 @@ export function MedicineAndMedicalDeviceForm({ invoiceLineIndex }: { invoiceLine
                 control={control}
                 name={`EInvoice.InvoiceLines.${invoiceLineIndex}.MedicineAndMedicalDevice.Medicine.${index}.ExpirationDate`}
                 render={({ field }) => (
-                    <FormItem className="space-y-2">
-                      <FormLabel>Son Kullanma Tarihi</FormLabel>
-                      <FormControl>
-                        <Input 
-                          type="datetime-local"
-                          onChange={(e) => {
-                            field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
-                          }}
-                        />
-                      </FormControl>
-                      <FormMessage className="text-xs" />
-                    </FormItem>
-                  )
-                }
+                  <FormItem>
+                    <FormLabel>Son Kullanma Tarihi</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="datetime-local"
+                        className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
+                        value={field.value ? new Date(field.value).toISOString().slice(0, 16) : ''}
+                        onChange={(e) => {
+                          field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
+                        }}
+                      />
+                    </FormControl>
+                    <FormMessage className="text-xs" />
+                  </FormItem>
+                )}
               />
             </div>
           </div>
         ))}
       </div>
 
-      {/* Medical Device Section */}
       <div className="border rounded-lg p-6 bg-green-50">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-lg font-semibold flex items-center gap-2">
+          <h3 className="text-lg font-semibold flex items-center gap-2 text-green-800">
             <Stethoscope className="w-5 h-5" /> Tıbbi Cihaz Bilgileri
           </h3>
           <Button
             type="button"
             size="sm"
             variant="outline"
+            className="bg-green-100 text-green-700 border-green-200 font-medium hover:bg-green-200"
             onClick={() => appendDevice({ ProductNumber: "", LotNumber: "", SerialNumber: "", ProductionDate: "" })}
           >
             <Plus className="w-4 h-4 mr-2" /> Cihaz Ekle
@@ -157,7 +159,7 @@ export function MedicineAndMedicalDeviceForm({ invoiceLineIndex }: { invoiceLine
                   <FormItem>
                     <FormLabel>Ürün Numarası</FormLabel>
                     <FormControl>
-                      <Input placeholder="Product Number" {...field} />
+                      <Input placeholder="Ürün Numarası" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -170,7 +172,7 @@ export function MedicineAndMedicalDeviceForm({ invoiceLineIndex }: { invoiceLine
                   <FormItem>
                     <FormLabel>Lot Numarası</FormLabel>
                     <FormControl>
-                      <Input placeholder="Lot Number" {...field} />
+                      <Input placeholder="Lot Numarası" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -183,7 +185,7 @@ export function MedicineAndMedicalDeviceForm({ invoiceLineIndex }: { invoiceLine
                   <FormItem>
                     <FormLabel>Seri Numarası</FormLabel>
                     <FormControl>
-                      <Input placeholder="Serial Number" {...field} />
+                      <Input placeholder="Seri Numarası" className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -193,20 +195,21 @@ export function MedicineAndMedicalDeviceForm({ invoiceLineIndex }: { invoiceLine
                 control={control}
                 name={`EInvoice.InvoiceLines.${invoiceLineIndex}.MedicineAndMedicalDevice.MedicalDevice.${index}.ProductionDate`}
                 render={({ field }) => (
-                    <FormItem className="space-y-2">
-                      <FormLabel>Üretim Tarihi</FormLabel>
-                      <FormControl>
-                        <Input 
-                          type="datetime-local"
-                          onChange={(e) => {
-                            field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
-                          }}
-                        />
-                      </FormControl>
-                      <FormMessage className="text-xs" />
-                    </FormItem>
-                  )
-                }
+                  <FormItem>
+                    <FormLabel>Üretim Tarihi</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="datetime-local"
+                        className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 text-base"
+                        value={field.value ? new Date(field.value).toISOString().slice(0, 16) : ''}
+                        onChange={(e) => {
+                          field.onChange(e.target.value ? new Date(e.target.value).toISOString() : '');
+                        }}
+                      />
+                    </FormControl>
+                    <FormMessage className="text-xs" />
+                  </FormItem>
+                )}
               />
             </div>
           </div>
