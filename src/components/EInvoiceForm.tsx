@@ -15,6 +15,7 @@ import { CompanyInfoForm } from "./CompanyInfoForm";
 import { CustomerInfoForm } from "./CustomerInfoForm";
 import { PaymentMeansInfoForm } from "./PaymentMeansInfoForm";
 import { ExportCustomerInfoForm } from "./ExportCustomerInfoForm";
+import { TaxFreeInfoForm } from "./TaxFreeInfoForm";
 
 const steps = [
   { id: "invoice-info", name: "Fatura Bilgileri" },
@@ -23,6 +24,7 @@ const steps = [
   { id: "customer-info", name: "Müşteri Bilgileri" },
   { id: "buyer-customer-info", name: "Alıcı Müşteri Bilgileri" },
   { id: "export-customer-info", name: "İhracat Müşteri Bilgileri" },
+  { id: "tax-free-info", name: "Vergisiz Satış Bilgileri" },
 ];
 
 export default function EInvoiceForm() {
@@ -242,9 +244,51 @@ export default function EInvoiceForm() {
         Fax: "",
         Mail: "",
         WebSite: ""
-      }
+      },
+      TaxFreeInfo: {
+        TouristInfo: {
+          Name: "",
+          SurName: "",
+          CountryCode: "",
+          PassportNo: "",
+          PassportDate: "",
+          AddressInfo: {
+            Address: "",
+            District: "",
+            City: "",
+            Country: "",
+            PostalCode: "",
+            Phone: "",
+            Fax: "",
+            Mail: "",
+            WebSite: ""
+          },
+          FinancialAccountInfo: {
+            BankName: "",
+            BranchName: "",
+            ID: "",
+            CurrencyCode: "",
+            PaymentNote: ""
+          }
+        },
+        TaxRepresentativeInfo: {
+          RegisterNumber: "",
+          Alias: "",
+          Address: {
+            Address: "",
+            District: "",
+            City: "",
+            Country: "",
+            PostalCode: "",
+            Phone: "",
+            Fax: "",
+            Mail: "",
+            WebSite: ""
+          }
+        }
     },
   },
+}
   });
 
   const onSubmit = (data: EInvoiceFormData) => {
@@ -281,6 +325,7 @@ export default function EInvoiceForm() {
               {currentStep === 3 && <CustomerInfoForm type="CustomerInfo" title="Müşteri Bilgileri" />}
               {currentStep === 4 && <CustomerInfoForm type="BuyerCustomerInfo" title="Alıcı Müşteri Bilgileri" />}
               {currentStep === 5 && <ExportCustomerInfoForm />}
+              {currentStep === 6 && <TaxFreeInfoForm />}
             </div>
 
             <div className="flex justify-between mt-8">

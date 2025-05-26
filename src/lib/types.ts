@@ -201,12 +201,54 @@ export interface ExportCustomerInfo {
   WebSite?: string;
 }
 
+export interface AddressInfo {
+  Address: string;
+  District?: string;
+  City: string;
+  Country?: string;
+  PostalCode?: string;
+  Phone: string;
+  Fax?: string;
+  Mail: string;
+  WebSite?: string;
+}
+
+export interface FinancialAccountInfo {
+  BankName: string;
+  BranchName?: string;
+  ID: string;
+  CurrencyCode: string;
+  PaymentNote?: string;
+}
+
+export interface TaxRepresentativeInfo {
+  RegisterNumber: string;
+  Alias?: string;
+  Address: AddressInfo;
+}
+
+export interface TouristInfo {
+  Name: string;
+  SurName: string;
+  CountryCode: string;
+  PassportNo: string;
+  PassportDate?: string;
+  AddressInfo: AddressInfo;
+  FinancialAccountInfo: FinancialAccountInfo;
+}
+
+export interface TaxFreeInfo {
+  TouristInfo: TouristInfo;
+  TaxRepresentativeInfo?: TaxRepresentativeInfo;
+}
+
 export interface EInvoice {
   InvoiceInfo: InvoiceInfo;
   CompanyInfo: CompanyInfo;
   CustomerInfo: CustomerInfo;
   BuyerCustomerInfo?: BuyerCustomerInfo;
   ExportCustomerInfo?: ExportCustomerInfo;
+  TaxFreeInfo?: TaxFreeInfo;
 }
 
 

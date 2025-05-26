@@ -4,6 +4,7 @@ import { useFormContext, useFieldArray } from "react-hook-form";
 import { EInvoiceFormData } from "../lib/types";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Plus, Trash2 } from "lucide-react";
@@ -44,6 +45,8 @@ export function InvoiceInfoForm() {
   });
 
   return (
+
+    
     <section className="space-y-6">
       <div className="space-y-4">
         <div className="flex items-center justify-between">
@@ -159,6 +162,8 @@ export function InvoiceInfoForm() {
         </div>
       </div>
 
+      <Separator className="my-4" />
+            
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-xl font-semibold text-red-600">İrsaliye Bilgileri</h3>
@@ -223,6 +228,8 @@ export function InvoiceInfoForm() {
         ))}
       </div>
 
+      <Separator className="my-4" />
+      
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-xl font-semibold text-red-600">Sipariş Bilgileri</h3>
@@ -286,6 +293,8 @@ export function InvoiceInfoForm() {
           </div>
         ))}
       </div>
+
+      <Separator className="my-4" />
 
       <div className="space-y-4">
         <div className="flex items-center justify-between">
@@ -443,6 +452,8 @@ export function InvoiceInfoForm() {
           </div>
         ))}
       </div>
+
+      <Separator className="my-4" />
 
       <div className="space-y-4">
         <div className="flex items-center justify-between">

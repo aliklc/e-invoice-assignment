@@ -425,13 +425,58 @@ const ExportCustomerInfoSchema = z.object({
     .or(z.literal(""))
 });
 
+const AddressInfoSchema = z.object({
+  Address: z.string().min(1, "Adres boş olamaz"),
+  District: z.string().optional(),
+  City: z.string().min(1, "Şehir boş olamaz"),
+  Country: z.string().optional(),
+  PostalCode: z.string().optional(),
+  Phone: z.string().min(1, "Telefon boş olamaz"),
+  Fax: z.string().optional(),
+  Mail: z.string().email("Geçerli bir e-posta adresi girin").min(1, "E-posta boş olamaz"),
+  WebSite: z.string().url("Geçerli bir URL girin").optional().or(z.literal(""))
+});
+
+const FinancialAccountInfoSchema = z.object({
+  BankName: z.string().min(1, "Banka adı boş olamaz"),
+  BranchName: z.string().optional(),
+  ID: z.string().min(1, "Hesap numarası boş olamaz"),
+  CurrencyCode: z.string().length(3, "Para birimi kodu 3 karakter olmalıdır"),
+  PaymentNote: z.string().optional()
+});
+
+const TaxRepresentativeInfoSchema = z.object({
+  RegisterNumber: z.string().min(1, "Kayıt numarası boş olamaz"),
+  Alias: z.string().optional(),
+  Address: AddressInfoSchema
+});
+
+const TouristInfoSchema = z.object({
+  Name: z.string().min(1, "Ad boş olamaz"),
+  SurName: z.string().min(1, "Soyad boş olamaz"),
+  CountryCode: z.string().length(2, "Ülke kodu 2 karakter olmalıdır"),
+  PassportNo: z.string().min(1, "Pasaport numarası boş olamaz"),
+  PassportDate: z.string()
+    .datetime({ offset: true })
+    .refine(val => !isNaN(Date.parse(val)), {
+      message: "Geçerli bir bitiş tarihi girin"
+    }),
+  AddressInfo: AddressInfoSchema,
+  FinancialAccountInfo: FinancialAccountInfoSchema
+});
+
+export const TaxFreeInfoSchema = z.object({
+  TouristInfo: TouristInfoSchema,
+  TaxRepresentativeInfo: TaxRepresentativeInfoSchema.optional()
+});
 
 const EInvoiceSchema = z.object({
   InvoiceInfo: InvoiceInfoSchema,
   CompanyInfo: CompanyInfoSchema,
   CustomerInfo: CustomerInfoSchema,
   BuyerCustomerInfo: BuyerCustomerInfoSchema.optional(),
-  ExportCustomerInfo: ExportCustomerInfoSchema.optional()
+  ExportCustomerInfo: ExportCustomerInfoSchema.optional(),
+  TaxFreeInfo: TaxFreeInfoSchema.optional()
 });
 
 export const EInvoiceFormDataSchema: z.ZodType<EInvoiceFormData> = z.object({
