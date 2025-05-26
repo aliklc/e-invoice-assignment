@@ -16,6 +16,8 @@ import { CustomerInfoForm } from "./CustomerInfoForm";
 import { PaymentMeansInfoForm } from "./PaymentMeansInfoForm";
 import { ExportCustomerInfoForm } from "./ExportCustomerInfoForm";
 import { TaxFreeInfoForm } from "./TaxFreeInfoForm";
+import { InvoiceLinesForm } from "./InvoiceLinesForm";
+import { MedicineAndMedicalDeviceForm } from "./MedicineAndMedicalDeviceForm";
 
 const steps = [
   { id: "invoice-info", name: "Fatura Bilgileri" },
@@ -25,6 +27,8 @@ const steps = [
   { id: "buyer-customer-info", name: "Alıcı Müşteri Bilgileri" },
   { id: "export-customer-info", name: "İhracat Müşteri Bilgileri" },
   { id: "tax-free-info", name: "Vergisiz Satış Bilgileri" },
+  { id: "ınvoice-lines-info", name : "Fatura Satırları"},
+  { id: "medicine-medical-device-info", name: "İlaç & Tıbbi Cihaz Bilgileri" }
 ];
 
 export default function EInvoiceForm() {
@@ -287,9 +291,82 @@ export default function EInvoiceForm() {
           }
         }
     },
-  },
-}
-  });
+      InvoiceLines: [{
+        Index: "1",
+        SellerCode: "",
+        BuyerCode: "",
+        Name: "",
+        Description: "",
+        Quantity: 1,
+        UnitType: "ADET",
+        Price: 0,
+        AllowanceTotal: 0,
+        KDVPercent: 0,
+        KDVTotal: 0,
+        Taxes: [{
+          TaxCode: "",
+          Total: 0,
+          Percent: 0
+        }],
+        DeliveryInfo: {
+          GTIPNo: "",
+          DeliveryTermCode: "",
+          TransportModeCode: "",
+          PackageBrandName: "",
+          ProductTraceID: "",
+          PackageID: "",
+          PackageQuantity: 1,
+          PackageTypeCode: "",
+          DeliveryAddress: {
+            Address: "",
+            District: "",
+            City: "",
+            Country: "",
+            PostalCode: "",
+            Phone: "",
+            Fax: "",
+            Mail: "",
+            WebSite: ""
+          }
+        },
+        ManufacturerCode: "",
+        BrandName: "",
+        ModelName: "",
+        Note: "",
+        SerialID: "",
+        OzelMatrahReason: "",
+        OzelMatrahTotal: 0,
+        VatAmountWithoutTevkifat: 0,
+        MedicineAndMedicalDevice: {
+          Medicine: [{
+            GTIN: "",
+            BatchNumber: "",
+            SerialNumber: "",
+            ExpirationDate: ""
+          }],
+          MedicalDevice: [{
+            ProductNumber: "",
+            LotNumber: "",
+            SerialNumber: "",
+            ProductionDate: ""
+          }],
+        },
+        ExportRegisteredInfo: {
+          DIIBLineCode: "",
+          GTIPNo: "",
+        },
+        AdditionalItemIdentification: {
+          TagNumber: "",
+          OwnerName: "",
+          OwnerTaxNumber: "",
+        }
+      }],
+      Notes: [
+      { text: "" }
+      ],
+    },
+  }
+});
 
   const onSubmit = (data: EInvoiceFormData) => {
     console.log("Form submitted:", data);
@@ -326,6 +403,8 @@ export default function EInvoiceForm() {
               {currentStep === 4 && <CustomerInfoForm type="BuyerCustomerInfo" title="Alıcı Müşteri Bilgileri" />}
               {currentStep === 5 && <ExportCustomerInfoForm />}
               {currentStep === 6 && <TaxFreeInfoForm />}
+              {currentStep === 7 && <InvoiceLinesForm />}
+              {currentStep === 8 && <MedicineAndMedicalDeviceForm invoiceLineIndex={0} />}
             </div>
 
             <div className="flex justify-between mt-8">

@@ -242,6 +242,99 @@ export interface TaxFreeInfo {
   TaxRepresentativeInfo?: TaxRepresentativeInfo;
 }
 
+export interface Tax {
+  TaxCode: string;
+  Total: number;
+  Percent: number;
+  ReasonCode?: string;
+  ReasonDesc?: string;
+}
+
+export interface DeliveryAddress {
+  Address: string;
+  District?: string;
+  City: string;
+  Country?: string;
+  PostalCode?: string;
+  Phone: string;
+  Fax?: string;
+  Mail: string;
+  WebSite?: string;
+}
+
+export interface DeliveryInfo {
+  GTIPNo?: string;
+  DeliveryTermCode?: string;
+  TransportModeCode?: string;
+  PackageBrandName?: string;
+  ProductTraceID?: string;
+  PackageID?: string;
+  PackageQuantity?: number;
+  PackageTypeCode?: string;
+  DeliveryAddress?: DeliveryAddress;
+}
+
+export interface Medicine {
+  GTIN: string;
+  BatchNumber: string;
+  SerialNumber: string;
+  ExpirationDate: string;
+}
+
+export interface MedicalDevice {
+  ProductNumber: string;
+  LotNumber: string;
+  SerialNumber: string;
+  ProductionDate: string;
+}
+
+export interface MedicineAndMedicalDevice {
+  Medicine?: Medicine[];
+  MedicalDevice?: MedicalDevice[];
+}
+
+export interface ExportRegisteredInfo {
+  DIIBLineCode?: string;
+  GTIPNo?: string;
+}
+
+export interface AdditionalItemIdentification {
+  TagNumber?: string;
+  OwnerName?: string;
+  OwnerTaxNumber?: string;
+}
+
+export interface InvoiceLine {
+  Index: string;
+  SellerCode: string;
+  BuyerCode: string;
+  Name: string;
+  Description: string;
+  Quantity: number;
+  UnitType: string;
+  Price: number;
+  AllowanceTotal: number;
+  KDVPercent: number;
+  KDVTotal: number;
+  Taxes: Tax[];
+  DeliveryInfo?: DeliveryInfo;
+  ManufacturerCode?: string;
+  BrandName?: string;
+  ModelName?: string;
+  Note?: string;
+  SerialID?: string;
+  OzelMatrahReason?: string;
+  OzelMatrahTotal?: number;
+  VatAmountWithoutTevkifat?: number;
+  MedicineAndMedicalDevice?: MedicineAndMedicalDevice;
+  ExportRegisteredInfo?: ExportRegisteredInfo;
+  AdditionalItemIdentification?: AdditionalItemIdentification;
+}
+
+export interface Note {
+  text?: string;
+}
+
 export interface EInvoice {
   InvoiceInfo: InvoiceInfo;
   CompanyInfo: CompanyInfo;
@@ -249,6 +342,9 @@ export interface EInvoice {
   BuyerCustomerInfo?: BuyerCustomerInfo;
   ExportCustomerInfo?: ExportCustomerInfo;
   TaxFreeInfo?: TaxFreeInfo;
+  InvoiceLines: InvoiceLine[];
+  Notes?: Note[];
+  CustomerAlias?: string;
 }
 
 

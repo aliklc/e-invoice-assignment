@@ -5,9 +5,10 @@ import { EInvoiceFormData } from "../lib/types";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
+import { FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Plus, Trash2 } from "lucide-react";
+import { Textarea } from "./ui/textarea";
 
 const currencyOptions = [
   { value: "TRY", label: "Türk Lirası (TRY)" },
@@ -610,6 +611,21 @@ export function InvoiceInfoForm() {
             </div>
           </div>
         ))}
+        <FormField
+          control={control}
+          name="EInvoice.Notes.0.text"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Fatura Notu</FormLabel>
+              <FormControl>
+                <Textarea placeholder="Ek açıklama veya not giriniz" {...field} />
+              </FormControl>
+              <FormDescription>
+                Bu alanda faturaya özel açıklamalarınızı ekleyebilirsiniz.
+              </FormDescription>
+            </FormItem>
+          )}
+        />
       </div>
     </section>
   );

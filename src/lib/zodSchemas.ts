@@ -470,13 +470,117 @@ export const TaxFreeInfoSchema = z.object({
   TaxRepresentativeInfo: TaxRepresentativeInfoSchema.optional()
 });
 
+const TaxSchema = z.object({
+  TaxCode: z.string().min(1, "Vergi kodu boş olamaz"),
+  Total: z.number().min(0, "Vergi toplamı negatif olamaz"),
+  Percent: z.number().min(0, "Vergi yüzdesi negatif olamaz"),
+  ReasonCode: z.string().optional(),
+  ReasonDesc: z.string().optional()
+});
+
+const DeliveryAddressSchema = z.object({
+  Address: z.string().min(1, "Adres boş olamaz"),
+  District: z.string().optional(),
+  City: z.string().min(1, "Şehir boş olamaz"),
+  Country: z.string().optional(),
+  PostalCode: z.string().optional(),
+  Phone: z.string().min(1, "Telefon boş olamaz"),
+  Fax: z.string().optional(),
+  Mail: z.string().email("Geçerli bir e-posta adresi girin").min(1, "E-posta boş olamaz"),
+  WebSite: z.string().url("Geçerli bir URL girin").optional().or(z.literal(""))
+});
+
+const DeliveryInfoSchema = z.object({
+  GTIPNo: z.string().optional(),
+  DeliveryTermCode: z.string().optional(),
+  TransportModeCode: z.string().optional(),
+  PackageBrandName: z.string().optional(),
+  ProductTraceID: z.string().optional(),
+  PackageID: z.string().optional(),
+  PackageQuantity: z.number().optional(),
+  PackageTypeCode: z.string().optional(),
+  DeliveryAddress: DeliveryAddressSchema.optional()
+});
+
+const MedicineSchema = z.object({
+  GTIN: z.string().min(1, "GTIN boş olamaz"),
+  BatchNumber: z.string().min(1, "Parti numarası boş olamaz"),
+  SerialNumber: z.string().min(1, "Seri numarası boş olamaz"),
+  ExpirationDate: z.string()
+    .datetime({ offset: true })
+    .refine(val => !isNaN(Date.parse(val)), {
+      message: "Geçerli bir bitiş tarihi girin"
+    }),
+});
+
+const MedicalDeviceSchema = z.object({
+  ProductNumber: z.string().min(1, "Ürün numarası boş olamaz"),
+  LotNumber: z.string().min(1, "Lot numarası boş olamaz"),
+  SerialNumber: z.string().min(1, "Seri numarası boş olamaz"),
+  ProductionDate: z.string()
+    .datetime({ offset: true })
+    .refine(val => !isNaN(Date.parse(val)), {
+      message: "Geçerli bir bitiş tarihi girin"
+    }),
+});
+
+const MedicineAndMedicalDeviceSchema = z.object({
+  Medicine: z.array(MedicineSchema).optional(),
+  MedicalDevice: z.array(MedicalDeviceSchema).optional()
+}).optional();
+
+const ExportRegisteredInfoSchema = z.object({
+  DIIBLineCode: z.string().optional(),
+  GTIPNo: z.string().optional()
+}).optional();
+
+const AdditionalItemIdentificationSchema = z.object({
+  TagNumber: z.string().optional(),
+  OwnerName: z.string().optional(),
+  OwnerTaxNumber: z.string().optional()
+}).optional();
+
+const InvoiceLineSchema = z.object({
+  Index: z.string().min(1, "Satır indeksi boş olamaz"),
+  SellerCode: z.string().min(1, "Satıcı kodu boş olamaz"),
+  BuyerCode: z.string().min(1, "Alıcı kodu boş olamaz"),
+  Name: z.string().min(1, "Ürün adı boş olamaz"),
+  Description: z.string().min(1, "Açıklama boş olamaz"),
+  Quantity: z.number().min(0.0001, "Miktar sıfırdan büyük olmalı"),
+  UnitType: z.string().min(1, "Birim tipi boş olamaz"),
+  Price: z.number().min(0, "Fiyat negatif olamaz"),
+  AllowanceTotal: z.number().min(0, "İndirim toplamı negatif olamaz"),
+  KDVPercent: z.number().min(0, "KDV yüzdesi negatif olamaz"),
+  KDVTotal: z.number().min(0, "KDV toplamı negatif olamaz"),
+  Taxes: z.array(TaxSchema).min(1, "En az bir vergi bilgisi gereklidir"),
+  DeliveryInfo: DeliveryInfoSchema.optional(),
+  ManufacturerCode: z.string().optional(),
+  BrandName: z.string().optional(),
+  ModelName: z.string().optional(),
+  Note: z.string().optional(),
+  SerialID: z.string().optional(),
+  OzelMatrahReason: z.string().optional(),
+  OzelMatrahTotal: z.number().min(0, "Özel matrah toplamı negatif olamaz").optional(),
+  VatAmountWithoutTevkifat: z.number().min(0, "Tevkifatsız KDV tutarı negatif olamaz").optional(),
+  MedicineAndMedicalDevice: MedicineAndMedicalDeviceSchema.optional(),
+  ExportRegisteredInfo: ExportRegisteredInfoSchema,
+  AdditionalItemIdentification: AdditionalItemIdentificationSchema,
+});
+
+const NoteSchema = z.object({
+  text: z.string().optional()
+});
+
 const EInvoiceSchema = z.object({
   InvoiceInfo: InvoiceInfoSchema,
   CompanyInfo: CompanyInfoSchema,
   CustomerInfo: CustomerInfoSchema,
   BuyerCustomerInfo: BuyerCustomerInfoSchema.optional(),
   ExportCustomerInfo: ExportCustomerInfoSchema.optional(),
-  TaxFreeInfo: TaxFreeInfoSchema.optional()
+  TaxFreeInfo: TaxFreeInfoSchema.optional(),
+  InvoiceLines: z.array(InvoiceLineSchema).min(1, "En az bir fatura satırı gereklidir"),
+  Notes: z.array(NoteSchema).optional(),
+  CustomerAlias: z.string().optional(),
 });
 
 export const EInvoiceFormDataSchema: z.ZodType<EInvoiceFormData> = z.object({

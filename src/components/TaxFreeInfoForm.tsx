@@ -241,7 +241,7 @@ export function TaxFreeInfoForm() {
             <h4 className="text-md font-semibold text-gray-800 mb-3">
               Finansal Hesap Bilgileri
             </h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <FormField
                 control={control}
                 name="EInvoice.TaxFreeInfo.TouristInfo.FinancialAccountInfo.BankName"
@@ -302,7 +302,7 @@ export function TaxFreeInfoForm() {
                 control={control}
                 name="EInvoice.TaxFreeInfo.TouristInfo.FinancialAccountInfo.PaymentNote"
                 render={({ field }) => (
-                  <FormItem className="md:col-span-2">
+                  <FormItem className="md:col-span-4">
                     <FormLabel>Ödeme Notu</FormLabel>
                     <FormControl>
                       <Input placeholder="Ödeme ile ilgili not" {...field} />
